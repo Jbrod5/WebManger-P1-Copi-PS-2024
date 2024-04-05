@@ -52,6 +52,8 @@ Lexer servidor:
       comillas: "/""
       nombre_def: "nombre"
       identificador: [_\-$][a-zA-Z0-9_\-$]*
+      val_open : "["
+      val_close: "]"
 
 
 
