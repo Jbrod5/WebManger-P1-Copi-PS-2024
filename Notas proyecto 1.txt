@@ -51,6 +51,7 @@ Lexer servidor:
       equals: "="
       comillas: "/""
       nombre_def: "nombre"
+      identificador: [_\-$][a-zA-Z0-9_\-$]*
 
 
 
@@ -75,6 +76,11 @@ Lexer servidor:
 
         param_pag: "PAGINA"
         param_cls: "CLASE"
+
+          VALORES
+            prm_val_id  : identificador
+            prm_val_fch : ([0-9]{4})-([0-1][0-9]|2[0-3])-([0-9]{1,2})
+            prm_val_tit : [A-Za-z0-9\s.,:]+
 
 
 
@@ -104,13 +110,13 @@ Lexer servidor:
             atr_val_dere: "DERECHA"
             atr_val_just: "JUSTIFICAR"
             atr_val_colh: "#"([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})
-            atr_val_text: [A-Za-z0-9\s]+
+            atr_val_text: [A-Za-z0-9\s.,:;]+
             atr_val_orgn: ¿¿¿¿¿¿ url  ????? 
             atr_val_altr: [0-9][0-9]*
             atr_val_anch: [0-9][0-9]*
             atr_val_padr: ¿¿¿¿¿¿¿ Menu creado a partir de las paginas hijas del identificador especificado en este atributo??????
             atr_val_etqt: Los atributos de este componente se pueden combinar para filtrar las páginas que se incluyen en el menú. por ejemplo se puede crear un menu de las paginas hijas de ‘productos’ que contengan la etiqueta ‘tenis’ Se debe especificar alguno de los atributos.
-
+            
   
     ACCIONES
       accion_def:  "accion"
