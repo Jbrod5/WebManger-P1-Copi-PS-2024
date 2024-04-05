@@ -1,0 +1,93 @@
+Aplicacion servidor:  
+ + Ejecuta el manejador de contenidos (escucha los mensajes envados por la aplicacion cliente)
+
+Aplicacion cliente : Analizador de las respuestas del servidor
+Permite crear sitios web. Cada sitio debe tener una pag index. 
+ + Area de texto donde se escribe codigo XML de las acciones 
+ + Area de respuesta del servidor 
+    -> Visualiza errores lexicos o sintacticos generados al ejecutar las acciones xml (descripcion completa del error: linea, columna, token, simbolo de erro)
+    -> Visualiza los mensajes de respuesta del servidor
+
+
+Sitios web
+ + Desplegados por la aplicacion servidor
+ + Informacion almacenada por la aplicacion servidor como base de datos
+   - Informacion del sitio y su estructura
+     - Nombre, paginas, etc -> USAR XML PARA ALMACENAR LA INFORMACION
+   - Almacenados en arboles
+     - Index: Nodo padre de cada sitio web 
+     - Cada pagina puede tener paginas hijas y hermanas
+
+Paginas web
+ - Al crearlas deben servirse en un servidor http en el puerto 80
+ - Los archivos de sitio web deben ser manejados por el nucleo del manejador de contenido 
+    : Manejarlos como arboles: bases de datos.
+    : Cada sitio web es un arbol con raiz pagina index y paginas como hijos
+        : Al eliminar un sitio se eliminan todas las demas paginas
+    : El nodo raiz es el indez
+    : Cada pagina puede tener paginas hijas
+    : Si se borra un nodo se borran sus paginas hijas
+
+
+
+
+Son tres analizadores
+ -  Analizador del servidor (interpreta codigo xml de acciones del cliente) -> manejador de contenido 
+ -  Analizador del cliente (despliega respuestas del servidor)
+
+
+
+
+
+
+
+Lexer servidor:
+- Tokens:
+
+    GLOBALES
+      tag_open:   "<"
+      tag_close:  ">"
+      tag_inclose:"/"
+      nombre def: "nombre="
+
+    
+    PARAMETROS
+      parametros_def: "parametros"
+      parametro_def:  "parametro"
+      parametros_op:  tag_open parametros_def tag_close 
+      parametros_cl: tag_open tag_inclose parametros_def tag_close
+
+  
+    ACCIONES
+      accion_def:  "accion"
+      acciones_def: "acciones"
+      acciones_op:  tag_open acciones_def tag_close
+      acciones_cl:  tag_open tag_inclose acciones_def tag_close
+      accion_op: ES GRAMATICAL -> <accion nombre="MODIFICAR_COMPONENTE">
+      accion_cl: tag_open tag_inclose accion_def tag_close
+
+      add_wbst: "NUEVO_SITIO_WEB"
+      del_wbst: "BORRAR_SITIO_WEB"
+
+      add_pagw: "NUEVA_PAGINA"
+      del_pagw: "BORRAR_PAGINA"
+      mod_pagw: "MODIFICAR_PAGINA"
+
+      add_comp: "AGREGAR_COMPONENTE"
+      del_comp: "BORRAR_COMPONENTE"
+      mod_comp: "MODIFICAR_COMPONENTE"
+
+
+
+
+
+Accion: AGREGAR_COMPONENTE
+        | BORRAR_COMPONENTE
+        | MODIFICAR_COMPONENTE
+        | BORRAR_PAGINA 
+        | NUEVA_PAGINA      : Tienen etiquetas
+        | MODIFICAR_PAGINA  : Tienen etiquetas
+        | BORRAR_SITIO_WEB
+
+
+Def_accion= "<accion nombre="   Accion   ">"   
