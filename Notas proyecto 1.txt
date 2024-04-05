@@ -141,6 +141,10 @@ Lexer servidor:
 
 
 
+  Tokens
+
+
+
 
 
 Accion: AGREGAR_COMPONENTE
