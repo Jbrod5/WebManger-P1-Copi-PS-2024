@@ -18,17 +18,20 @@ tag_inclose  =\/
 equals       =\=
 comillas     =\"
 nombre_def   =nombre
+valor_def    =valor
 identificador=[_\-$][a-zA-Z0-9_\-$]*
 val_open     =\[
-val_close:   =\]
+val_close    =\]
 
 // PARAMETROS --------------------------------------------------------------------------------------
 parametros_def  =parametros
 parametro_def   =parametro
-parametros_op   ={tag_open} {parametros_def} {tag_close} 
-parametros_cl   ={tag_open} {tag_inclose} {parametros_def} {tag_close}
-//parametro_op    = ES GRAMATICAL <parametro nombre="ID">
-parametro_cl    ={tag_open} {tag_inclose} {parametro_def} {tag_close}
+parametros_op   = {tag_open} {parametros_def} {tag_close} 
+parametros_cl   = {tag_open} {tag_inclose} {parametros_def} {tag_close}
+param_type      = ({param_id} | {param_tit} | {param_sit} | {param_pad} | {param_usc} | {param_fcr} | {param_fmd} | {param_usm} | {param_pag} | {param_cls} )   
+parametro_op    = {tag_open} {parametro_def} {nombre_def} {equals} {comillas} {param_type} {comillas} {tag_close}
+                //ES GRAMATICAL <parametro nombre="ID">, RETORNAR LO QUE ESTA ENTRE COMILLAS
+parametro_cl    = {tag_open} {tag_inclose} {parametro_def} {tag_close}
 
 // PARAMETRO
 param_id    =ID
@@ -53,7 +56,8 @@ etiquetas_def   =etiquetas
 etiqueta_def    =etiqueta
 etiquetas_op    = {tag_open} {etiquetas_def} {tag_close}
 etiquetas_cl    = {tag_open} {tag_inclose} {etiquetas} {tag_close}
-//etiqueta        = ES GRAMATICAL -> <etiqueta valor="etiqueta1"/>
+etiqueta        = {tag_open} {etiqueta_def} {valor_def} {equals} {comillas} {identificador} {comillas} {tag_close}
+                //ES GRAMATICAL -> <etiqueta valor="etiqueta1"/>  RETORNAR LO QUE ESTA ENTRE COMILLAS
 
 // ATRIBUTOS ---------------------------------------------------------------------------------------
 atributos_def   =atributos
@@ -84,8 +88,8 @@ atr_val_anch = [0-9][0-9]*
 
 
 // ACCIONES ----------------------------------------------------------------------------------------
-accion_def   =accion"
-acciones_def =acciones"
+accion_def   =accion
+acciones_def =acciones
 acciones_op  = {tag_open} {acciones_def} {tag_close}
 acciones_cl  = {tag_open} {tag_inclose} {acciones_def} {tag_close}
 //accion_op    = ES GRAMATICAL -> <accion nombre="MODIFICAR_COMPONENTE">

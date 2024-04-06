@@ -51,6 +51,7 @@ Lexer servidor:
       equals: "="
       comillas: "/""
       nombre_def: "nombre"
+      valor_def: "valor"
       identificador: [_\-$][a-zA-Z0-9_\-$]*
       val_open : "["
       val_close: "]"
@@ -92,6 +93,8 @@ Lexer servidor:
       etiquetas_op : tag_open etiquetas_def tag_close
       etiquetas_cl : tag_open tag_inclose etiquetas tag_close
       etiqueta: ES GRAMATICAL -> <etiqueta valor="etiqueta1"/>
+
+
 
     ATRIBUTOS
       atributos_def: "atributos"
@@ -141,7 +144,17 @@ Lexer servidor:
 
 
 
-  Tokens
+    TOKENS RETORNADOS
+      1. Uso general
+        - TAG_OPEN
+        - TAG_CLOSE
+        - TAG_INCLOSE
+        - EQUALS
+        - COMILLAS
+        - NOMBRE_DEF
+        - IDENTIFICADOR
+        - VAL_OPEN
+        - VAL_CLOSE
 
 
 
