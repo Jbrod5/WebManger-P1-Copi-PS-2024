@@ -1,5 +1,5 @@
 /* CODIGO DE USUARIO */
-package 
+package com.;
 import java_cup.runtime.*;
 
 %% 
@@ -162,6 +162,18 @@ WhiteSpace = {LineTerminator} | [ \t\f]
     System.out.println("Error en linea line "+(yyline+1)+", columna "+(yycolumn+1)+" : "+message);
   }
 
+  private void removeBrackets(String texto){
+    if (texto.startsWith("[")) {
+      texto = texto.substring(1);
+    }
+    if (texto.endsWith("]")) {
+      texto = texto.substring(0, texto.length() - 1);
+    }
+    
+    String resultado = texto.substring(1, texto.length() - 1);
+    return; 
+  }
+
 %}
 
 
@@ -169,18 +181,18 @@ WhiteSpace = {LineTerminator} | [ \t\f]
 /* REGLAS LEXICAS */
 
 // Valores
-{prm_val_id}   { return symbol(sym.PRM_VAL_ID,    yytext()); }
-{prm_val_fch}  { return symbol(sym.PRM_VAL_FCH,   yytext()); }
-{prm_val_tit}  { return symbol(sym.PRM_VAL_TIT,   yytext()); }
+{prm_val_id}   { return symbol(sym.PRM_VAL_ID,    removeBrackets(yytext())); }
+{prm_val_fch}  { return symbol(sym.PRM_VAL_FCH,   removeBrackets(yytext())); }
+{prm_val_tit}  { return symbol(sym.PRM_VAL_TIT,   removeBrackets(yytext())); }
 
-{atr_val_cent}  { return symbol(sym.ATR_VAL_CENT,  yytext()); }
-{atr_val_izqd}  { return symbol(sym.ATR_VAL_IZQD,  yytext()); }
-{atr_val_dere}  { return symbol(sym.ATR_VAL_DERE,  yytext()); }
-{atr_val_just}  { return symbol(sym.ATR_VAL_JUST,  yytext()); }
-{atr_val_colh}  { return symbol(sym.ATR_VAL_COLH,  yytext()); }
-{atr_val_text}  { return symbol(sym.ATR_VAL_TEXT,  yytext()); }
+{atr_val_cent}  { return symbol(sym.ATR_VAL_CENT,  removeBrackets(yytext())); }
+{atr_val_izqd}  { return symbol(sym.ATR_VAL_IZQD,  removeBrackets(yytext())); }
+{atr_val_dere}  { return symbol(sym.ATR_VAL_DERE,  removeBrackets(yytext())); }
+{atr_val_just}  { return symbol(sym.ATR_VAL_JUST,  removeBrackets(yytext())); }
+{atr_val_colh}  { return symbol(sym.ATR_VAL_COLH,  removeBrackets(yytext())); }
+{atr_val_text}  { return symbol(sym.ATR_VAL_TEXT,  removeBrackets(yytext())); }
 
-{atr_val_intg}  { return symbol(sym.ATR_VAL_INTG,  yytext()); }
+{atr_val_intg}  { return symbol(sym.ATR_VAL_INTG,  removeBrackets(yytext())); }
 
 // Parametros
 {parametros_op} { return symbol(sym.PARAMETROS_OP,  yytext()); }
