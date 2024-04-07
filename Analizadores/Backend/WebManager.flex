@@ -45,6 +45,17 @@ atr_val_intg = {val_open} [0-9][0-9]* {val_close}
 //atr_val_etqt = Los atributos de este componente se pueden combinar para filtrar las páginas que se incluyen en el menú. por ejemplo se puede crear un menu de las paginas hijas de ‘productos’ que contengan la etiqueta ‘tenis’ Se debe especificar alguno de los atributos.
 
 
+// Valores clases: 
+class_val_tit = {val_open} "TITULO"  {val_close}
+class_val_par = {val_open} "PARRAFO" {val_close}
+class_val_img = {val_open} "IMAGEN"  {val_close}
+class_val_vid = {val_open} "VIDEO"   {val_close}
+class_val_men = {val_open} "MENU"    {val_close}
+
+// Valores atributos
+//atr_val_ori   = {val_open} {atr_val_text} {val_close}   
+//atr_val_alt   = {val_open} {atr_val_intg} {val_close}
+//atr_val_anc   = {val_open} {atr_val_intg} {val_close}
 
 // PARAMETROS --------------------------------------------------------------------------------------
 parametros_def  = "parametros"
@@ -68,7 +79,7 @@ parametro_cl   = {tag_open} {tag_inclose} {parametro_def} {tag_close}
 
 // PARAMETRO
 param_id    = "ID"
-param_tit   = "TUTULO"
+param_tit   = "TITULO"
 param_sit   = "SITIO"
 param_pad   = "PADRE"
 param_usc   = "USUARIO_CREACION"
@@ -77,7 +88,6 @@ param_fmd   = "FECHA_MODIFICACION"
 param_usm   = "USUARIO_MODIFICACION"
 param_pag   = "PAGINA"
 param_cls   = "CLASE"
-
 
 
 
@@ -100,6 +110,10 @@ atributos_cl    = {tag_open} {tag_inclose} {atributos_def} {tag_close}
 atr_typle_txt   = {tag_open} {atributo_def} {nombre_def} {equals} {comillas} {atr_txt} {comillas} {tag_close}
 atr_typle_clr   = {tag_open} {atributo_def} {nombre_def} {equals} {comillas} {atr_clr} {comillas} {tag_close}
 atr_typle_aln   = {tag_open} {atributo_def} {nombre_def} {equals} {comillas} {atr_aln} {comillas} {tag_close}
+
+atr_typle_ori   = {tag_open} {atributo_def} {nombre_def} {equals} {comillas} {atr_ori} {comillas} {tag_close}
+atr_typle_alt   = {tag_open} {atributo_def} {nombre_def} {equals} {comillas} {atr_alt} {comillas} {tag_close}
+atr_typle_anc   = {tag_open} {atributo_def} {nombre_def} {equals} {comillas} {atr_anc} {comillas} {tag_close} 
 atributo_cl     = {tag_open} {tag_inclose} {atributo_def} {tag_close}
 
 
@@ -108,6 +122,9 @@ atr_txt = "TEXTO"
 atr_clr = "COLOR"
 atr_aln = "ALINEACION"
 
+atr_ori = "ORIGEN" 
+atr_alt = "ALTURA"
+atr_anc = "ANCHO"
 
 
 
@@ -130,7 +147,7 @@ acc_mod_comp = {tag_open} {accion_def} {nombre_def} {equals} {comillas} {mod_com
 accion_cl    = {tag_open} {tag_inclose} {accion_def} {tag_close}
 
 add_wbst = "NUEVO_SITIO_WEB"
-del_wbst = "BORRAR_SITIO_WEB"
+del_wbst = "BORRAR_SITIO_WEB"áginas
 
 add_pagw = "NUEVA_PAGINA"
 del_pagw = "BORRAR_PAGINA"
@@ -191,8 +208,14 @@ WhiteSpace = {LineTerminator} | [ \t\f]
 {atr_val_just}  { return symbol(sym.ATR_VAL_JUST,  removeBrackets(yytext())); }
 {atr_val_colh}  { return symbol(sym.ATR_VAL_COLH,  removeBrackets(yytext())); }
 {atr_val_text}  { return symbol(sym.ATR_VAL_TEXT,  removeBrackets(yytext())); }
-
 {atr_val_intg}  { return symbol(sym.ATR_VAL_INTG,  removeBrackets(yytext())); }
+
+{class_val_tit} { return symbol(sym.CLASS_TYPE_TIT, removeBrackets(yytext())); }
+{class_val_par} { return symbol(sym.CLASS_TYPE_PAR, removeBrackets(yytext())); }
+{class_val_img} { return symbol(sym.CLASS_TYPE_IMG, removeBrackets(yytext())); }
+{class_val_vid} { return symbol(sym.CLASS_TYPE_VID, removeBrackets(yytext())); }
+{class_val_men} { return symbol(sym.CLASS_TYPE_MEN, removeBrackets(yytext())); }
+
 
 // Parametros
 {parametros_op} { return symbol(sym.PARAMETROS_OP,  yytext()); }
@@ -217,18 +240,27 @@ WhiteSpace = {LineTerminator} | [ \t\f]
 {atr_typle_txt}  { return symbol(sym.ATR_TYPE_TXT,   yytext()); }
 {atr_typle_clr}  { return symbol(sym.ATR_TYPE_CLR,   yytext()); }
 {atr_typle_aln}  { return symbol(sym.ATR_TYPE_ALN,   yytext()); }
+
+{atr_typle_ori}  { return symbol(sym.ATR_TYPE_ORI,   yytext()); }   
+{atr_typle_alt}  { return symbol(sym.ATR_TYPE_ALT,   yytext()); }
+{atr_typle_anc}  { return symbol(sym.ATR_TYPE_ANC,   yytext()); }
 {atributo_cl}    { return symbol(sym.ATRIBUTO_CL,    yytext()); }
 
 // Acciones
-{acciones_op}  { return symbol(ACCIONES_OP,  yytext()); }
-{acciones_cl}  { return symbol(ACCIONES_CL,  yytext()); } 
+{acciones_op}  { return symbol(sym.ACCIONES_OP,  yytext()); }
+{acciones_cl}  { return symbol(sym.ACCIONES_CL,  yytext()); } 
 
-{acc_add_wbst}  { return symbol(ACC_ADD_WBST, yytext()); }
-{acc_del_wbst}  { return symbol(ACC_DEL_WBST, yytext()); }
-{acc_add_pagw}  { return symbol(ACC_ADD_PAGW, yytext()); }
-{acc_del_pagw}  { return symbol(ACC_DEL_PAGW, yytext()); }
-{acc_mod_pagw}  { return symbol(ACC_MOD_PAGW, yytext()); }
-{acc_add_comp}  { return symbol(ACC_ADD_COMP, yytext()); }
-{acc_del_comp}  { return symbol(ACC_DEL_COMP, yytext()); }
-{acc_mod_comp}  { return symbol(ACC_MOD_COMP, yytext()); }
-{accion_cl}     { return symbol(ACCION_CL,    yytext()); }
+{acc_add_wbst}  { return symbol(sym.ACC_ADD_WBST, yytext()); }
+{acc_del_wbst}  { return symbol(sym.ACC_DEL_WBST, yytext()); }
+{acc_add_pagw}  { return symbol(sym.ACC_ADD_PAGW, yytext()); }
+{acc_del_pagw}  { return symbol(sym.ACC_DEL_PAGW, yytext()); }
+{acc_mod_pagw}  { return symbol(sym.ACC_MOD_PAGW, yytext()); }
+{acc_add_comp}  { return symbol(sym.ACC_ADD_COMP, yytext()); }
+{acc_del_comp}  { return symbol(sym.ACC_DEL_COMP, yytext()); }
+{acc_mod_comp}  { return symbol(sym.ACC_MOD_COMP, yytext()); }
+{accion_cl}     { return symbol(sym.ACCION_CL,    yytext()); }
+
+//Etiquetas
+{etiquetas_op}  { return symbol(sym.ETIQUETAS_OP, yytext()); }
+{etiquetas_cl}  { return symbol(sym.ETIQUETAS_CL, yytext()); }
+{etiqueta}      { return symbol(sym.ETIQUETA    , yytext()); }
