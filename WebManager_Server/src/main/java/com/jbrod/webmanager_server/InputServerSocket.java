@@ -14,7 +14,7 @@ public class InputServerSocket implements Runnable {
 
     ServerSocket inputSocket; 
     
-    public InputServerSocket(int ip, int port){
+    public InputServerSocket(String ip, int port){
         //Crear el hilo     
         Thread parseListener = new Thread(this);
 
