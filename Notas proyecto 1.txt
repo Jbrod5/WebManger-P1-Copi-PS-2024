@@ -339,3 +339,25 @@ Modificar parm pag -> accion_mod_pagw ::=  ACC_MOD_PAGW  PARAMETROS_OP prm_val_i
 Agregar componentes-> accion_add_comp ::=  ACC_ADD_COMP  PARAMETROS_OP prm_val_id prm_val_pag prm_val_cls PARAMETROS_CL atributos ACCION_CL
 Eliminar componente-> accion_del_comp ::=  ACC_DEL_COMP  prm_val_id prm_val_pag ACCION_CL
 Modificar component-> accion_mod_comp ::=  ACC_MOD_COMP  PARAMETROS_OP prm_val_id prm_val_pag prm_val_cls PARAMETROS_CL atributos ACCION_CL
+
+
+
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - MANEJO DE LAS PAGINAS - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+Crear una clase pagina 
+  pagina tendra toda la logica para crear y manejar cada pagina
+
+  padre                 -> Id del padre? (aunque esto puede resolverse en el arbol)
+
+  listaComponentes      -> Lista simple enlazada con todos los componentes dentro de la pagina
+                           (Generar clases imagen, vide, titulo, parrafo???)
+                           (Creo que si para manejar sus atributos)
+
+  void generarPagina () -> Genera la pagina despues de haber sido configurada
+
+
+
+Base de datos
+  la base de datos será un arbol (no binario ni balanceado, solo un arbol con estructura libre)
+  arbol retornara la pagina donde trabajar
