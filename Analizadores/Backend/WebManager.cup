@@ -7,7 +7,7 @@ import java_cup.runtime.*;
 
 parser code {:
     // Connect this parser to a scanner!
-    public WebManagerParser(WebManagerLexer lex) {
+    public WebParser(WebManagerLexer lex) {
 	    super(lex);
 	  }
 
@@ -47,23 +47,49 @@ terminal String ACCIONES_OP, ACCIONES_CL, ACC_ADD_WBST, ACC_DEL_WBST, ACC_ADD_PA
 /* Etiquetas */
 terminal String ETIQUETAS_OP, ETIQUETAS_CL, ETIQUETA;
 
-/* - - - - - - - - - - - - - - - - - - -  Producciones - - - - - - - - - - - - - - - - - - -  */
 
+/* - - - - - - - - - - - - - - - - - - -  No terminales - - - - - - - - - - - - - - - - - - - */
 // Inicio
-instruccion ::= acciones;
-accion      ::=   accion_add_wbst, accion_del_wbst, accion_add_pagw, accion_del_pagw, accion_mod_pagw, accion_add_comp, accion_del_comp, accion_mod_comp;
-acciones    ::=   accion acciones | accion;
+non terminal String instruccion, accion, accion_rec, acciones;
 
 // Parametros
+non terminal String prm_val_id, prm_val_uc, prm_val_usm, prm_val_fch, prm_val_fmd, prm_val_tit, prm_val_sit, prm_val_pad, prm_val_pag;
+
+// Agregar componentes 
+non terminal String class_val_tit, class_val_par, class_val_img, class_val_vid, class_val_men, class_type, prm_val_cls;
+
+// Etiquetas
+non terminal String etiqueta, etiqueta_op, etiquetas;
+
+// Atributos
+non terminal String atr_val_txt, aln_cent, aln_izqd, aln_dere, aln_just, alineacion, atr_val_aln, atr_val_clr, atr_val_ori, atr_val_alt, atr_val_anc, atributo, atributo_op, atributos;
+
+// Acciones
+non terminal String accion_add_wbst, accion_del_wbst, prm_val_pad_op,accion_add_pagw, accion_del_pagw, accion_mod_pagw, accion_add_comp, accion_del_comp, accion_mod_comp;
+
+
+
+
+/* - - - - - - - - - - - - - - - - - - -  Producciones - - - - - - - - - - - - - - - - - - -  */
+
+
+// Inicio
+instruccion ::=  acciones | accion;
+accion      ::=  accion_add_wbst | accion_del_wbst | accion_add_pagw | accion_del_pagw | accion_mod_pagw | accion_add_comp | accion_del_comp | accion_mod_comp;
+accion_rec  ::=  accion accion_rec | accion;
+acciones    ::=  ACCIONES_OP accion_rec ACCIONES_CL;
+
+// Parametros
+prm_val_pad ::= PARAM_TYPE_PAD   PRM_VAL_ID    PARAMETRO_CL;
 prm_val_id  ::= PARAM_TYPE_ID    PRM_VAL_ID    PARAMETRO_CL;
 prm_val_uc  ::= PARAM_TYPE_USC   PRM_VAL_ID    PARAMETRO_CL;
 prm_val_usm ::= PARAM_TYPE_USM   PRM_VAL_ID    PARAMETRO_CL;
+prm_val_sit ::= PARAM_TYPE_SIT   PRM_VAL_ID    PARAMETRO_CL;
 prm_val_fch ::= PARAM_TYPE_FCR   PRM_VAL_FCH   PARAMETRO_CL;
 prm_val_fmd ::= PARAM_TYPE_FMD   PRM_VAL_FCH   PARAMETRO_CL;
 
 prm_val_tit ::= PARAM_TYPE_TIT   PRM_VAL_TIT   PARAMETRO_CL;
-prm_val_sit ::= PARAM_TYPE_SIT   PRM_VAL_ID    PARAMETRO_CL;
-prm_val_pad ::= PARAM_TYPE_PAD   PRM_VAL_ID    PARAMETRO_CL;
+
 
 prm_val_pag ::= PARAM_TYPE_PAG   PRM_VAL_ID    PARAMETRO_CL;
 
@@ -97,7 +123,7 @@ atr_val_ori ::= ATR_TYPE_ORI ATR_VAL_TEXT ATRIBUTO_CL;
        
 atr_val_alt ::= ATR_TYPE_ALT ATR_VAL_INTG ATRIBUTO_CL;
     
-atr_val_anc ::= ATR_TYPE_ANC ATR_VAL_INT ATRIBUTO_CL;
+atr_val_anc ::= ATR_TYPE_ANC ATR_VAL_INTG ATRIBUTO_CL;
 
 // FALTA MENU
 
@@ -109,7 +135,8 @@ atributos   ::= ATRIBUTOS_OP atributo_op ATRIBUTOS_CL;
 accion_add_wbst ::=  ACC_ADD_WBST PARAMETROS_OP prm_val_id prm_val_uc prm_val_fch prm_val_fmd prm_val_usm PARAMETROS_CL ACCION_CL;
 accion_del_wbst ::=  ACC_DEL_WBST prm_val_id ACCION_CL;
 
-accion_add_pagw ::=  ACC_ADD_PAGW PARAMETROS_OP prm_val_id prm_val_tit  ( prm_val_sit | /*epsilon*/)     prm_val_uc prm_val_fch prm_val_fmd prm_val_usm  PARAMETROS_CL etiquetas ACCION_CL;
+prm_val_pad_op  ::=  prm_val_pad | /* epsilon */;
+accion_add_pagw ::=  ACC_ADD_PAGW PARAMETROS_OP prm_val_id prm_val_tit   prm_val_sit prm_val_pad_op     prm_val_uc prm_val_fch prm_val_fmd prm_val_usm  PARAMETROS_CL etiquetas ACCION_CL;
 accion_del_pagw ::=  ACC_DEL_PAGW prm_val_id ACCION_CL;
 accion_mod_pagw ::=  ACC_MOD_PAGW  PARAMETROS_OP prm_val_id prm_val_tit PARAMETROS_CL etiquetas ACCION_CL;
 
