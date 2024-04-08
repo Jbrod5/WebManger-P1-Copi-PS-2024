@@ -3,7 +3,7 @@
 // source: WebManager.flex
 
 /* CODIGO DE USUARIO */
-package com.jbrod.webmanager_server.analizer;
+package com.jbrod.webmanager_server.analyzer;
 import java_cup.runtime.*;
 
 
@@ -592,7 +592,7 @@ public class WebManagerLexer implements java_cup.runtime.Scanner {
     }
     
     String resultado = texto.substring(1, texto.length() - 1);
-    return; 
+    return resultado; 
   }
 
 

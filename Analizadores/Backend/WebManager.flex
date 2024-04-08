@@ -1,5 +1,5 @@
 /* CODIGO DE USUARIO */
-package com.jbrod.webmanager_server.analizer;
+package com.jbrod.webmanager_server.analyzer;
 import java_cup.runtime.*;
 
 %% 
@@ -179,7 +179,7 @@ prm_val_tit = {val_open} [A-Za-z0-9\s\.\,\:]+ {val_close}
     System.out.println("Error en linea line "+(yyline+1)+", columna "+(yycolumn+1)+" : "+message);
   }
 
-  private void removeBrackets(String texto){
+  private String removeBrackets(String texto){
     if (texto.startsWith("[")) {
       texto = texto.substring(1);
     }
@@ -188,7 +188,7 @@ prm_val_tit = {val_open} [A-Za-z0-9\s\.\,\:]+ {val_close}
     }
     
     String resultado = texto.substring(1, texto.length() - 1);
-    return; 
+    return resultado; 
   }
 
 %}

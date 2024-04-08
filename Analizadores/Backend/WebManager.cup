@@ -1,4 +1,4 @@
-package com.jbrod.webmanager_server.analizer;
+package com.jbrod.webmanager_server.analyzer;
 import java_cup.runtime.*;
 
 

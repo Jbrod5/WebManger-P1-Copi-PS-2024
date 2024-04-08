@@ -11,4 +11,15 @@
         <maven.compiler.target>17</maven.compiler.target>
         <exec.mainClass>com.jbrod.webmanager_server.WebManager_Server</exec.mainClass>
     </properties>
+    
+    <dependencies>
+        
+        <dependency>
+            <groupId>com.cup</groupId>
+            <artifactId>cup</artifactId>
+            <version>0.11</version>
+        </dependency>
+        
+        
+    </dependencies>
 </project>

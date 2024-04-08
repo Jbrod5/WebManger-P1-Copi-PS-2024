@@ -3,7 +3,7 @@
 // source: WebManager.flex
 
 /* CODIGO DE USUARIO */
-package com.jbrod.webmanager_server.analizer;
+package com.jbrod.webmanager_server.analyzer;
 import java_cup.runtime.*;
 
 
@@ -583,7 +583,7 @@ public class WebManagerLexer implements java_cup.runtime.Scanner {
     System.out.println("Error en linea line "+(yyline+1)+", columna "+(yycolumn+1)+" : "+message);
   }
 
-  private void removeBrackets(String texto){
+  private String removeBrackets(String texto){
     if (texto.startsWith("[")) {
       texto = texto.substring(1);
     }
@@ -592,7 +592,7 @@ public class WebManagerLexer implements java_cup.runtime.Scanner {
     }
     
     String resultado = texto.substring(1, texto.length() - 1);
-    return; 
+    return resultado; 
   }
 
 
