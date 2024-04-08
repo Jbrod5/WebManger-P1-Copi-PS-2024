@@ -1,5 +1,5 @@
 /* CODIGO DE USUARIO */
-package com.;
+package com.jbrod.webmanager_server.analizer;
 import java_cup.runtime.*;
 
 %% 
@@ -19,15 +19,10 @@ equals       = "\="
 comillas     = "\""
 nombre_def   = "nombre"
 valor_def    = "valor"
-identificador= [_\-$][a-zA-Z0-9_\-$]*
 val_open     = "\["
 val_close    = "\]"
 
 // Valaores generales
-// valores parametros
-prm_val_id  = {val_open} {identificador} {val_close}
-prm_val_fch = {val_open} ([0-9]{4})-([0-1][0-9]|2[0-3])-([0-9]{1,2}) {val_close}
-prm_val_tit = {val_open} [A-Za-z0-9\s\.\,\:]+ {val_close}
 
 //valores atributos
 atr_val_cent = {val_open} "CENTRAR" {val_close}
@@ -95,7 +90,7 @@ param_cls   = "CLASE"
 etiquetas_def   = "etiquetas"
 etiqueta_def    = "etiqueta"
 etiquetas_op    = {tag_open} {etiquetas_def} {tag_close}
-etiquetas_cl    = {tag_open} {tag_inclose} {etiquetas} {tag_close}
+etiquetas_cl    = {tag_open} {tag_inclose} {etiquetas_def} {tag_close}
 etiqueta        = {tag_open} {etiqueta_def} {valor_def} {equals} {comillas} {identificador} {comillas} {tag_close}
                 //ES GRAMATICAL -> <etiqueta valor="etiqueta1"/>  RETORNAR LO QUE ESTA ENTRE COMILLAS
 
@@ -162,6 +157,11 @@ mod_comp = "MODIFICAR_COMPONENTE"
 
 LineTerminator = \r|\n|\r\n
 WhiteSpace = {LineTerminator} | [ \t\f]
+// valores parametros
+identificador= [_\-$][a-zA-Z0-9_\-$]*
+prm_val_id  = {val_open} {identificador} {val_close}
+prm_val_fch = {val_open} ([0-9]{4})-([0-1][0-9]|2[0-3])-([0-9]{1,2}) {val_close}
+prm_val_tit = {val_open} [A-Za-z0-9\s\.\,\:]+ {val_close}
 
 
 %{
@@ -196,26 +196,6 @@ WhiteSpace = {LineTerminator} | [ \t\f]
 
 %%
 /* REGLAS LEXICAS */
-
-// Valores
-{prm_val_id}   { return symbol(sym.PRM_VAL_ID,    removeBrackets(yytext())); }
-{prm_val_fch}  { return symbol(sym.PRM_VAL_FCH,   removeBrackets(yytext())); }
-{prm_val_tit}  { return symbol(sym.PRM_VAL_TIT,   removeBrackets(yytext())); }
-
-{atr_val_cent}  { return symbol(sym.ATR_VAL_CENT,  removeBrackets(yytext())); }
-{atr_val_izqd}  { return symbol(sym.ATR_VAL_IZQD,  removeBrackets(yytext())); }
-{atr_val_dere}  { return symbol(sym.ATR_VAL_DERE,  removeBrackets(yytext())); }
-{atr_val_just}  { return symbol(sym.ATR_VAL_JUST,  removeBrackets(yytext())); }
-{atr_val_colh}  { return symbol(sym.ATR_VAL_COLH,  removeBrackets(yytext())); }
-{atr_val_text}  { return symbol(sym.ATR_VAL_TEXT,  removeBrackets(yytext())); }
-{atr_val_intg}  { return symbol(sym.ATR_VAL_INTG,  removeBrackets(yytext())); }
-
-{class_val_tit} { return symbol(sym.CLASS_TYPE_TIT, removeBrackets(yytext())); }
-{class_val_par} { return symbol(sym.CLASS_TYPE_PAR, removeBrackets(yytext())); }
-{class_val_img} { return symbol(sym.CLASS_TYPE_IMG, removeBrackets(yytext())); }
-{class_val_vid} { return symbol(sym.CLASS_TYPE_VID, removeBrackets(yytext())); }
-{class_val_men} { return symbol(sym.CLASS_TYPE_MEN, removeBrackets(yytext())); }
-
 
 // Parametros
 {parametros_op} { return symbol(sym.PARAMETROS_OP,  yytext()); }
@@ -264,3 +244,30 @@ WhiteSpace = {LineTerminator} | [ \t\f]
 {etiquetas_op}  { return symbol(sym.ETIQUETAS_OP, yytext()); }
 {etiquetas_cl}  { return symbol(sym.ETIQUETAS_CL, yytext()); }
 {etiqueta}      { return symbol(sym.ETIQUETA    , yytext()); }
+
+// Valores
+
+
+{atr_val_intg}  { return symbol(sym.ATR_VAL_INTG,  removeBrackets(yytext())); }
+{atr_val_cent}  { return symbol(sym.ATR_VAL_CENT,  removeBrackets(yytext())); }
+{atr_val_izqd}  { return symbol(sym.ATR_VAL_IZQD,  removeBrackets(yytext())); }
+{atr_val_dere}  { return symbol(sym.ATR_VAL_DERE,  removeBrackets(yytext())); }
+{atr_val_just}  { return symbol(sym.ATR_VAL_JUST,  removeBrackets(yytext())); }
+{atr_val_colh}  { return symbol(sym.ATR_VAL_COLH,  removeBrackets(yytext())); }
+
+
+
+
+{class_val_tit} { return symbol(sym.CLASS_TYPE_TIT, removeBrackets(yytext())); }
+{class_val_par} { return symbol(sym.CLASS_TYPE_PAR, removeBrackets(yytext())); }
+{class_val_img} { return symbol(sym.CLASS_TYPE_IMG, removeBrackets(yytext())); }
+{class_val_vid} { return symbol(sym.CLASS_TYPE_VID, removeBrackets(yytext())); }
+{class_val_men} { return symbol(sym.CLASS_TYPE_MEN, removeBrackets(yytext())); }
+
+{prm_val_tit}  { return symbol(sym.PRM_VAL_TIT,   removeBrackets(yytext())); }
+{prm_val_fch}  { return symbol(sym.PRM_VAL_FCH,   removeBrackets(yytext())); }
+
+{atr_val_text}  { return symbol(sym.ATR_VAL_TEXT,  removeBrackets(yytext())); }
+
+//id
+{prm_val_id}   { return symbol(sym.PRM_VAL_ID,    removeBrackets(yytext())); }
