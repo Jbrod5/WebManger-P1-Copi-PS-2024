@@ -345,7 +345,12 @@ Modificar component-> accion_mod_comp ::=  ACC_MOD_COMP  PARAMETROS_OP prm_val_i
 
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - MANEJO DE LAS PAGINAS - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-Crear una clase pagina 
+Crear una clase ConstructorInstrucciones
+    String TipoAConstruir
+    ..
+
+Crear una clase pagina
+
   pagina tendra toda la logica para crear y manejar cada pagina
 
   padre                 -> Id del padre? (aunque esto puede resolverse en el arbol)

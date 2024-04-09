@@ -1,0 +1,123 @@
+<!-- 1. ACCIONES -->
+
+
+
+<!-- - - - - - - - - - - - - - - - - NUEVA_PAGINA - - - - - - - - - - - - - - - - -->
+<!-- Arquetipo -->
+<accion nombre="NUEVA_PAGINA">
+	<parametros>
+            
+    	    <parametro nombre="ID">
+        	      [productos]
+        	</parametro>
+            
+	</parametros>
+	<etiquetas>
+		<etiqueta valor="etiqueta1"/>
+		<etiqueta valor="etiqueta2"/>
+	</etiquetas>
+</accion>
+
+
+
+
+
+
+<!-- - - - - - - - - - - - - - - DECLARACION ACCIONES - - - - - - - - - - - - - - -->
+
+<!--    LEXEMA                          DECLARACION LEXICA          SYMBOL -->
+
+<!-- Sitios web -->
+<accion nombre="NUEVO_SITIO_WEB">         (acc_add_wbst)     ->   ACC_ADD_WBST
+<accion nombre="BORRAR_SITIO_WEB">        (acc_del_wbst)     ->   ACC_DEL_WBST
+
+<!-- Paginas -->
+<accion nombre="NUEVA_PAGINA">            (acc_add_pagw)     ->   ACC_ADD_PAGW
+<accion nombre="BORRAR_PAGINA">           (acc_del_pagw)     ->   ACC_DEL_PAGW
+<accion nombre="MODIFICAR_PAGINA">        (acc_mod_pagw)     ->   ACC_MOD_PAGW
+
+<!-- Componentes -->
+<accion nombre="AGREGAR_COMPONENTE">      (acc_add_comp)     ->   ACC_ADD_COMP
+<accion nombre="BORRAR_COMPONENTE">       (acc_del_comp)     ->   ACC_DEL_COMP
+<accion nombre="MODIFICAR_COMPONENTE">    (acc_mod_comp)     ->   ACC_MOD_COMP
+
+<!-- Cerrar accion -->
+</accion>                                  (accion_cl)       ->     ACCION_CL
+
+<!-- Acciones -->
+<acciones>                                 acciones_op       ->    ACCIONES_OP
+</acciones>                                acciones_cl       ->    ACCIONES_CL
+
+
+
+<!-- - - - - - - - - - - - - - DECLARACION PARAMETROS - - - - - - - - - - - - - - -->
+<!-- Son configuraciones de lo declarado en acciones -->
+
+<!--    LEXEMA                          DECLARACION LEXICA             SYMBOL  -->
+<parametro nombre="ID">                    param_type_id     ->    PARAM_TYPE_ID
+<parametro nombre="TITULO">                param_type_tit    ->    PARAM_TYPE_TIT
+<parametro nombre="SITIO">                 param_type_sit    ->    PARAM_TYPE_SIT
+<parametro nombre="PADRE">                 param_type_pad    ->    PARAM_TYPE_PAD
+<parametro nombre="USUARIO_CREACION">      param_type_usc    ->    PARAM_TYPE_USC
+<parametro nombre="FECHA_CREACION">        param_type_fcr    ->    PARAM_TYPE_FCR
+<parametro nombre="FECHA_MODIFICACION">    param_type_fmd    ->    PARAM_TYPE_FMD
+<parametro nombre="USUARIO_MODIFICACION">  param_type_usm    ->    PARAM_TYPE_USM
+<parametro nombre="PAGINA">                param_type_pag    ->    PARAM_TYPE_PAG
+<parametro nombre="CLASE">                 param_type_cls    ->    PARAM_TYPE_CLS
+
+</parametro>                                parametro_cl     ->     PARAMETRO_CL 
+
+<parametros>                               parametros_op     ->     PARAMETROS_OP
+</parametros>                              parametros_cl     ->     PARAMETROS_CL
+
+
+
+
+<!-- - - - - - - - - - - - - -  DECLARACION ETIQUETAS - - - - - - - - - - - - - - -->
+<!--    LEXEMA                           DECLARACION LEXICA            SYMBOL           VALOR-->
+<etiquetas>                                 etiquetas_op            ETIQUETAS_OP
+</etiquetas>                                etiquetas_cl            ETIQUETAS_CL
+<etiqueta valor="valor_a_retornar">           etiqueta                ETIQUETA          entre_""
+
+
+
+
+
+<!-- - - - - - - - - - - - - -  DECLARACION ATRIBUTOS - - - - - - - - - - - - - - -->
+<!--    LEXEMA                           DECLARACION LEXICA            SYMBOL -->
+<atributo nombre="TEXTO">                  atr_typle_txt            ATR_TYPE_TXT
+<atributo nombre="COLOR">                  atr_typle_clr            ATR_TYPE_CLR
+<atributo nombre="ALINEACION">             atr_typle_aln            ATR_TYPE_ALN
+
+<atributo nombre="ORIGEN">                 atr_typle_ori            ATR_TYPE_ORI
+<atributo nombre="ALTURA">                 atr_typle_alt            ATR_TYPE_ALT
+<atributo nombre="ANCHO">                  atr_typle_anc            ATR_TYPE_ANC
+
+<atributos>                                 atributos_op            ATRIBUTOS_OP
+</atributos>                                atributos_cl            ATRIBUTOS_CL
+
+
+
+
+<!-- - - - - - - - - - - - - - - - - - VALORES  - - - - - - - - - - - - - - - - - -->
+<!--    LEXEMA                           DECLARACION LEXICA            SYMBOL           VALOR-->
+<!-- Atributos -->
+[20301030]                                  atr_val_intg            ATR_VAL_INTG       20301030
+["CENTRAR"]                                 atr_val_cent            ATR_VAL_CENT       "CENTRAR"
+["IZQUIERDA"]                               atr_val_izqd            ATR_VAL_IZQD      "IZQUIERDA"         
+["DERECHA"]                                 atr_val_dere            ATR_VAL_DERE       "DERECHA" 
+["JUSTIFICAR"]                              atr_val_just            ATR_VAL_JUST      "JUSTIFICAR" 
+[#FA8072]                                   atr_val_colh            ATR_VAL_COLH        #FA8072 
+[Te.XTO,: .]                                atr_val_text            ATR_VAL_TEXT       Te.XTO,: .
+
+<!-- Clases -->
+["TITULO"]                                  class_val_tit          CLASS_TYPE_TIT
+["PARRAFO"]                                 class_val_par          CLASS_TYPE_PAR
+["IMAGEN"]                                  class_val_img          CLASS_TYPE_IMG
+["VIDEO"]                                   class_val_vid          CLASS_TYPE_VID
+["MENU"]                                    class_val_men          CLASS_TYPE_MEN
+
+<!-- Parametros -->
+[Esto: es un titulo.]                        prm_val_tit             PRM_VAL_TIT    Esto: es un titulo.
+[1925-23-09]                                 prm_val_fch             PRM_VAL_FCH        1925-23-09
+[$IdEn-tiF_c]                                prm_val_id              PRM_VAL_ID         $IdEn-tiF_c

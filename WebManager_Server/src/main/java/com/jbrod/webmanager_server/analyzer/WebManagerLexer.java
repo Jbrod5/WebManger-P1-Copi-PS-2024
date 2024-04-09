@@ -591,8 +591,19 @@ public class WebManagerLexer implements java_cup.runtime.Scanner {
       texto = texto.substring(0, texto.length() - 1);
     }
     
-    String resultado = texto.substring(1, texto.length() - 1);
-    return resultado; 
+    //String resultado = texto.substring(1, texto.length() - 1);
+    return texto; 
+  }
+
+  private String removeTag(String texto){
+    if (texto.startsWith("<etiqueta valor=\"")) {
+      texto = texto.substring(16);
+    }
+    if (texto.endsWith("\">")) {
+      texto = texto.substring(0, texto.length() - 2);
+    }
+    
+    return texto; 
   }
 
 
@@ -1106,7 +1117,7 @@ public class WebManagerLexer implements java_cup.runtime.Scanner {
           // fall through
           case 68: break;
           case 18:
-            { return symbol(sym.ETIQUETAS_OP, yytext());
+            { return symbol(sym.ETIQUETAS_OP, yytext())           ;
             }
           // fall through
           case 69: break;
@@ -1126,7 +1137,7 @@ public class WebManagerLexer implements java_cup.runtime.Scanner {
           // fall through
           case 72: break;
           case 22:
-            { return symbol(sym.ETIQUETAS_CL, yytext());
+            { return symbol(sym.ETIQUETAS_CL, yytext())           ;
             }
           // fall through
           case 73: break;
@@ -1151,7 +1162,7 @@ public class WebManagerLexer implements java_cup.runtime.Scanner {
           // fall through
           case 77: break;
           case 27:
-            { return symbol(sym.ETIQUETA    , yytext());
+            { return symbol(sym.ETIQUETA    , removeTag(yytext()));
             }
           // fall through
           case 78: break;

@@ -187,8 +187,19 @@ prm_val_tit = {val_open} [A-Za-z0-9\s\.\,\:]+ {val_close}
       texto = texto.substring(0, texto.length() - 1);
     }
     
-    String resultado = texto.substring(1, texto.length() - 1);
-    return resultado; 
+    //String resultado = texto.substring(1, texto.length() - 1);
+    return texto; 
+  }
+
+  private String removeTag(String texto){
+    if (texto.startsWith("<etiqueta valor=\"")) {
+      texto = texto.substring(16);
+    }
+    if (texto.endsWith("\">")) {
+      texto = texto.substring(0, texto.length() - 2);
+    }
+    
+    return texto; 
   }
 
 %}
@@ -241,9 +252,9 @@ prm_val_tit = {val_open} [A-Za-z0-9\s\.\,\:]+ {val_close}
 {accion_cl}     { return symbol(sym.ACCION_CL,    yytext()); }
 
 //Etiquetas
-{etiquetas_op}  { return symbol(sym.ETIQUETAS_OP, yytext()); }
-{etiquetas_cl}  { return symbol(sym.ETIQUETAS_CL, yytext()); }
-{etiqueta}      { return symbol(sym.ETIQUETA    , yytext()); }
+{etiquetas_op}  { return symbol(sym.ETIQUETAS_OP, yytext())           ; }
+{etiquetas_cl}  { return symbol(sym.ETIQUETAS_CL, yytext())           ; }
+{etiqueta}      { return symbol(sym.ETIQUETA    , removeTag(yytext())); }
 
 // Valores
 
