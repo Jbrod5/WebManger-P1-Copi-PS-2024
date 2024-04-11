@@ -171,6 +171,7 @@ prm_val_tit = {val_open} [A-Za-z0-9\s\.\,\:]+ {val_close}
   }
 
   private Symbol symbol(int type, Object value) {
+    System.out.println("Token reconocido: " + yytext());
     return new Symbol(type, yyline+1, yycolumn+1, value);
   }
 
@@ -282,3 +283,6 @@ prm_val_tit = {val_open} [A-Za-z0-9\s\.\,\:]+ {val_close}
 
 //id
 {prm_val_id}   { return symbol(sym.PRM_VAL_ID,    removeBrackets(yytext())); }
+
+/* error fallback */
+[^]            { System.out.println("No se reconocio el lexema " + yytext() + " como un token valido y se ignoro.");}
