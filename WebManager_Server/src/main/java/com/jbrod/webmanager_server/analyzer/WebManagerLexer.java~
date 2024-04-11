@@ -592,7 +592,7 @@ public class WebManagerLexer implements java_cup.runtime.Scanner {
     }
     
     //String resultado = texto.substring(1, texto.length() - 1);
-    return resultado; 
+    return texto; 
   }
 
   private String removeTag(String texto){
@@ -603,7 +603,7 @@ public class WebManagerLexer implements java_cup.runtime.Scanner {
       texto = texto.substring(0, texto.length() - 2);
     }
     
-    return resultado; 
+    return texto; 
   }
 
 

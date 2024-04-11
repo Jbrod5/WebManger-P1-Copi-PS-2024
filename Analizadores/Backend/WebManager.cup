@@ -1,5 +1,6 @@
 package com.jbrod.webmanager_server.analyzer;
 import java_cup.runtime.*;
+import com.jbrod.webmanager_server.webmanager.WebsiteMgr;
 
 
 
@@ -9,13 +10,11 @@ parser code {:
     // Connect this parser to a scanner!
     public WebParser(WebManagerLexer lex) {
 	    super(lex);
-	  }
+    }
 
-    //private ContadorOperaciones contador = new ContadorOperaciones();
 
-    //public ContadorOperaciones getContador() {
-    //    return contador;
-    //}
+    //Manejador de sitios web.
+    private WebsiteMgr websiteMgr = new WebsiteMgr();
 
     public void syntax_error(Symbol cur_token) {
         System.out.println("Simbolo con error:" + symbl_name_from_id(cur_token.sym));
@@ -132,8 +131,10 @@ atributo_op ::= atributo atributo_op | atributo;
 atributos   ::= ATRIBUTOS_OP atributo_op ATRIBUTOS_CL;
 
 // Acciones
-accion_add_wbst ::=  ACC_ADD_WBST PARAMETROS_OP prm_val_id prm_val_uc prm_val_fch prm_val_fmd prm_val_usm PARAMETROS_CL ACCION_CL;
-accion_del_wbst ::=  ACC_DEL_WBST prm_val_id ACCION_CL;
+accion_add_wbst ::=  ACC_ADD_WBST PARAMETROS_OP prm_val_id:id prm_val_uc:uc prm_val_fch:fch prm_val_fmd:fmd prm_val_usm:usm PARAMETROS_CL ACCION_CL
+                    {: websiteMgr.createWebsite(id); :};
+accion_del_wbst ::=  ACC_DEL_WBST prm_val_id:id ACCION_CL
+                    {: websiteMgr.deleteWebsite(id); :};
 
 prm_val_pad_op  ::=  prm_val_pad | /* epsilon */;
 accion_add_pagw ::=  ACC_ADD_PAGW PARAMETROS_OP prm_val_id prm_val_tit   prm_val_sit prm_val_pad_op     prm_val_uc prm_val_fch prm_val_fmd prm_val_usm  PARAMETROS_CL etiquetas ACCION_CL;

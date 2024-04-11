@@ -6,6 +6,7 @@
 package com.jbrod.webmanager_server.analyzer;
 
 import java_cup.runtime.*;
+import com.jbrod.webmanager_server.webmanager.WebsiteMgr;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
@@ -286,13 +287,11 @@ public class WebParser extends java_cup.runtime.lr_parser {
     // Connect this parser to a scanner!
     public WebParser(WebManagerLexer lex) {
 	    super(lex);
-	  }
+    }
 
-    //private ContadorOperaciones contador = new ContadorOperaciones();
 
-    //public ContadorOperaciones getContador() {
-    //    return contador;
-    //}
+    //Manejador de sitios web.
+    private WebsiteMgr websiteMgr = new WebsiteMgr();
 
     public void syntax_error(Symbol cur_token) {
         System.out.println("Simbolo con error:" + symbl_name_from_id(cur_token.sym));
@@ -889,7 +888,22 @@ class CUP$WebParser$actions {
           case 61: // accion_add_wbst ::= ACC_ADD_WBST PARAMETROS_OP prm_val_id prm_val_uc prm_val_fch prm_val_fmd prm_val_usm PARAMETROS_CL ACCION_CL 
             {
               String RESULT =null;
-
+		int idleft = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-6)).left;
+		int idright = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-6)).right;
+		String id = (String)((java_cup.runtime.Symbol) CUP$WebParser$stack.elementAt(CUP$WebParser$top-6)).value;
+		int ucleft = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-5)).left;
+		int ucright = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-5)).right;
+		String uc = (String)((java_cup.runtime.Symbol) CUP$WebParser$stack.elementAt(CUP$WebParser$top-5)).value;
+		int fchleft = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-4)).left;
+		int fchright = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-4)).right;
+		String fch = (String)((java_cup.runtime.Symbol) CUP$WebParser$stack.elementAt(CUP$WebParser$top-4)).value;
+		int fmdleft = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-3)).left;
+		int fmdright = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-3)).right;
+		String fmd = (String)((java_cup.runtime.Symbol) CUP$WebParser$stack.elementAt(CUP$WebParser$top-3)).value;
+		int usmleft = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-2)).left;
+		int usmright = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-2)).right;
+		String usm = (String)((java_cup.runtime.Symbol) CUP$WebParser$stack.elementAt(CUP$WebParser$top-2)).value;
+		 websiteMgr.createWebsite(id); 
               CUP$WebParser$result = parser.getSymbolFactory().newSymbol("accion_add_wbst",37, ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-8)), ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()), RESULT);
             }
           return CUP$WebParser$result;
@@ -898,7 +912,10 @@ class CUP$WebParser$actions {
           case 62: // accion_del_wbst ::= ACC_DEL_WBST prm_val_id ACCION_CL 
             {
               String RESULT =null;
-
+		int idleft = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-1)).left;
+		int idright = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-1)).right;
+		String id = (String)((java_cup.runtime.Symbol) CUP$WebParser$stack.elementAt(CUP$WebParser$top-1)).value;
+		 websiteMgr.deleteWebsite(id); 
               CUP$WebParser$result = parser.getSymbolFactory().newSymbol("accion_del_wbst",38, ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-2)), ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()), RESULT);
             }
           return CUP$WebParser$result;

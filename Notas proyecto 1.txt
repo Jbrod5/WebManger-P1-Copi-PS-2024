@@ -366,3 +366,13 @@ Crear una clase pagina
 Base de datos
   la base de datos será un arbol (no binario ni balanceado, solo un arbol con estructura libre)
   arbol retornara la pagina donde trabajar
+
+
+
+
+
+
+  ARRANCAR SERVIDOR APACHE (Fedora)
+  httpd es el paquete de apache http
+  arrancar el servidor: systemctl start httpd
+  apagar el sevidor: systemctl stop httpd
