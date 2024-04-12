@@ -2,26 +2,102 @@
 
 
 
-<!-- - - - - - - - - - - - - - - - - NUEVA_PAGINA - - - - - - - - - - - - - - - - -->
-<!-- Arquetipo -->
-<accion nombre="NUEVA_PAGINA">
-	<parametros>
-            
-    	    <parametro nombre="ID">
-        	      [productos]
-        	</parametro>
-            
-	</parametros>
-	<etiquetas>
-		<etiqueta valor="etiqueta1"/>
-		<etiqueta valor="etiqueta2"/>
-	</etiquetas>
-</accion>
+<!-- - - - - - - - - - - - - - - - - ARQUETIPOS / ACCIONES - - - - - - - - - - - - - - - - -->
+
+<!-- - - - - - - - - - - - Sitios web - - - - - - - - - - - -->
+<accion nombre="NUEVO_SITIO_WEB">                                    <accion nombre="BORRAR_SITIO_WEB">
+	<parametros>                                                     	<parametros nombre=ID>
+    	    <parametro nombre="ID">                                     	[Nombre del sitio a eliminar]
+        	      [productos]                                           </parametro>
+        	</parametro>                                             </acccion>         
+			<parametro nombre="USUARIO_CREACION">                                                      
+        	      [productos]                                                      
+        	</parametro>                                                      
+			<parametro nombre="FECHA_CREACION">                                                      
+        	      [productos]                                                      
+        	</parametro>                                                      
+			<parametro nombre="FECHA_MODIFICACION">                                                      
+        	      [productos]                                                      
+        	</parametro>                                                      
+			<parametro nombre="USUARIO_MODIFICACION">                                                      
+        	      [productos]                                                      
+        	</parametro>                                                      
+	</parametros>                                                      
+</accion>                                                      
 
 
 
 
+<!-- - - - - - - - - - - - - Paginas - - - - - - - - - - - - -->
+<accion nombre="NUEVA_PAGINA">                                             <accion nombre="BORRAR_PAGINA">                           
+	<parametros>                                                           		<parametros>
+    	    <parametro nombre="ID">													<parametro nombre="ID">  
+        	      [productos]                                                   		[id_pagina]                     
+        	</parametro>                                                            </parametro>            
+			<parametro nombre="TITULO">                                          </parametros>                              
+        	      [productos]                                              </accion>       
+        	</parametro>                                                                        
+			<parametro nombre="SITIO">                                                                        
+        	      [productos]                                                                                                                    
+        	</parametro>                                                                                                   
+			<parametro nombre="PADRE">                                      <accion nombre="MODIFICAR_PAGINA">                                                                             
+        	      [productos]                                                   <parametros>                                                                
+        	</parametro>                                                             <parametro nombre="ID">                                                      
+			<parametro nombre="USUARIO_CREACION">                                        [id pagina]                                                                           
+        	      [productos]                                                        </parametro>                                                          
+        	</parametro>                                                             <parametro nombre="TITULO">                                           
+			<parametro nombre="FECHA_CREACION">                             	         [titulo nuevo]                                                                                                                                             
+        	      [productos]                                               	     </parametro>                                                                                                                                       
+        	</parametro>                                                    	</parametros>	                                                               
+			<parametro nombre="FECHA_MODIFICACION">                         	<etiquetas>	                                                                                          
+        	      [productos]                                               	    <etiqueta valor="etiqueta1"/>                                                                                                                                        
+        	</parametro>                                                            <etiqueta valor="etiqueta2"/>                                                                                                                              
+			<parametro nombre="USUARIO_MODIFICACION">                           </etiquetas>                                             
+        	      [productos]                                               </accion>                          
+        	</parametro>                                                                        
+	</parametros>                                                                        
+	<etiquetas>                                                                        
+		<etiqueta valor="etiqueta1"/>                                                                        
+		<etiqueta valor="etiqueta2"/>                                                                        
+	</etiquetas>                                                                        
+</accion>                                                                        
 
+
+
+<!-- - - - - - - - - - - - - Componentes - - - - - - - - - - - - -->
+
+<accion nombre="AGREGAR_COMPONENTE">                                                 <accion nombre="BORRAR_COMPONENTE">                                            
+	<parametros>                                                                         <parametros>                    
+          		<parametro nombre="ID">                                                       <parametro nombre="ID">                                    
+              		[comp-1]                                                                       [id del componente]   
+        		</parametro>                                                                  </parametro>                     
+          		<parametro nombre="PAGINA">                                                   <parametro nombre="PAGINA">                                         
+              		[productos]                                                                     [id de la pagina donde esta el componente]       
+        		</parametro>                                                                  </parametro>
+          		<parametro nombre="CLASE">                                                </parametros>                                             
+              		[TITULO]                                                          </accion>                  
+        		</parametro>                                                                                             
+	</parametros>                                                                                             
+ 	<atributos>                                                                                             
+    		<atributo nombre="TEXTO">                                                                                             
+			[Este es el texto que aparece en el titulo :) ]                           <accion nombre="MODIFICAR_COMPONENTE">                                                                  
+		</atributo>                                                                   	  <parametros>                          
+            <atributo nombre="COLOR">                                                         <parametro nombre="ID">                                            
+			[#5A5A5A]                                                                              [comp-1]                            
+		</atributo>                                                                           </parametro>                          
+	</atributos>                                                                              <parametro nombre="PAGINA">                       
+</accion>                                                                                        [productos]                
+                                                                                              </parametro>                                
+                                                                                              <parametro nombre="CLASE">                                 
+                                                                                                  [PARRAFO]                                 
+                                                                                              </parametro>                                 
+                                                                                      	  </parametros>                                 
+                                                                                       	  <atributos>                                 
+                                                                                               <atributo nombre="TEXTO">                                 
+                                                                                      		   		[Este es el texto que aparece en el parrafo :) ]                                 
+                                                                                      		   </atributo>                                 
+                                                                                      	  </atributos>                                 
+                                                                                      </accion>                                 
 
 <!-- - - - - - - - - - - - - - - DECLARACION ACCIONES - - - - - - - - - - - - - - -->
 

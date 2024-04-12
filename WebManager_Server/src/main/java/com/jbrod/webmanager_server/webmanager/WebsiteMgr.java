@@ -18,8 +18,9 @@ public class WebsiteMgr {
     /**
      * Crea una carpeta que funciona como sitio web en /home/jbravo/Web/nombre_del_sitio_nuevo
      * @param name String : string con el nombre del sitio web. Este nombre será el de la carpeta que se creará en /home/jbravo/Web/.
+     * @return String con el path donde se creo el sitio web.
      **/
-    public void createWebsite(String name){
+    public String createWebsite(String name){
         System.out.println("WebsiteMgr -> createWebsite(): ");
         String path = URL_BASE + name; 
         File website = new File(path);
@@ -32,6 +33,8 @@ public class WebsiteMgr {
             // La carpeta ya existía
             System.out.println("La carpeta " + path + " ya existia." );
         }
+        
+        return path; 
     }
     
     

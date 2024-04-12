@@ -6,11 +6,16 @@ package com.jbrod.webmanager_server.webcomponents;
  * Puede ser TITULO, PARRAFO, IMAGEN, VIDEO, MENU.
  * @author jbravo
  */
-public class webComponent {
-    private String htmlContent; 
+public class WebComponent {
+    protected String htmlContent;
+    protected String id; 
     
     public String getHtml(){
         return htmlContent;
+    }
+    
+    public String getId(){
+        return id;
     }
 
 }
