@@ -25,6 +25,7 @@ public class WebPage {
     
     // Lista de componentes
     LinkedList<WebComponent> components;
+    LinkedList<WebComponent> tags; 
     
     
     
@@ -51,13 +52,21 @@ public class WebPage {
         return id; 
     }
     
+    public String getParentPage(){
+        return parentPage;
+    }
+    
+    public String getSite(){
+        return site; 
+    }
+    
     /* - - - - - - - - - - - - - - - - - - - - - - - -- - - - - - - ACCIONES CON COMPONENTES - - - - - - - - - - - - - - - - - - - - - - - -- - - - - - - */
     
     /**
      * Agrega un componente a la pagina, luego, genera de nuevo el codigo html.
      * @param component : WebComponent (puede ser TITULO, PARRAFO, IMAGEN, VIDEO, MENU).
      **/
-    private void addHtmlComponent(WebComponent component){
+    public void addHtmlComponent(WebComponent component){
         components.add(component);
         generateHtmlFile();
     }
@@ -66,7 +75,7 @@ public class WebPage {
      * Elimina un componente de la pagina segun su id, luego, genera de nuevo el codigo html.
      * @param id : String con el id del componente a eliminar.
      **/
-    private void removeHtmlComponent(String id){
+    public void removeHtmlComponent(String id){
         System.out.println("webPage -> removeHtmlComponent():");
         WebComponent actual;
         for (int i = 0; i < components.size(); i++) {
@@ -86,7 +95,7 @@ public class WebPage {
      * Reemplaza un componente html por otro, luego, genera de nuevo el codigo html.
      * @param newComponent : WebComponent con el que sera reemplazado. Si no se encuentraba en la lista de componentes, se agrega a la lista.
      **/
-    private void replaceHtmlComponent(WebComponent newComponent){
+    public void replaceHtmlComponent(WebComponent newComponent){
         System.out.println("webPage -> replaceHtmlComponent():");
         String idNewComponent = newComponent.getId();
         WebComponent actual;
@@ -99,13 +108,31 @@ public class WebPage {
                 components.add(i, newComponent);
                 System.out.println("Componente con id " + idNewComponent + " reemplazado correctamente.");
                 generateHtmlFile();
-                break; 
+                return; 
             }            
         }
         System.out.println("No se encontro " + idNewComponent + " por lo que se insertara.");
         addHtmlComponent(newComponent);
     }
     
+    
+    /**
+     * Reemplaza las etiquetas de la pagina web.
+     * @param tags : LinkedList de WebComponent (EtiquetaWebComponent) con las etiquetas a agregar.
+     **/
+    public void replaceTags(LinkedList<WebComponent> tags){
+        this.tags = tags;
+    }
+    
+    
+    /**
+     * Reemplaza el titulo de la pagina web.
+     *  @param title : String que contiene el nuevo titulo de la pagina. 
+     **/
+    public void replaceTitle(String title){
+        this.title = title; 
+    }
+
     
     
     
@@ -130,11 +157,27 @@ public class WebPage {
         return htmlComponents;
     }
     
+    private String getHtmlTags(){
+        String htmlTags =  "<meta name=\"keywords\" content=\"";
+        for (int i = 0; tags != null && i < tags.size(); i++) {
+            if(tags.get(i) != null){
+                htmlTags += tags.get(i).getHtml();
+                if(i != tags.size() - 1){
+                    //Incluir la coma
+                    htmlTags += ", ";
+                }
+            }            
+        }
+        htmlTags += "\">";
+        return htmlTags;
+    }
+    
     public void generateHtmlFile(){
         System.out.println("webPage -> generateHtmlFile():");
         String header = "<!DOCTYPE html>\n" +
                         "<html>\n" +
                         "<head>\n" +
+                        "  " + getHtmlTags() +"\n"+
                         "  <title>" + title + "</title>\n" +
                         "  <style>\n" +
                         "    body {\n" +
@@ -192,5 +235,18 @@ public class WebPage {
     
     
     
+    /**
+     * Elimina el archivo html asociado a la pagina.
+     **/
+    public void deleteHtmlFile(){        
+        String pagePath = websitePath + title + ".html";
+        File file = new File(pagePath);
+        System.out.println("WebPage -> deleteHtmlFile():");
+        if(file.delete()){
+            System.out.println(pagePath + " eliminado correctamente.");
+        }else{
+            System.out.println("No se pudo eliminar " + pagePath);
+        }
+    }
     
 }

@@ -68,15 +68,15 @@
 
 <accion nombre="AGREGAR_COMPONENTE">                                                 <accion nombre="BORRAR_COMPONENTE">                                            
 	<parametros>                                                                         <parametros>                    
-          		<parametro nombre="ID">                                                       <parametro nombre="ID">                                    
-              		[comp-1]                                                                       [id del componente]   
-        		</parametro>                                                                  </parametro>                     
-          		<parametro nombre="PAGINA">                                                   <parametro nombre="PAGINA">                                         
-              		[productos]                                                                     [id de la pagina donde esta el componente]       
-        		</parametro>                                                                  </parametro>
-          		<parametro nombre="CLASE">                                                </parametros>                                             
-              		[TITULO]                                                          </accion>                  
-        		</parametro>                                                                                             
+        <parametro nombre="ID">                                                       <parametro nombre="ID">                                    
+        	[comp-1]                                                                       [id del componente]   
+        </parametro>                                                                  </parametro>                     
+        <parametro nombre="PAGINA">                                                   <parametro nombre="PAGINA">                                         
+        	[productos]                                                                     [id de la pagina donde esta el componente]       
+        </parametro>                                                                  </parametro>
+        <parametro nombre="CLASE">                                                </parametros>                                             
+        	[TITULO]                                                          </accion>                  
+        </parametro>                                                                                             
 	</parametros>                                                                                             
  	<atributos>                                                                                             
     		<atributo nombre="TEXTO">                                                                                             

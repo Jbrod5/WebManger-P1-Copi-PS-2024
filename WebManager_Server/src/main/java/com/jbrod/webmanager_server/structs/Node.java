@@ -24,6 +24,10 @@ public class Node {
         this.id = page.getId();
     }
 
+    public String getId(){
+        return id; 
+    }
+    
     public LinkedList<Node> getChildNodes() {
         return childNodes;
     }
@@ -46,8 +50,48 @@ public class Node {
      **/
     public void addChildNode(Node node){
         childNodes.add(node);
+        page.generateHtmlFile();
     }
     
+    /**
+     * Inserta un nodo como hijo del nodo actual, usado por el arbol al insertar.
+     * @param node : Node ya instanciado con la pagina ya guardada en el.
+     **/
+    public void insertChildNode(Node node){
+        // Si este es el nodo donde insertar, insertar.
+        if(node.getPage().getParentPage().equals(page.getParentPage())){
+            addChildNode(node);
+        }else{
+            Node actual; 
+            for (int i = 0; i < childNodes.size(); i++) {
+                actual = childNodes.get(i);
+                if(actual != null){
+                    insertChildNode(node);
+                }
+            }
+        } 
+    }
+    
+    /**
+     * Elimina el archivo html de la pagina en el nodo.
+     **/
+    public void deletePage(LinkedList<Node> pages){
+        //Borrar pagina
+        page.deleteHtmlFile();
+        
+        //Borrar nodos hijos
+        Node actual;
+        for (int i = 0; i < childNodes.size(); i++) {
+            actual = childNodes.get(i);
+            if(actual != null){
+                //Eliminar hijos
+                actual.deletePage(pages);
+                //Remover esta pagina de la lista de paginas
+                pages.remove(actual);
+            }
+            
+        }
+    }
     
     
     
