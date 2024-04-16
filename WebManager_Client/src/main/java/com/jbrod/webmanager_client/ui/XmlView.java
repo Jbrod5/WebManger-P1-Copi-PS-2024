@@ -1,5 +1,6 @@
 package com.jbrod.webmanager_client.ui;
 
+import com.jbrod.webmanager_client.app.OutputServerSocket;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -16,19 +17,24 @@ import javax.swing.JTabbedPane;
  */
 public class XmlView extends javax.swing.JPanel {
     
+    private OutputServerSocket outputServerSocket; //Para la comunicacion de salida
+    
     //Contiene el path del archivo que se representa.
     private String path;
-    JTabbedPane maestro; 
-    String tituloTab; 
+    private JTabbedPane maestro; 
+    private String tituloTab; 
     
     /**
      * Crear un panel con un path especifico. Si existe el path, cargar el archivo.
      */
-    public XmlView(String path, JTabbedPane maestro) {
+    public XmlView(String path, JTabbedPane maestro, OutputServerSocket oss) {
+        outputServerSocket = oss;
+        
         initComponents();
         this.path = path;
         this.maestro = maestro; 
         this.tituloTab = "XmlNuevo"; 
+        
         
         if (path != null  && path.length() > 0 ) { 
             try  {
@@ -105,6 +111,11 @@ public class XmlView extends javax.swing.JPanel {
         });
 
         btnProcesar.setText("Procesar");
+        btnProcesar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProcesarActionPerformed(evt);
+            }
+        });
 
         jScrollPane3.setBorder(javax.swing.BorderFactory.createTitledBorder("XML"));
 
@@ -201,6 +212,12 @@ public class XmlView extends javax.swing.JPanel {
         }
     
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnProcesarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcesarActionPerformed
+        // TODO add your handling code here:
+        String content = txaXml.getText();
+        outputServerSocket.sendMessage(content);
+    }//GEN-LAST:event_btnProcesarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

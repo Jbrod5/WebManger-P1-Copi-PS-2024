@@ -26,15 +26,15 @@ public class WebManager_Server {
                 pass = true;
             }catch(NumberFormatException nfe){
                 System.out.println("El valor ingresado no es un numero, intentelo de nuevo.");
-                op = scanner.nextLine();
                 pass = false; 
             }
-            
-            //Obtener la direccion IP
-            do {
-                System.out.print("Ingrese la dirección IP para la comunicacion de salida: ");
-                ip = scanner.nextLine();
-            } while (!isValidIpAddress(ip));
+        }
+        
+        //Obtener la direccion IP: hostname -I
+        do {
+            System.out.print("Ingrese la dirección IP para la comunicacion de salida: ");
+            ip = scanner.nextLine();
+        } while (!isValidIpAddress(ip));
         
             
             
@@ -47,7 +47,7 @@ public class WebManager_Server {
             //Ejecutar la salida
             
 
-        }
+
         
     }
     

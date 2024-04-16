@@ -1,5 +1,6 @@
 package com.jbrod.webmanager_client.ui;
 
+import com.jbrod.webmanager_client.app.OutputServerSocket;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -9,12 +10,15 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class Mainframe extends javax.swing.JFrame {
 
+    private OutputServerSocket outputServerSocket; 
+    
     /**
      * Creates new form Mainframe
      */
-    public Mainframe() {
+    public Mainframe(OutputServerSocket oss) {
         initComponents();
         setSize(800, 600);
+        outputServerSocket = oss;
     }
 
     /**
@@ -119,7 +123,7 @@ public class Mainframe extends javax.swing.JFrame {
             System.out.println("Path seleccionado: " + path);
             
             //Agregar la tab
-            XmlView tab = new  XmlView(path, tbpXml);
+            XmlView tab = new  XmlView(path, tbpXml, outputServerSocket);
             tbpXml.addTab(tab.obtenerTitulo(), tab);
         } else {
             System.out.println("No se seleccionó ningún archivo.");
@@ -133,7 +137,7 @@ public class Mainframe extends javax.swing.JFrame {
     private void mniNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniNuevoActionPerformed
         //No tiene un archivo asignado aun:
             //Agregar la tab
-            XmlView tab = new  XmlView("", tbpXml);
+            XmlView tab = new  XmlView("", tbpXml, outputServerSocket);
             tbpXml.addTab(tab.obtenerTitulo(), tab);
     }//GEN-LAST:event_mniNuevoActionPerformed
 

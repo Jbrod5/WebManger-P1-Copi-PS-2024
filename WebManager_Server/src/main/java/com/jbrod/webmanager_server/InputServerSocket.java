@@ -25,6 +25,8 @@ public class InputServerSocket implements Runnable {
         } catch (IOException ex) {
             Logger.getLogger(InputServerSocket.class.getName()).log(Level.SEVERE, null, ex);
         }
+       
+       parseListener.run();
         
         
     }
@@ -40,6 +42,10 @@ public class InputServerSocket implements Runnable {
                 Socket input = inputSocket.accept();
                 DataInputStream in_str = new DataInputStream(input.getInputStream());
                 String entrada = in_str.readUTF();
+                
+                System.out.println("\n\n\n\n\n\n");
+                System.out.println("Se recibio: ");
+                System.out.println(entrada);
                 //Pasar la entrada al analizador
                 
                 
