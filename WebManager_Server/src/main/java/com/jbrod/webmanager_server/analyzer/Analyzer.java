@@ -34,7 +34,7 @@ public class Analyzer {
             parser.parse(); 
         }catch(Exception e){
             System.out.println("Ocurrio un error al analizar la entrada: ");
-            //e.printStackTrace();
+            e.printStackTrace();
         }
     }
     

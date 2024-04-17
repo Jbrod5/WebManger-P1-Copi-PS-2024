@@ -9,6 +9,9 @@ import java_cup.runtime.*;
 import com.jbrod.webmanager_server.webmanager.WebsiteMgr;
 import com.jbrod.webmanager_server.webmanager.WebManager;
 import com.jbrod.webmanager_server.webcomponents.WebPage;
+import com.jbrod.webmanager_server.webcomponents.WebComponent;
+import com.jbrod.webmanager_server.webcomponents.EtiquetaWebComponent;
+import java.util.LinkedList;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
@@ -290,6 +293,7 @@ public class WebParser extends java_cup.runtime.lr_parser {
     //Manejador de sitios web.
     private WebsiteMgr websiteMgr = new WebsiteMgr();
     private WebManager webManager;
+    private LinkedList<WebComponent> tags;
 
     // Connect this parser to a scanner!
     public WebParser(WebLexer lex, WebManager manager) {
@@ -679,7 +683,17 @@ class CUP$WebParser$actions {
 		int etleft = ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()).left;
 		int etright = ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()).right;
 		String et = (String)((java_cup.runtime.Symbol) CUP$WebParser$stack.peek()).value;
-		 RESULT = et; 
+		 
+                                if(tags == null){
+                                    tags = new LinkedList<>();
+                                }
+                                EtiquetaWebComponent etiqueta = new EtiquetaWebComponent(et); 
+                                tags.add(((WebComponent)etiqueta));
+                                for(int i = 0; i < tags.size(); i++){
+                                    System.out.println(tags.get(i).getId());
+                                }
+                                RESULT = et; 
+                            
               CUP$WebParser$result = parser.getSymbolFactory().newSymbol("etiqueta",20, ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()), RESULT);
             }
           return CUP$WebParser$result;
@@ -688,7 +702,10 @@ class CUP$WebParser$actions {
           case 35: // etiqueta_op ::= etiqueta etiqueta_op 
             {
               String RESULT =null;
-
+		int etleft = ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()).left;
+		int etright = ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()).right;
+		String et = (String)((java_cup.runtime.Symbol) CUP$WebParser$stack.peek()).value;
+		 RESULT += et; 
               CUP$WebParser$result = parser.getSymbolFactory().newSymbol("etiqueta_op",21, ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-1)), ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()), RESULT);
             }
           return CUP$WebParser$result;
@@ -697,7 +714,10 @@ class CUP$WebParser$actions {
           case 36: // etiqueta_op ::= etiqueta 
             {
               String RESULT =null;
-
+		int etleft = ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()).left;
+		int etright = ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()).right;
+		String et = (String)((java_cup.runtime.Symbol) CUP$WebParser$stack.peek()).value;
+		 RESULT += et; 
               CUP$WebParser$result = parser.getSymbolFactory().newSymbol("etiqueta_op",21, ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()), RESULT);
             }
           return CUP$WebParser$result;
@@ -706,7 +726,10 @@ class CUP$WebParser$actions {
           case 37: // etiquetas ::= ETIQUETAS_OP etiqueta_op ETIQUETAS_CL 
             {
               String RESULT =null;
-
+		int etleft = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-1)).left;
+		int etright = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-1)).right;
+		String et = (String)((java_cup.runtime.Symbol) CUP$WebParser$stack.elementAt(CUP$WebParser$top-1)).value;
+		 RESULT = et; 
               CUP$WebParser$result = parser.getSymbolFactory().newSymbol("etiquetas",22, ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-2)), ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()), RESULT);
             }
           return CUP$WebParser$result;
@@ -958,7 +981,10 @@ class CUP$WebParser$actions {
           case 63: // prm_val_pad_op ::= prm_val_pad 
             {
               String RESULT =null;
-
+		int padleft = ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()).left;
+		int padright = ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()).right;
+		String pad = (String)((java_cup.runtime.Symbol) CUP$WebParser$stack.peek()).value;
+		 RESULT = pad; 
               CUP$WebParser$result = parser.getSymbolFactory().newSymbol("prm_val_pad_op",39, ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()), RESULT);
             }
           return CUP$WebParser$result;
@@ -1002,7 +1028,11 @@ class CUP$WebParser$actions {
 		String usm = (String)((java_cup.runtime.Symbol) CUP$WebParser$stack.elementAt(CUP$WebParser$top-3)).value;
 		
                          WebPage newPage = new WebPage(id, tit, sit, pad, uc, fch, fmd, usm);
+                         newPage.replaceTags(tags);
                          webManager.addPage(newPage);
+                         newPage.generateHtmlFile();
+                         tags = null; 
+                         
                     
               CUP$WebParser$result = parser.getSymbolFactory().newSymbol("accion_add_pagw",40, ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-12)), ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()), RESULT);
             }

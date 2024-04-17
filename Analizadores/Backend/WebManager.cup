@@ -1,10 +1,14 @@
 package com.jbrod.webmanager_server.analyzer;
+
 import java_cup.runtime.*;
 import com.jbrod.webmanager_server.webmanager.WebsiteMgr;
 import com.jbrod.webmanager_server.webmanager.WebManager;
 
 import com.jbrod.webmanager_server.webcomponents.WebPage;
+import com.jbrod.webmanager_server.webcomponents.WebComponent;
+import com.jbrod.webmanager_server.webcomponents.EtiquetaWebComponent;
 
+import java.util.LinkedList;
 
 
 
@@ -14,6 +18,7 @@ parser code {:
     //Manejador de sitios web.
     private WebsiteMgr websiteMgr = new WebsiteMgr();
     private WebManager webManager;
+    private LinkedList<WebComponent> tags;
 
     // Connect this parser to a scanner!
     public WebParser(WebLexer lex, WebManager manager) {
@@ -120,9 +125,19 @@ class_type    ::= class_val_tit | class_val_par | class_val_img | class_val_vid 
 prm_val_cls   ::= PARAM_TYPE_CLS  class_type  PARAMETRO_CL;
 
 //Etiquetas
-etiqueta    ::= ETIQUETA:et {: RESULT = et; :};
-etiqueta_op ::= etiqueta etiqueta_op | etiqueta; 
-etiquetas   ::= ETIQUETAS_OP etiqueta_op ETIQUETAS_CL;
+etiqueta    ::= ETIQUETA:et {: 
+                                if(tags == null){
+                                    tags = new LinkedList<>();
+                                }
+                                EtiquetaWebComponent etiqueta = new EtiquetaWebComponent(et); 
+                                tags.add(((WebComponent)etiqueta));
+                                for(int i = 0; i < tags.size(); i++){
+                                    System.out.println(tags.get(i).getId());
+                                }
+                                RESULT = et; 
+                            :};
+etiqueta_op ::= etiqueta etiqueta_op:et {: RESULT += et; :}| etiqueta:et {: RESULT += et; :}; 
+etiquetas   ::= ETIQUETAS_OP etiqueta_op:et ETIQUETAS_CL {: RESULT = et; :};
 
 //Atributos
 atr_val_txt ::= ATR_TYPE_TXT ATR_VAL_TEXT ATRIBUTO_CL;
@@ -171,11 +186,15 @@ accion_del_wbst ::=  ACC_DEL_WBST prm_val_id:id ACCION_CL
                     {: webManager.deleteWebsite(id); :};
 
 
-prm_val_pad_op  ::=  prm_val_pad | /* epsilon */;
+prm_val_pad_op  ::=  prm_val_pad:pad {: RESULT = pad; :} | /* epsilon */ { RESULT = "$index"; };
 accion_add_pagw ::=  ACC_ADD_PAGW PARAMETROS_OP    prm_val_id:id     prm_val_tit:tit   prm_val_sit:sit    prm_val_pad_op:pad     prm_val_uc:uc     prm_val_fch:fch    prm_val_fmd:fmd     prm_val_usm:usm     PARAMETROS_CL etiquetas ACCION_CL
                     {:
                          WebPage newPage = new WebPage(id, tit, sit, pad, uc, fch, fmd, usm);
+                         newPage.replaceTags(tags);
                          webManager.addPage(newPage);
+                         newPage.generateHtmlFile();
+                         tags = null; 
+                         
                     :};
 accion_del_pagw ::=  ACC_DEL_PAGW prm_val_id ACCION_CL;
 accion_mod_pagw ::=  ACC_MOD_PAGW  PARAMETROS_OP prm_val_id prm_val_tit PARAMETROS_CL etiquetas ACCION_CL;

@@ -8,7 +8,8 @@ package com.jbrod.webmanager_server.webcomponents;
 public class EtiquetaWebComponent extends WebComponent{
 
     public EtiquetaWebComponent(String etiqueta){
-        super.htmlContent = etiqueta; 
+        super.htmlContent = etiqueta;
+        super.id = etiqueta;
     }
     
 }

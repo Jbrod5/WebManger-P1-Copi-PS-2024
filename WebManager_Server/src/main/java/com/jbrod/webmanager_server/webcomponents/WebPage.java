@@ -22,6 +22,7 @@ public class WebPage {
     private String modifierUser;
 
     private String  websitePath;
+    private String tagsList;
     
     // Lista de componentes
     LinkedList<WebComponent> components;
@@ -124,6 +125,11 @@ public class WebPage {
      **/
     public void replaceTags(LinkedList<WebComponent> tags){
         this.tags = tags;
+        tagsList = "";
+    }
+    
+    public void addTag(String tag){
+        tagsList  += tag; 
     }
     
     

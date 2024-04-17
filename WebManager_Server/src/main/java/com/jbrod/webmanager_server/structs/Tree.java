@@ -47,7 +47,7 @@ public class Tree {
         String parent = toInsert.getParentPage();
         
         //1. Insertar en index
-        if(parent.equals("index") ){
+        if(parent.equals("index") || parent.equals("_index") || parent.equals("-index") || parent.equals("$index")){
             root.addChildNode(node);
             return node;
         }

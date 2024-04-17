@@ -195,12 +195,19 @@ prm_val_tit = {val_open} [A-Za-z0-9\s\.\,\:]+ {val_close}
 
   private String removeTag(String texto){
     if (texto.startsWith("<etiqueta valor=\"")) {
-      texto = texto.substring(16);
+      texto = texto.substring(17);
     }
-    if (texto.endsWith("\">")) {
-      texto = texto.substring(0, texto.length() - 2);
+    if (texto.endsWith(">")) {
+      texto = texto.substring(0, texto.length() - 1);
     }
     
+    if (texto.endsWith("/")) {
+      texto = texto.substring(0, texto.length() - 1);
+    }
+    if (texto.endsWith("\"")) {
+      texto = texto.substring(0, texto.length() - 1);
+    }
+
     return texto; 
   }
 

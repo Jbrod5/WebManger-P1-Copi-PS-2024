@@ -605,12 +605,19 @@ public class WebLexer implements java_cup.runtime.Scanner {
 
   private String removeTag(String texto){
     if (texto.startsWith("<etiqueta valor=\"")) {
-      texto = texto.substring(16);
+      texto = texto.substring(17);
     }
-    if (texto.endsWith("\">")) {
-      texto = texto.substring(0, texto.length() - 2);
+    if (texto.endsWith(">")) {
+      texto = texto.substring(0, texto.length() - 1);
     }
     
+    if (texto.endsWith("/")) {
+      texto = texto.substring(0, texto.length() - 1);
+    }
+    if (texto.endsWith("\"")) {
+      texto = texto.substring(0, texto.length() - 1);
+    }
+
     return texto; 
   }
 
