@@ -1,0 +1,19 @@
+<accion nombre="NUEVO_SITIO_WEB">
+	<parametros>
+    	    <parametro nombre="ID">
+        	      [_Sitio_de_prueba]
+			</parametro>
+			<parametro nombre="USUARIO_CREACION">
+        	      [_pruebitaUsuario]
+        	</parametro>
+			<parametro nombre="FECHA_CREACION">
+        	      [2024-04-17]
+        	</parametro>
+			<parametro nombre="FECHA_MODIFICACION">
+        	      [2024-04-17]
+        	</parametro>
+			<parametro nombre="USUARIO_MODIFICACION">
+        	      [_pruebitaUsuario]
+        	</parametro>
+	</parametros>
+</accion>

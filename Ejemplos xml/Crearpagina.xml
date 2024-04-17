@@ -1,0 +1,32 @@
+<accion nombre="NUEVA_PAGINA">
+	<parametros>
+    	    <parametro nombre="ID">
+        	      [$PaginaDeFri]
+        	</parametro>
+			<parametro nombre="TITULO">
+        	      [Esta pagina es de fri]
+        	</parametro>
+			<parametro nombre="SITIO">
+        	      [_Sitio_de_prueba]
+        	</parametro>
+			<parametro nombre="PADRE">
+        	      [_index]
+        	</parametro>
+			<parametro nombre="USUARIO_CREACION">
+        	      [_usuario1]
+        	</parametro>
+			<parametro nombre="FECHA_CREACION">
+				  [2024-04-17]
+        	</parametro>
+			<parametro nombre="FECHA_MODIFICACION">
+        	      [2024-04-17]
+        	</parametro>
+			<parametro nombre="USUARIO_MODIFICACION">
+        	      [_usuario2]
+        	</parametro>
+	</parametros>
+	<etiquetas>
+		<etiqueta valor="_etiqueta1"/>
+		<etiqueta valor="_etiqueta2"/>
+	</etiquetas>
+</accion>
