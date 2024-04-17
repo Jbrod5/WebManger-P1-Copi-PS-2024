@@ -1,5 +1,6 @@
 
 package com.jbrod.webmanager_server;
+import com.jbrod.webmanager_server.analyzer.Analyzer;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.*;
@@ -12,11 +13,13 @@ import java.util.logging.Logger;
  */
 public class InputServerSocket implements Runnable {
 
-    ServerSocket inputSocket; 
+    private ServerSocket inputSocket;
+    private Analyzer analyzer; 
     
-    public InputServerSocket(String ip, int port){
+    public InputServerSocket(String ip, int port, Analyzer analyzer){
         //Crear el hilo     
         Thread parseListener = new Thread(this);
+        this.analyzer = analyzer; 
 
        try {
            //Crear el socket de escucha
@@ -47,6 +50,7 @@ public class InputServerSocket implements Runnable {
                 System.out.println("Se recibio: ");
                 System.out.println(entrada);
                 //Pasar la entrada al analizador
+                analyzer.analyze(entrada);
                 
                 
             } catch (IOException ex) {

@@ -32,11 +32,11 @@ public class WebParser extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\107\000\002\002\003\000\002\002\004\000\002\002" +
+    "\000\107\000\002\002\004\000\002\002\003\000\002\002" +
     "\003\000\002\003\003\000\002\003\003\000\002\003\003" +
     "\000\002\003\003\000\002\003\003\000\002\003\003\000" +
     "\002\003\003\000\002\003\003\000\002\004\004\000\002" +
-    "\004\003\000\002\005\005\000\002\015\005\000\002\006" +
+    "\004\003\000\002\005\005\000\002\006\005\000\002\015" +
     "\005\000\002\007\005\000\002\010\005\000\002\014\005" +
     "\000\002\011\005\000\002\012\005\000\002\013\005\000" +
     "\002\016\005\000\002\017\003\000\002\020\003\000\002" +
@@ -76,7 +76,7 @@ public class WebParser extends java_cup.runtime.lr_parser {
     "\ufff9\053\ufff9\054\ufff9\055\ufff9\056\ufff9\057\ufff9\060\ufff9" +
     "\061\ufff9\062\ufff9\001\002\000\026\002\ufffc\052\ufffc\053" +
     "\ufffc\054\ufffc\055\ufffc\056\ufffc\057\ufffc\060\ufffc\061\ufffc" +
-    "\062\ufffc\001\002\000\004\002\001\001\002\000\004\023" +
+    "\062\ufffc\001\002\000\004\002\000\001\002\000\004\023" +
     "\111\001\002\000\004\023\041\001\002\000\026\002\ufffd" +
     "\052\ufffd\053\ufffd\054\ufffd\055\ufffd\056\ufffd\057\ufffd\060" +
     "\ufffd\061\ufffd\062\ufffd\001\002\000\026\002\ufffa\052\ufffa" +
@@ -89,15 +89,15 @@ public class WebParser extends java_cup.runtime.lr_parser {
     "\056\012\057\004\060\021\061\010\062\005\001\002\000" +
     "\004\052\032\001\002\000\004\002\ufff4\001\002\000\004" +
     "\052\ufff6\001\002\000\004\063\040\001\002\000\004\004" +
-    "\036\001\002\000\004\037\037\001\002\000\012\026\ufff2" +
-    "\031\ufff2\035\ufff2\063\ufff2\001\002\000\026\002\uffc3\052" +
+    "\036\001\002\000\004\037\037\001\002\000\012\026\ufff3" +
+    "\031\ufff3\035\ufff3\063\ufff3\001\002\000\026\002\uffc3\052" +
     "\uffc3\053\uffc3\054\uffc3\055\uffc3\056\uffc3\057\uffc3\060\uffc3" +
     "\061\uffc3\062\uffc3\001\002\000\004\025\035\001\002\000" +
     "\004\026\043\001\002\000\004\006\107\001\002\000\004" +
     "\027\045\001\002\000\004\004\105\001\002\000\006\030" +
     "\050\031\uffc1\001\002\000\004\031\054\001\002\000\004" +
     "\004\052\001\002\000\004\031\uffc2\001\002\000\004\037" +
-    "\053\001\002\000\004\031\ufff3\001\002\000\004\004\103" +
+    "\053\001\002\000\004\031\ufff2\001\002\000\004\004\103" +
     "\001\002\000\004\032\056\001\002\000\004\005\101\001" +
     "\002\000\004\033\060\001\002\000\004\005\077\001\002" +
     "\000\004\034\062\001\002\000\004\004\075\001\002\000" +
@@ -161,7 +161,7 @@ public class WebParser extends java_cup.runtime.lr_parser {
     "\000\004\034\062\001\002\000\004\024\213\001\002\000" +
     "\004\063\214\001\002\000\026\002\uffc4\052\uffc4\053\uffc4" +
     "\054\uffc4\055\uffc4\056\uffc4\057\uffc4\060\uffc4\061\uffc4\062" +
-    "\uffc4\001\002\000\004\002\000\001\002\000\004\063\217" +
+    "\uffc4\001\002\000\004\002\001\001\002\000\004\063\217" +
     "\001\002\000\026\002\uffbf\052\uffbf\053\uffbf\054\uffbf\055" +
     "\uffbf\056\uffbf\057\uffbf\060\uffbf\061\uffbf\062\uffbf\001\002" +
     "\000\004\035\113\001\002\000\004\063\222\001\002\000" +
@@ -274,7 +274,7 @@ public class WebParser extends java_cup.runtime.lr_parser {
   /** Indicates start state. */
   public int start_state() {return 0;}
   /** Indicates start production. */
-  public int start_production() {return 1;}
+  public int start_production() {return 0;}
 
   /** <code>EOF</code> Symbol index. */
   public int EOF_sym() {return 0;}
@@ -285,7 +285,7 @@ public class WebParser extends java_cup.runtime.lr_parser {
 
 
     // Connect this parser to a scanner!
-    public WebParser(WebManagerLexer lex) {
+    public WebParser(WebLexer lex) {
 	    super(lex);
     }
 
@@ -331,16 +331,7 @@ class CUP$WebParser$actions {
       switch (CUP$WebParser$act_num)
         {
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 0: // instruccion ::= acciones 
-            {
-              String RESULT =null;
-
-              CUP$WebParser$result = parser.getSymbolFactory().newSymbol("instruccion",0, ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()), RESULT);
-            }
-          return CUP$WebParser$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 1: // $START ::= instruccion EOF 
+          case 0: // $START ::= instruccion EOF 
             {
               Object RESULT =null;
 		int start_valleft = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-1)).left;
@@ -351,6 +342,15 @@ class CUP$WebParser$actions {
             }
           /* ACCEPT */
           CUP$WebParser$parser.done_parsing();
+          return CUP$WebParser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 1: // instruccion ::= acciones 
+            {
+              String RESULT =null;
+
+              CUP$WebParser$result = parser.getSymbolFactory().newSymbol("instruccion",0, ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()), RESULT);
+            }
           return CUP$WebParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
@@ -462,20 +462,23 @@ class CUP$WebParser$actions {
           return CUP$WebParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 14: // prm_val_pad ::= PARAM_TYPE_PAD PRM_VAL_ID PARAMETRO_CL 
+          case 14: // prm_val_id ::= PARAM_TYPE_ID PRM_VAL_ID PARAMETRO_CL 
             {
               String RESULT =null;
-
-              CUP$WebParser$result = parser.getSymbolFactory().newSymbol("prm_val_pad",11, ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-2)), ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()), RESULT);
+		int idleft = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-1)).left;
+		int idright = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-1)).right;
+		String id = (String)((java_cup.runtime.Symbol) CUP$WebParser$stack.elementAt(CUP$WebParser$top-1)).value;
+		 RESULT = id; 
+              CUP$WebParser$result = parser.getSymbolFactory().newSymbol("prm_val_id",4, ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-2)), ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()), RESULT);
             }
           return CUP$WebParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 15: // prm_val_id ::= PARAM_TYPE_ID PRM_VAL_ID PARAMETRO_CL 
+          case 15: // prm_val_pad ::= PARAM_TYPE_PAD PRM_VAL_ID PARAMETRO_CL 
             {
               String RESULT =null;
 
-              CUP$WebParser$result = parser.getSymbolFactory().newSymbol("prm_val_id",4, ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-2)), ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()), RESULT);
+              CUP$WebParser$result = parser.getSymbolFactory().newSymbol("prm_val_pad",11, ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-2)), ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()), RESULT);
             }
           return CUP$WebParser$result;
 

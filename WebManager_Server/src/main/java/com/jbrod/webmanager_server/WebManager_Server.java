@@ -1,5 +1,6 @@
 package com.jbrod.webmanager_server;
 
+import com.jbrod.webmanager_server.analyzer.Analyzer;
 import java.util.Scanner;
 
 /**
@@ -14,8 +15,9 @@ public class WebManager_Server {
         int inPort = 0; 
         String ip = ""; 
         String op = "";
-        boolean pass = false; 
+        boolean pass = false;
         
+        System.out.println("Inicio: Web Manager - Server");
         while(!pass){
             
             //Obtener el puerto 
@@ -36,13 +38,14 @@ public class WebManager_Server {
             ip = scanner.nextLine();
         } while (!isValidIpAddress(ip));
         
-            
+        System.out.println("Servidor en funcionamiento.");
             
             
             
             //Ejecutar la escucha 
             //El constructor ya ejecuta la escucha
-            InputServerSocket inputServerSocket = new InputServerSocket(ip, inPort);
+            Analyzer analyzer = new Analyzer();
+            InputServerSocket inputServerSocket = new InputServerSocket(ip, inPort, analyzer );
             
             //Ejecutar la salida
             

@@ -8,7 +8,7 @@ import com.jbrod.webmanager_server.webmanager.WebsiteMgr;
 
 parser code {:
     // Connect this parser to a scanner!
-    public WebParser(WebManagerLexer lex) {
+    public WebParser(WebLexer lex) {
 	    super(lex);
     }
 
@@ -73,24 +73,26 @@ non terminal String accion_add_wbst, accion_del_wbst, prm_val_pad_op,accion_add_
 
 
 // Inicio
+start with instruccion;
+
 instruccion ::=  acciones | accion;
 accion      ::=  accion_add_wbst | accion_del_wbst | accion_add_pagw | accion_del_pagw | accion_mod_pagw | accion_add_comp | accion_del_comp | accion_mod_comp;
 accion_rec  ::=  accion accion_rec | accion;
 acciones    ::=  ACCIONES_OP accion_rec ACCIONES_CL;
 
 // Parametros
-prm_val_pad ::= PARAM_TYPE_PAD   PRM_VAL_ID    PARAMETRO_CL;
-prm_val_id  ::= PARAM_TYPE_ID    PRM_VAL_ID    PARAMETRO_CL;
-prm_val_uc  ::= PARAM_TYPE_USC   PRM_VAL_ID    PARAMETRO_CL;
-prm_val_usm ::= PARAM_TYPE_USM   PRM_VAL_ID    PARAMETRO_CL;
-prm_val_sit ::= PARAM_TYPE_SIT   PRM_VAL_ID    PARAMETRO_CL;
-prm_val_fch ::= PARAM_TYPE_FCR   PRM_VAL_FCH   PARAMETRO_CL;
-prm_val_fmd ::= PARAM_TYPE_FMD   PRM_VAL_FCH   PARAMETRO_CL;
+prm_val_id  ::= PARAM_TYPE_ID    PRM_VAL_ID:id    PARAMETRO_CL {: RESULT = id; :};
+prm_val_pad ::= PARAM_TYPE_PAD   PRM_VAL_ID:id    PARAMETRO_CL {: RESULT = id; :};
+prm_val_uc  ::= PARAM_TYPE_USC   PRM_VAL_ID:id    PARAMETRO_CL {: RESULT = id; :};
+prm_val_usm ::= PARAM_TYPE_USM   PRM_VAL_ID:id    PARAMETRO_CL {: RESULT = id; :};
+prm_val_sit ::= PARAM_TYPE_SIT   PRM_VAL_ID:id    PARAMETRO_CL {: RESULT = id; :};
+prm_val_fch ::= PARAM_TYPE_FCR   PRM_VAL_FCH:fc   PARAMETRO_CL {: RESULT = fc; :};
+prm_val_fmd ::= PARAM_TYPE_FMD   PRM_VAL_FCH:fc   PARAMETRO_CL {: RESULT = fc; :};
 
-prm_val_tit ::= PARAM_TYPE_TIT   PRM_VAL_TIT   PARAMETRO_CL;
+prm_val_tit ::= PARAM_TYPE_TIT   PRM_VAL_TIT:ti   PARAMETRO_CL {: RESULT = ti; :};
 
 
-prm_val_pag ::= PARAM_TYPE_PAG   PRM_VAL_ID    PARAMETRO_CL;
+prm_val_pag ::= PARAM_TYPE_PAG   PRM_VAL_ID:id    PARAMETRO_CL {: RESULT = id; :};
 
 //agregar componentes
 class_val_tit ::= CLASS_TYPE_TIT;  

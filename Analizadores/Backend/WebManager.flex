@@ -6,21 +6,21 @@ import java_cup.runtime.*;
 
 /* DECLARACIONES */
 %public
-%class WebManagerLexer
+%class WebLexer
 %cup
 %line
 %column
 
 // Uso general
-tag_open     = "\<"
-tag_close    = "\>"
-tag_inclose  = "\/"
-equals       = "\="
-comillas     = "\""
-nombre_def   = "nombre"
-valor_def    = "valor"
-val_open     = "\["
-val_close    = "\]"
+tag_open     =\<
+tag_close    =\>
+tag_inclose  =\/
+equals       =\=
+comillas     =\"
+nombre_def   =nombre
+valor_def    =valor
+val_open     =\[
+val_close    =\]
 
 // Valaores generales
 
@@ -60,16 +60,16 @@ parametros_cl   = {tag_open} {tag_inclose} {parametros_def} {tag_close}
 //param_type      = ({param_id} | {param_tit} | {param_sit} | {param_pad} | {param_usc} | {param_fcr} | {param_fmd} | {param_usm} | {param_pag} | {param_cls} )   
 //parametro_op    = {tag_open} {parametro_def} {nombre_def} {equals} {comillas} {param_type} {comillas} {tag_close}
                   //ES GRAMATICAL <parametro nombre="ID">, RETORNAR LO QUE ESTA ENTRE COMILLAS
-param_type_id  = {tag_open} {parametro_def} {nombre_def} {equals} {comillas} {param_id}  {comillas} {tag_close}
-param_type_tit = {tag_open} {parametro_def} {nombre_def} {equals} {comillas} {param_tit} {comillas} {tag_close}
-param_type_sit = {tag_open} {parametro_def} {nombre_def} {equals} {comillas} {param_sit} {comillas} {tag_close}
-param_type_pad = {tag_open} {parametro_def} {nombre_def} {equals} {comillas} {param_pad} {comillas} {tag_close}
-param_type_usc = {tag_open} {parametro_def} {nombre_def} {equals} {comillas} {param_usc} {comillas} {tag_close}
-param_type_fcr = {tag_open} {parametro_def} {nombre_def} {equals} {comillas} {param_fcr} {comillas} {tag_close}
-param_type_fmd = {tag_open} {parametro_def} {nombre_def} {equals} {comillas} {param_fmd} {comillas} {tag_close}
-param_type_usm = {tag_open} {parametro_def} {nombre_def} {equals} {comillas} {param_usm} {comillas} {tag_close}
-param_type_pag = {tag_open} {parametro_def} {nombre_def} {equals} {comillas} {param_pag} {comillas} {tag_close}
-param_type_cls = {tag_open} {parametro_def} {nombre_def} {equals} {comillas} {param_cls} {comillas} {tag_close}
+param_type_id  = {tag_open} {parametro_def} {WhiteSpaceOp} {nombre_def} {equals} {comillas} {param_id}  {comillas} {tag_close}
+param_type_tit = {tag_open} {parametro_def} {WhiteSpaceOp} {nombre_def} {equals} {comillas} {param_tit} {comillas} {tag_close}
+param_type_sit = {tag_open} {parametro_def} {WhiteSpaceOp} {nombre_def} {equals} {comillas} {param_sit} {comillas} {tag_close}
+param_type_pad = {tag_open} {parametro_def} {WhiteSpaceOp} {nombre_def} {equals} {comillas} {param_pad} {comillas} {tag_close}
+param_type_usc = {tag_open} {parametro_def} {WhiteSpaceOp} {nombre_def} {equals} {comillas} {param_usc} {comillas} {tag_close}
+param_type_fcr = {tag_open} {parametro_def} {WhiteSpaceOp} {nombre_def} {equals} {comillas} {param_fcr} {comillas} {tag_close}
+param_type_fmd = {tag_open} {parametro_def} {WhiteSpaceOp} {nombre_def} {equals} {comillas} {param_fmd} {comillas} {tag_close}
+param_type_usm = {tag_open} {parametro_def} {WhiteSpaceOp} {nombre_def} {equals} {comillas} {param_usm} {comillas} {tag_close}
+param_type_pag = {tag_open} {parametro_def} {WhiteSpaceOp} {nombre_def} {equals} {comillas} {param_pag} {comillas} {tag_close}
+param_type_cls = {tag_open} {parametro_def} {WhiteSpaceOp} {nombre_def} {equals} {comillas} {param_cls} {comillas} {tag_close}
 parametro_cl   = {tag_open} {tag_inclose} {parametro_def} {tag_close}
 
 // PARAMETRO
@@ -91,7 +91,7 @@ etiquetas_def   = "etiquetas"
 etiqueta_def    = "etiqueta"
 etiquetas_op    = {tag_open} {etiquetas_def} {tag_close}
 etiquetas_cl    = {tag_open} {tag_inclose} {etiquetas_def} {tag_close}
-etiqueta        = {tag_open} {etiqueta_def} {valor_def} {equals} {comillas} {identificador} {comillas} {tag_close}
+etiqueta        = {tag_open} {etiqueta_def} {WhiteSpaceOp} {valor_def} {equals} {comillas} {identificador} {comillas} {tag_close}
                 //ES GRAMATICAL -> <etiqueta valor="etiqueta1"/>  RETORNAR LO QUE ESTA ENTRE COMILLAS
 
 // ATRIBUTOS ---------------------------------------------------------------------------------------
@@ -102,13 +102,13 @@ atributos_cl    = {tag_open} {tag_inclose} {atributos_def} {tag_close}
 //atrib_option    = ( {atr_txt} | {atr_clr} | {atr_aln})
 //atributo_op     = {tag_open} {atributo_def}   {nombre_def} {equals} {comillas}  {comillas}  {tag_close}
                   // ES GRAMATICAL -> <atributo nombre="TEXTO"> RETORNAR LO QUE ESTA ENTRE COMILLAS
-atr_typle_txt   = {tag_open} {atributo_def} {nombre_def} {equals} {comillas} {atr_txt} {comillas} {tag_close}
-atr_typle_clr   = {tag_open} {atributo_def} {nombre_def} {equals} {comillas} {atr_clr} {comillas} {tag_close}
-atr_typle_aln   = {tag_open} {atributo_def} {nombre_def} {equals} {comillas} {atr_aln} {comillas} {tag_close}
+atr_typle_txt   = {tag_open} {atributo_def} {WhiteSpaceOp} {nombre_def} {equals} {comillas} {atr_txt} {comillas} {tag_close}
+atr_typle_clr   = {tag_open} {atributo_def} {WhiteSpaceOp} {nombre_def} {equals} {comillas} {atr_clr} {comillas} {tag_close}
+atr_typle_aln   = {tag_open} {atributo_def} {WhiteSpaceOp} {nombre_def} {equals} {comillas} {atr_aln} {comillas} {tag_close}
 
-atr_typle_ori   = {tag_open} {atributo_def} {nombre_def} {equals} {comillas} {atr_ori} {comillas} {tag_close}
-atr_typle_alt   = {tag_open} {atributo_def} {nombre_def} {equals} {comillas} {atr_alt} {comillas} {tag_close}
-atr_typle_anc   = {tag_open} {atributo_def} {nombre_def} {equals} {comillas} {atr_anc} {comillas} {tag_close} 
+atr_typle_ori   = {tag_open} {atributo_def} {WhiteSpaceOp} {nombre_def} {equals} {comillas} {atr_ori} {comillas} {tag_close}
+atr_typle_alt   = {tag_open} {atributo_def} {WhiteSpaceOp} {nombre_def} {equals} {comillas} {atr_alt} {comillas} {tag_close}
+atr_typle_anc   = {tag_open} {atributo_def} {WhiteSpaceOp} {nombre_def} {equals} {comillas} {atr_anc} {comillas} {tag_close} 
 atributo_cl     = {tag_open} {tag_inclose} {atributo_def} {tag_close}
 
 
@@ -131,18 +131,18 @@ acciones_cl  = {tag_open} {tag_inclose} {acciones_def} {tag_close}
 //acc_opt      = ({add_wbst} | {del_wbst} | {add_pagw} | {del_pagw} | {mod_pagw} | {add_comp} | {del_comp} | {mod_comp})
 //accion_op    = {tag_open} {accion_def}      {nombre_def} {equals} {comillas} {acc_opt}  {comillas}    {tag_close}
              // ES GRAMATICAL -> <accion nombre="MODIFICAR_COMPONENTE">
-acc_add_wbst = {tag_open} {accion_def} {nombre_def} {equals} {comillas} {add_wbst} {tag_close} 
-acc_del_wbst = {tag_open} {accion_def} {nombre_def} {equals} {comillas} {del_wbst} {tag_close} 
-acc_add_pagw = {tag_open} {accion_def} {nombre_def} {equals} {comillas} {add_pagw} {tag_close}
-acc_del_pagw = {tag_open} {accion_def} {nombre_def} {equals} {comillas} {del_pagw} {tag_close}
-acc_mod_pagw = {tag_open} {accion_def} {nombre_def} {equals} {comillas} {mod_pagw} {tag_close}
-acc_add_comp = {tag_open} {accion_def} {nombre_def} {equals} {comillas} {add_comp} {tag_close}
-acc_del_comp = {tag_open} {accion_def} {nombre_def} {equals} {comillas} {del_comp} {tag_close}
-acc_mod_comp = {tag_open} {accion_def} {nombre_def} {equals} {comillas} {mod_comp} {tag_close}
+acc_add_wbst = {tag_open} {accion_def} {WhiteSpaceOp} {nombre_def} {equals} {comillas} {add_wbst} {comillas} {tag_close} 
+acc_del_wbst = {tag_open} {accion_def} {WhiteSpaceOp} {nombre_def} {equals} {comillas} {del_wbst} {comillas} {tag_close} 
+acc_add_pagw = {tag_open} {accion_def} {WhiteSpaceOp} {nombre_def} {equals} {comillas} {add_pagw} {comillas} {tag_close}
+acc_del_pagw = {tag_open} {accion_def} {WhiteSpaceOp} {nombre_def} {equals} {comillas} {del_pagw} {comillas} {tag_close}
+acc_mod_pagw = {tag_open} {accion_def} {WhiteSpaceOp} {nombre_def} {equals} {comillas} {mod_pagw} {comillas} {tag_close}
+acc_add_comp = {tag_open} {accion_def} {WhiteSpaceOp} {nombre_def} {equals} {comillas} {add_comp} {comillas} {tag_close}
+acc_del_comp = {tag_open} {accion_def} {WhiteSpaceOp} {nombre_def} {equals} {comillas} {del_comp} {comillas} {tag_close}
+acc_mod_comp = {tag_open} {accion_def} {WhiteSpaceOp} {nombre_def} {equals} {comillas} {mod_comp} {comillas} {tag_close}
 accion_cl    = {tag_open} {tag_inclose} {accion_def} {tag_close}
 
 add_wbst = "NUEVO_SITIO_WEB"
-del_wbst = "BORRAR_SITIO_WEB"áginas
+del_wbst = "BORRAR_SITIO_WEB"
 
 add_pagw = "NUEVA_PAGINA"
 del_pagw = "BORRAR_PAGINA"
@@ -157,6 +157,7 @@ mod_comp = "MODIFICAR_COMPONENTE"
 
 LineTerminator = \r|\n|\r\n
 WhiteSpace = {LineTerminator} | [ \t\f]
+WhiteSpaceOp ={WhiteSpace}*
 // valores parametros
 identificador= [_\-$][a-zA-Z0-9_\-$]*
 prm_val_id  = {val_open} {identificador} {val_close}
@@ -187,7 +188,7 @@ prm_val_tit = {val_open} [A-Za-z0-9\s\.\,\:]+ {val_close}
     if (texto.endsWith("]")) {
       texto = texto.substring(0, texto.length() - 1);
     }
-    
+    System.out.println("Texto resultante de eliminar []: " + texto);
     //String resultado = texto.substring(1, texto.length() - 1);
     return texto; 
   }
@@ -208,6 +209,10 @@ prm_val_tit = {val_open} [A-Za-z0-9\s\.\,\:]+ {val_close}
 
 %%
 /* REGLAS LEXICAS */
+
+
+
+
 
 // Parametros
 {parametros_op} { return symbol(sym.PARAMETROS_OP,  yytext()); }
@@ -268,7 +273,8 @@ prm_val_tit = {val_open} [A-Za-z0-9\s\.\,\:]+ {val_close}
 {atr_val_colh}  { return symbol(sym.ATR_VAL_COLH,  removeBrackets(yytext())); }
 
 
-
+//id
+{prm_val_id}    {  return symbol(sym.PRM_VAL_ID,    removeBrackets(yytext())); }
 
 {class_val_tit} { return symbol(sym.CLASS_TYPE_TIT, removeBrackets(yytext())); }
 {class_val_par} { return symbol(sym.CLASS_TYPE_PAR, removeBrackets(yytext())); }
@@ -281,8 +287,8 @@ prm_val_tit = {val_open} [A-Za-z0-9\s\.\,\:]+ {val_close}
 
 {atr_val_text}  { return symbol(sym.ATR_VAL_TEXT,  removeBrackets(yytext())); }
 
-//id
-{prm_val_id}   { return symbol(sym.PRM_VAL_ID,    removeBrackets(yytext())); }
+
 
 /* error fallback */
 [^]            { System.out.println("No se reconocio el lexema " + yytext() + " como un token valido y se ignoro.");}
+<<EOF>>        { return symbol(sym.EOF); }
