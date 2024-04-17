@@ -91,7 +91,7 @@ etiquetas_def   = "etiquetas"
 etiqueta_def    = "etiqueta"
 etiquetas_op    = {tag_open} {etiquetas_def} {tag_close}
 etiquetas_cl    = {tag_open} {tag_inclose} {etiquetas_def} {tag_close}
-etiqueta        = {tag_open} {etiqueta_def} {WhiteSpaceOp} {valor_def} {equals} {comillas} {identificador} {comillas} {tag_close}
+etiqueta        = {tag_open} {etiqueta_def} {WhiteSpaceOp} {valor_def} {equals} {comillas} {identificador} {comillas} {tag_inclose} {tag_close}
                 //ES GRAMATICAL -> <etiqueta valor="etiqueta1"/>  RETORNAR LO QUE ESTA ENTRE COMILLAS
 
 // ATRIBUTOS ---------------------------------------------------------------------------------------
