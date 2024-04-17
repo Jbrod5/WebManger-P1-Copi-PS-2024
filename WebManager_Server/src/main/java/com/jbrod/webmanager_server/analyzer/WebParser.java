@@ -993,7 +993,7 @@ class CUP$WebParser$actions {
           case 64: // prm_val_pad_op ::= 
             {
               String RESULT =null;
-
+		 RESULT = "$index"; 
               CUP$WebParser$result = parser.getSymbolFactory().newSymbol("prm_val_pad_op",39, ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()), RESULT);
             }
           return CUP$WebParser$result;
@@ -1030,7 +1030,6 @@ class CUP$WebParser$actions {
                          WebPage newPage = new WebPage(id, tit, sit, pad, uc, fch, fmd, usm);
                          newPage.replaceTags(tags);
                          webManager.addPage(newPage);
-                         newPage.generateHtmlFile();
                          tags = null; 
                          
                     
@@ -1051,7 +1050,21 @@ class CUP$WebParser$actions {
           case 67: // accion_mod_pagw ::= ACC_MOD_PAGW PARAMETROS_OP prm_val_id prm_val_tit PARAMETROS_CL etiquetas ACCION_CL 
             {
               String RESULT =null;
+		int idleft = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-4)).left;
+		int idright = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-4)).right;
+		String id = (String)((java_cup.runtime.Symbol) CUP$WebParser$stack.elementAt(CUP$WebParser$top-4)).value;
+		int titleft = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-3)).left;
+		int titright = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-3)).right;
+		String tit = (String)((java_cup.runtime.Symbol) CUP$WebParser$stack.elementAt(CUP$WebParser$top-3)).value;
+		int etleft = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-1)).left;
+		int etright = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-1)).right;
+		String et = (String)((java_cup.runtime.Symbol) CUP$WebParser$stack.elementAt(CUP$WebParser$top-1)).value;
+		
 
+                        webManager.modifyPage(id, tit, tags);
+                        tags = null; 
+
+                    
               CUP$WebParser$result = parser.getSymbolFactory().newSymbol("accion_mod_pagw",42, ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-6)), ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()), RESULT);
             }
           return CUP$WebParser$result;

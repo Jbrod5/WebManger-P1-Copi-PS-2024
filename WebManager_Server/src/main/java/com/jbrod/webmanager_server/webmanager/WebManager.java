@@ -146,7 +146,7 @@ public class WebManager {
     public void modifyPage(String idPagToModify, String title, LinkedList<WebComponent> tagslist){
         System.out.println("WebManager -> modifyPage():");
         // 1. Obtener la pagina
-        Node pagToModify = getPageById(title);
+        Node pagToModify = getPageById(idPagToModify);
         
         if(pagToModify != null){
             // Si se encontro el nodo, obtener la pagina
@@ -154,6 +154,7 @@ public class WebManager {
             //Verificar que la pagina no sea nula
             if(page != null){
                 //Modificar
+                page.deleteHtmlFile();
                 page.replaceTags(tagslist);
                 page.replaceTitle(title);
                 System.out.println("La pagina " + idPagToModify +  " se modifico correctamente.");

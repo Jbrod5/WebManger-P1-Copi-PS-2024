@@ -1,0 +1,16 @@
+                                                            
+
+<accion nombre="MODIFICAR_PAGINA">                                                                             
+<parametros>                                                                
+	<parametro nombre="ID">                                                      
+		[$PaginaDeFri]                                                                           
+    </parametro>                                                          
+    <parametro nombre="TITULO">                                           
+		[Antes era de fri ahora es de fayer]                                                                                                                                             
+    </parametro>                                                                                                                                       
+</parametros>                                                    	                                             
+<etiquetas>	                                                                                          
+    <etiqueta valor="$amigo"/>                                          
+    <etiqueta valor="$fri"/>
+</etiquetas>                                             
+</accion>
