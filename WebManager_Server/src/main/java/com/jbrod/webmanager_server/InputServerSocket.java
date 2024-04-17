@@ -11,7 +11,7 @@ import java.util.logging.Logger;
  *
  * @author jbravo
  */
-public class InputServerSocket implements Runnable {
+public class InputServerSocket implements Runnable{
 
     private ServerSocket inputSocket;
     private Analyzer analyzer; 

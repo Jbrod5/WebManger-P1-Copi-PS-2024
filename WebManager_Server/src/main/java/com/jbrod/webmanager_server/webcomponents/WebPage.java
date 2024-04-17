@@ -42,6 +42,8 @@ public class WebPage {
         this.creationDate = creationDate;
         this.modificationDate = modificationDate;
         this.modifierUser = modifierUser;
+        
+        components = new LinkedList<>();
     }
 
     public void setWebsitePath(String websitePath) {
@@ -220,7 +222,7 @@ public class WebPage {
         String html = header + getHtmlComponents() + endFile;
 
         //Generar el archivo html
-        String pagePath = websitePath + title + ".html";
+        String pagePath = websitePath +"/"+ title + ".html";
         try{
             File htmlFile = new File(pagePath);
             FileWriter writer = new FileWriter(htmlFile, false); //false: no concatena sino reemplaza

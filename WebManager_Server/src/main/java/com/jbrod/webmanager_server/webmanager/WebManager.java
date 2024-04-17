@@ -19,6 +19,9 @@ public class WebManager {
     
     public WebManager(){
         websiteMgr = new WebsiteMgr();
+        websites = new LinkedList<>();
+        pages = new LinkedList<>();
+        
     }
     
     
@@ -31,7 +34,7 @@ public class WebManager {
      **/
     public void createWebsite(String websiteName){
         System.out.println("WebManager -> createWebsite():");
-        Tree actual; 
+        Tree actual;
         
         //Verificar si ya existe el sitio web
         for (int i = 0; i < websites.size(); i++) {

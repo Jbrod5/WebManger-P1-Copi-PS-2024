@@ -24,16 +24,17 @@ public class Analyzer {
      * @param content : String con el contenido a analizar. 
      **/
     public void analyze(String content){
+        
         StringReader reader = new StringReader(content);
         lexer = new WebLexer(reader);
-        parser = new WebParser(lexer);
+        parser = new WebParser(lexer, webManager);
         
         //Analizar
         try{
             parser.parse(); 
         }catch(Exception e){
             System.out.println("Ocurrio un error al analizar la entrada: ");
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
     

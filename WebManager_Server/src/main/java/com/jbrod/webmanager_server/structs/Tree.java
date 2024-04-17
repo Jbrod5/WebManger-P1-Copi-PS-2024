@@ -39,6 +39,7 @@ public class Tree {
         //Si no hay raiz, el arbol esta vacio. Insertar en la raiz.
         if(root == null){
             root = node;
+            toInsert.generateHtmlFile();
             return root; 
         }
         
