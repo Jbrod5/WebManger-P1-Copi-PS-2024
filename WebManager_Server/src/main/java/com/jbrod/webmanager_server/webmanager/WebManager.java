@@ -31,9 +31,13 @@ public class WebManager {
     /**
      * Crea la carpeta donde se alojara el sitio web y un arbol que lo represente y lo añadira a la lista de sitios.
      * @param websiteName : String con el nombre del sitio web que se creara.
+     * @return String con la respuesta de la operacion.
      **/
-    public void createWebsite(String websiteName){
+    public String createWebsite(String websiteName){
+        String response = ""; 
+        response += "WebManager -> createWebsite():\n";
         System.out.println("WebManager -> createWebsite():");
+        
         Tree actual;
         
         //Verificar si ya existe el sitio web
@@ -41,7 +45,8 @@ public class WebManager {
             actual = websites.get(i);
             if(actual != null && websiteName.equals(actual.getName())){
                 System.out.println("El sitio web " + websiteName +  " ya existia.");
-                return; 
+                response += "El sitio web " + websiteName +  " ya existia.\n";
+                return response; 
             }
         }
         
@@ -51,14 +56,19 @@ public class WebManager {
         //Agregarlo a la lista de sitios web
         websites.add(newSite);
         System.out.println("Sitio web " + websiteName + " creado correctamente.");
+        response += "Sitio web " + websiteName + " creado correctamente.\n";
+        return response; 
     }
     
     /**
      * Elimina la carpeta donde se aloja el sitio web y el arbol que lo representaba de la lista de sitios.
      * @param websiteName : nombre del sitio web que se desea eliminar.
+     * @return String con la respuesta de la operacion.
      **/
-    public void deleteWebsite(String websiteName){
+    public String deleteWebsite(String websiteName){
+        String response ="";
         System.out.println("WebManager -> deleteWebsite():");
+        response += "WebManager -> deleteWebsite():\n";
         int position = 0; 
         boolean exists = false;
         Tree actual; 
@@ -70,11 +80,14 @@ public class WebManager {
                 //El sitio si existe, eliminarlo
                 websites.remove(i);
                 System.out.println("El sitio web " + websiteName +  " se elimino de la lista de sitios web.");
+                response += "El sitio web " + websiteName +  " se elimino de la lista de sitios web. \n";
                 websiteMgr.deleteWebsite(websiteName);
-                return; 
+                return response; 
             }
         }
         System.out.println("No se encontro " + websiteName + " en la base de sitios para ser eliminado.");
+        response += "No se encontro " + websiteName + " en la base de sitios para ser eliminado.\n";
+        return response;
     }
     
 
@@ -90,8 +103,10 @@ public class WebManager {
     /**
      * Agrega una página a su respectivo sitio web por medio de los árboles de sitio.
      * @param toAdd : WebPage ya instanciada. Se agrega comparando el sitio encontrado en la instancia.
+     * @return String con la respuesta de la operacion.
      **/
-    public void addPage(WebPage toAdd){
+    public String addPage(WebPage toAdd){
+        String response = "";
         // Buscar el arbol donde insertar
         String webSite = toAdd.getSite();
         Tree actual; 
@@ -102,12 +117,16 @@ public class WebManager {
             if(webSite.equals(actual.getName())){
                 pages.add(actual.insertPage(toAdd));
                 // La pagina se genera desde el nodo
-                return; 
+                response += "La pagina " + toAdd.getId() + " se inserto correctamente.\n";
+                return response; 
             }
             
         }
+        response += "WebManager -> addPage():\n";
+        response += "No se encontro " + webSite + " en la base de sitios para agregar la pagina " + toAdd.getId() +".\n";
         System.out.println("WebManager -> addPage():");
         System.out.println("No se encontro " + webSite + " en la base de sitios para agregar la pagina " + toAdd.getId() +".");
+        return response;
     }
     
     
@@ -115,8 +134,11 @@ public class WebManager {
      * Busca una pagina en base a un id y elimina: su nodo, su archivo htm y sus hijos de manera recursiva (logica de eliminacion recursiva en Node).
      * @param idPag : String con el id de la pagina a eliminar.
      * @see Node.
+     * @return String con la respuesta de la operacion.
      **/
-    public void deletePage(String idPag){
+    public String deletePage(String idPag){
+        String response = "";
+        response += "WebManager -> deletePage():\n";
         System.out.println("WebManager -> deletePage():");
         //Buscar nodo/pagina a eliminar
         
@@ -129,11 +151,14 @@ public class WebManager {
                 //Eliminar la pagina
                 pages.remove(actual);
                 System.out.println("Se ha eliminado la pagina " + idPag + " y sus hijos.");
-                return;
+                response += "Se ha eliminado la pagina " + idPag + " y sus hijos.\n";
+                return response;
             }
             
         }
         System.out.println("No se encontro " + idPag + " para ser eliminada.");
+        response += "No se encontro " + idPag + " para ser eliminada.\n";
+        return response;
     }
     
     
@@ -142,8 +167,10 @@ public class WebManager {
      * @param idPagToModify : String con el id de la pagina que se desea modificar.
      * @param title : String con el nuevo titulo que tendra la pagina.
      * @param tagslist : LinkedList de WebComponent con las etiquetas que se pondran en la pagina.
+     * @return String con la respuesta de la operacion.
      **/
-    public void modifyPage(String idPagToModify, String title, LinkedList<WebComponent> tagslist){
+    public String modifyPage(String idPagToModify, String title, LinkedList<WebComponent> tagslist){
+        String response = "WebManager -> modifyPage():\n";
         System.out.println("WebManager -> modifyPage():");
         // 1. Obtener la pagina
         Node pagToModify = getPageById(idPagToModify);
@@ -158,14 +185,17 @@ public class WebManager {
                 page.replaceTags(tagslist);
                 page.replaceTitle(title);
                 System.out.println("La pagina " + idPagToModify +  " se modifico correctamente.");
+                response += "La pagina " + idPagToModify +  " se modifico correctamente.\n";
                 page.generateHtmlFile();
             }else{
                 System.out.println("Se encontro un nodo con el id " + idPagToModify + " pero la pagina que contiene es nula.");
+                response += "Se encontro un nodo con el id " + idPagToModify + " pero la pagina que contiene es nula.\n";
             }
         }else{
             System.out.println("No se encontro una pagina con el id " + idPagToModify);
+            response += "No se encontro una pagina con el id " + idPagToModify;
         }
-        
+        return response;
     }
     
     
@@ -178,8 +208,10 @@ public class WebManager {
      * Agrega un componente a una pagina en base a su id.
      * @param idPagWhereAdd : String con el id de la pagina donde se desea agregar el componente.
      * @param componentToAdd : WebComponent ya instanciado que se agregara en la pagina.
+     * @return String con la respuesta de la operacion.
      **/
-    public void addComponent(String idPagWhereAdd, WebComponent componentToAdd){
+    public String addComponent(String idPagWhereAdd, WebComponent componentToAdd){
+        String response = "WebManager -> addComponent():\n";
         System.out.println("WebManager -> addComponent():");
         //1. Buscar la pagina web
         Node pagWhereAdd = getPageById(idPagWhereAdd);
@@ -188,9 +220,12 @@ public class WebManager {
         if(pagWhereAdd != null && pagWhereAdd.getPage() != null){
             //3. Agregar el componente
             pagWhereAdd.getPage().addHtmlComponent(componentToAdd);
+            response += "Se procedio a agregar el compnente " + componentToAdd.getId() + " agregado a la pagina " + pagWhereAdd + ".\n";
         }else{
             System.out.println("No se encontro la pagina " + idPagWhereAdd);
+            response += "No se encontro la pagina " + idPagWhereAdd + "\n";
         }
+        return response;
     }
 
     
@@ -198,8 +233,10 @@ public class WebManager {
      * Elimina un componente de una pagina en base al id de la pagina y del componente.
      * @param idPagWhereDelete : Strting con el id de la pagina donde se hara la eliminacion.
      * @param idComponenrtToDelete : String con el id del componente que se eliminara de la pagina.
+     * @return String con la respuesta de la operacion.
      **/
-    public void deleteComponent(String idPagWhereDelete, String idComponenrtToDelete){
+    public String deleteComponent(String idPagWhereDelete, String idComponenrtToDelete){
+        String response = "WebManager -> deleteComponent():\n";
         System.out.println("WebManager -> deleteComponent():");
         //1. Buscar la pagina web
         Node pagWhereDelete = getPageById(idPagWhereDelete);
@@ -208,18 +245,22 @@ public class WebManager {
         if(pagWhereDelete != null && pagWhereDelete.getPage() != null){
             //3. Eliminar el componente
             pagWhereDelete.getPage().removeHtmlComponent(idComponenrtToDelete);
+            response += "Se procedio a eliminar el componente " + idComponenrtToDelete +"\n";
         }else{
             System.out.println("No se encontro la pagina " + idPagWhereDelete);
+            response += "No se encontro la pagina " + idPagWhereDelete + "\n"; 
         }
-
+        return response;
     }
 
     /**
      * Reemplaza un componente de una pagina web por otro.
      * @param idPagWhereModify : String con el id de la pagina donde se hara el reemplazdo del componente.
      * @param componentToAdd : WebComponent ya instanciado que sera insertado en la pagina.
+     * @return String con la respuesta de la operacion.
      **/
-    public void modifyComponent(String idPagWhereModify, WebComponent componentToAdd){
+    public String modifyComponent(String idPagWhereModify, WebComponent componentToAdd){
+        String response = "WebManager -> modifyComponent():\n";
         System.out.println("WebManager -> modifyComponent():");
         //1. Buscar la pagina web
         Node pagWhereModify = getPageById(idPagWhereModify);
@@ -228,9 +269,12 @@ public class WebManager {
         if(pagWhereModify != null && pagWhereModify.getPage() != null){
             //3. Reemplazar el componente
             pagWhereModify.getPage().replaceHtmlComponent(componentToAdd);
+            response += "Se procedio a reemplazar el componente " + componentToAdd.getId() + " en " + idPagWhereModify + "\n";
         }else{
             System.out.println("No se encontro la pagina " + idPagWhereModify);
+            response += "No se encontro la pagina " + idPagWhereModify +"\n";
         } 
+        return response;
     }
 
 

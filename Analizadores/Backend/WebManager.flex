@@ -167,7 +167,7 @@ prm_val_tit = {val_open} [A-Za-z0-9\s\.\,\:\/\-\_]+ {val_close}
 
 %{
   
-  private String response;
+  private String response="";
 
   public String getResponse(){
     return response; 

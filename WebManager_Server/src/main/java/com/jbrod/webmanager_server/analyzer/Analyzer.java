@@ -39,17 +39,17 @@ public class Analyzer {
         
         //Analizar
         try{
-            parser.parse();
-            response += "- - - - - - - - RESULTADO DEL ANALISIS LEXICO - - - - - - - -\n\n";
-            response += lexer.getResponse();
-            response += "- - - - - - - RESULTADO DEL ANALISIS SINTACTICO - - - - - - -\n\n";
-            response += parser.getResponse();
-            
+            parser.parse();            
         }catch(Exception e){
             System.out.println("Ocurrio un error al analizar la entrada: ");
-            e.printStackTrace();
+            response += "Ocurrio un error al analizar la entrada.\n\n\n";
         }
         
+            response += "- - - - - - - - RESULTADO DEL ANALISIS LEXICO - - - - - - - -\n\n";
+            response += lexer.getResponse();
+            response += "\n\n\n\n\n";
+            response += "- - - - - - - RESULTADO DEL ANALISIS SINTACTICO - - - - - - -\n\n";
+            response += parser.getResponse();
         
         //Enviar la respuesta al servidor
         oss.sendMessage(response);

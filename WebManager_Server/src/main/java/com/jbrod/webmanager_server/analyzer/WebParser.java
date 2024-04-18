@@ -303,7 +303,7 @@ public class WebParser extends java_cup.runtime.lr_parser {
 
 
     //String de respuesta
-    private String response; 
+    private String response = ""; 
 
     public String getResponse(){
         return response; 
@@ -1103,7 +1103,7 @@ class CUP$WebParser$actions {
 		int usmleft = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-2)).left;
 		int usmright = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-2)).right;
 		String usm = (String)((java_cup.runtime.Symbol) CUP$WebParser$stack.elementAt(CUP$WebParser$top-2)).value;
-		 webManager.createWebsite(id); 
+		 response += webManager.createWebsite(id); 
               CUP$WebParser$result = parser.getSymbolFactory().newSymbol("accion_add_wbst",37, ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-8)), ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()), RESULT);
             }
           return CUP$WebParser$result;
@@ -1115,7 +1115,7 @@ class CUP$WebParser$actions {
 		int idleft = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-1)).left;
 		int idright = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-1)).right;
 		String id = (String)((java_cup.runtime.Symbol) CUP$WebParser$stack.elementAt(CUP$WebParser$top-1)).value;
-		 webManager.deleteWebsite(id); 
+		 response += webManager.deleteWebsite(id); 
               CUP$WebParser$result = parser.getSymbolFactory().newSymbol("accion_del_wbst",38, ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-2)), ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()), RESULT);
             }
           return CUP$WebParser$result;
@@ -1172,7 +1172,7 @@ class CUP$WebParser$actions {
 		
                          WebPage newPage = new WebPage(id, tit, sit, pad, uc, fch, fmd, usm);
                          newPage.replaceTags(tags);
-                         webManager.addPage(newPage);
+                         response += webManager.addPage(newPage);
                          tags = null;   
                     
               CUP$WebParser$result = parser.getSymbolFactory().newSymbol("accion_add_pagw",40, ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-12)), ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()), RESULT);
@@ -1187,7 +1187,7 @@ class CUP$WebParser$actions {
 		int idright = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-1)).right;
 		String id = (String)((java_cup.runtime.Symbol) CUP$WebParser$stack.elementAt(CUP$WebParser$top-1)).value;
 		
-                        webManager.deletePage(id);
+                        response += webManager.deletePage(id);
                     
               CUP$WebParser$result = parser.getSymbolFactory().newSymbol("accion_del_pagw",41, ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-2)), ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()), RESULT);
             }
@@ -1207,7 +1207,7 @@ class CUP$WebParser$actions {
 		int etright = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-1)).right;
 		String et = (String)((java_cup.runtime.Symbol) CUP$WebParser$stack.elementAt(CUP$WebParser$top-1)).value;
 		
-                        webManager.modifyPage(id, tit, tags);
+                        response += webManager.modifyPage(id, tit, tags);
                         tags = null; 
                     
               CUP$WebParser$result = parser.getSymbolFactory().newSymbol("accion_mod_pagw",42, ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-6)), ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()), RESULT);
@@ -1254,7 +1254,7 @@ class CUP$WebParser$actions {
 
                         //Agregar el componente
                         if(toAdd != null){
-                            webManager.addComponent(idpag, toAdd);
+                            response += webManager.addComponent(idpag, toAdd);
                         }
                     
               CUP$WebParser$result = parser.getSymbolFactory().newSymbol("accion_add_comp",43, ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-7)), ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()), RESULT);
@@ -1271,7 +1271,7 @@ class CUP$WebParser$actions {
 		int id_pagleft = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-2)).left;
 		int id_pagright = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-2)).right;
 		String id_pag = (String)((java_cup.runtime.Symbol) CUP$WebParser$stack.elementAt(CUP$WebParser$top-2)).value;
-		 webManager.deleteComponent(id_pag, id_comp); 
+		 response += webManager.deleteComponent(id_pag, id_comp); 
               CUP$WebParser$result = parser.getSymbolFactory().newSymbol("accion_del_comp",44, ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-5)), ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()), RESULT);
             }
           return CUP$WebParser$result;
@@ -1314,7 +1314,7 @@ class CUP$WebParser$actions {
 
                         //Agregar el componente
                         if(toAdd != null){
-                            webManager.modifyComponent(id_pag, toAdd);
+                            response += webManager.modifyComponent(id_pag, toAdd);
                         } 
 
                 

@@ -596,7 +596,7 @@ public class WebLexer implements java_cup.runtime.Scanner {
 
   /* user code: */
   
-  private String response;
+  private String response="";
 
   public String getResponse(){
     return response; 
