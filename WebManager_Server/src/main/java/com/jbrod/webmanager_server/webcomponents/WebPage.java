@@ -228,7 +228,7 @@ public class WebPage {
         String html = header + getHtmlComponents() + endFile;
 
         //Generar el archivo html
-        String pagePath = websitePath +"/"+ title + ".html";
+        String pagePath = websitePath +"/"+ id + ".html";
         try{
             File htmlFile = new File(pagePath);
             FileWriter writer = new FileWriter(htmlFile, false); //false: no concatena sino reemplaza
@@ -247,7 +247,7 @@ public class WebPage {
      * Elimina el archivo html asociado a la pagina.
      **/
     public void deleteHtmlFile(){        
-        String pagePath = websitePath + title + ".html";
+        String pagePath = websitePath + "/" + id + ".html";
         File file = new File(pagePath);
         System.out.println("WebPage -> deleteHtmlFile():");
         if(file.delete()){

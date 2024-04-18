@@ -1041,7 +1041,12 @@ class CUP$WebParser$actions {
           case 66: // accion_del_pagw ::= ACC_DEL_PAGW prm_val_id ACCION_CL 
             {
               String RESULT =null;
-
+		int idleft = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-1)).left;
+		int idright = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-1)).right;
+		String id = (String)((java_cup.runtime.Symbol) CUP$WebParser$stack.elementAt(CUP$WebParser$top-1)).value;
+		
+                        webManager.deletePage(id);
+                    
               CUP$WebParser$result = parser.getSymbolFactory().newSymbol("accion_del_pagw",41, ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-2)), ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()), RESULT);
             }
           return CUP$WebParser$result;
@@ -1060,10 +1065,8 @@ class CUP$WebParser$actions {
 		int etright = ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-1)).right;
 		String et = (String)((java_cup.runtime.Symbol) CUP$WebParser$stack.elementAt(CUP$WebParser$top-1)).value;
 		
-
                         webManager.modifyPage(id, tit, tags);
                         tags = null; 
-
                     
               CUP$WebParser$result = parser.getSymbolFactory().newSymbol("accion_mod_pagw",42, ((java_cup.runtime.Symbol)CUP$WebParser$stack.elementAt(CUP$WebParser$top-6)), ((java_cup.runtime.Symbol)CUP$WebParser$stack.peek()), RESULT);
             }

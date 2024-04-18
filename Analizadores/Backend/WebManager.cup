@@ -186,6 +186,8 @@ accion_del_wbst ::=  ACC_DEL_WBST prm_val_id:id ACCION_CL
                     {: webManager.deleteWebsite(id); :};
 
 
+
+
 prm_val_pad_op  ::=  prm_val_pad:pad {: RESULT = pad; :} | /* epsilon */ {: RESULT = "$index"; :};
 accion_add_pagw ::=  ACC_ADD_PAGW PARAMETROS_OP    prm_val_id:id     prm_val_tit:tit   prm_val_sit:sit    prm_val_pad_op:pad     prm_val_uc:uc     prm_val_fch:fch    prm_val_fmd:fmd     prm_val_usm:usm     PARAMETROS_CL etiquetas ACCION_CL
                     {:
@@ -195,14 +197,16 @@ accion_add_pagw ::=  ACC_ADD_PAGW PARAMETROS_OP    prm_val_id:id     prm_val_tit
                          tags = null; 
                          
                     :};
-accion_del_pagw ::=  ACC_DEL_PAGW prm_val_id ACCION_CL;
+accion_del_pagw ::=  ACC_DEL_PAGW prm_val_id:id ACCION_CL
+                    {:
+                        webManager.deletePage(id);
+                    :};
 accion_mod_pagw ::=  ACC_MOD_PAGW  PARAMETROS_OP prm_val_id:id prm_val_tit:tit PARAMETROS_CL etiquetas:et ACCION_CL
                     {:
-
                         webManager.modifyPage(id, tit, tags);
                         tags = null; 
-
                     :};
+
 
 accion_add_comp ::=  ACC_ADD_COMP  PARAMETROS_OP prm_val_id prm_val_pag prm_val_cls PARAMETROS_CL atributos ACCION_CL;
 accion_del_comp ::=  ACC_DEL_COMP  prm_val_id prm_val_pag ACCION_CL;

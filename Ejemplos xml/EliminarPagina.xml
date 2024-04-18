@@ -1,0 +1,5 @@
+<accion nombre="BORRAR_PAGINA">
+	<parametro nombre="ID">
+		[$PaginaDeFri]
+	</parametro>                              
+</accion>       

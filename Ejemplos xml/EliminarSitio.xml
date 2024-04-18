@@ -1,0 +1,5 @@
+<accion nombre="BORRAR_SITIO_WEB">
+	<parametro nombre="ID">
+		[_Sitio_de_prueba]
+	</parametro>
+</accion>
