@@ -46,7 +46,32 @@
 			[#5A5A5A]
 		</atributo>
         <atributo nombre="ALINEACION">
-			[CENTER]
+			[CENTRO]
+		</atributo>
+	</atributos>
+</accion>
+
+<accion nombre="AGREGAR_COMPONENTE">
+	<parametros>
+        <parametro nombre="ID">
+        	[$Parrafitodos]
+        </parametro>
+        <parametro nombre="PAGINA">
+        	[$PaginaDeFri]
+        </parametro>
+        <parametro nombre="CLASE">
+        	[PARRAFO]
+        </parametro>
+	</parametros>
+ 	<atributos>
+    	<atributo nombre="TEXTO">
+			[OTRO parrafo ConMAs cosas.]
+		</atributo>
+        <atributo nombre="COLOR">
+			[#FF0000]
+		</atributo>
+        <atributo nombre="ALINEACION">
+			[DERECHA]
 		</atributo>
 	</atributos>
 </accion>
@@ -92,12 +117,12 @@
         	[$PaginaDeFri]
         </parametro>
         <parametro nombre="CLASE">
-        	[IMAGEN]
+        	[VIDEO]
         </parametro>
 	</parametros>
  	<atributos>
     	<atributo nombre="ORIGEN">
-			[/home/jbravo/Desktop/2024-02-20 19-02-33.mkv]
+			[/home/jbravo/Desktop/Es_obligatorio.mp4]
 		</atributo>
         <atributo nombre="ALTURA">
 			[200]
@@ -108,4 +133,31 @@
 	</atributos>
 </accion>
 
-</accione>
+
+
+<accion nombre="AGREGAR_COMPONENTE">
+	<parametros>
+        <parametro nombre="ID">
+        	[$ultimoparrafo]
+        </parametro>
+        <parametro nombre="PAGINA">
+        	[$PaginaDeFri]
+        </parametro>
+        <parametro nombre="CLASE">
+        	[PARRAFO]
+        </parametro>
+	</parametros>
+ 	<atributos>
+    	<atributo nombre="TEXTO">
+			[Este parrafo es el final de todo.]
+		</atributo>
+        <atributo nombre="COLOR">
+			[#006400]
+		</atributo>
+        <atributo nombre="ALINEACION">
+			[DERECHA]
+		</atributo>
+	</atributos>
+</accion>
+
+</acciones>

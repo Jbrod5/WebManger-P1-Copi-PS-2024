@@ -275,5 +275,37 @@ accion_add_comp ::=  ACC_ADD_COMP  PARAMETROS_OP prm_val_id:id  prm_val_pag:idpa
                             webManager.addComponent(idpag, toAdd);
                         }
                     :};
-accion_del_comp ::=  ACC_DEL_COMP  prm_val_id prm_val_pag ACCION_CL;
-accion_mod_comp ::=  ACC_MOD_COMP  PARAMETROS_OP prm_val_id prm_val_pag prm_val_cls PARAMETROS_CL atributos ACCION_CL;
+
+accion_del_comp ::=  ACC_DEL_COMP PARAMETROS_OP prm_val_id:id_comp prm_val_pag:id_pag  PARAMETROS_CL  ACCION_CL
+                {: webManager.deleteComponent(id_pag, id_comp); :};
+
+accion_mod_comp ::=  ACC_MOD_COMP  PARAMETROS_OP    prm_val_id:id   prm_val_pag:id_pag   prm_val_cls:cls    PARAMETROS_CL atributos ACCION_CL
+                {:
+                    WebComponent toAdd = null;
+                    switch(cls){
+                            case "TITULO":
+                                toAdd = new TituloWebComponent(id, text, align, color); 
+                                break; 
+                            case "PARRAFO":
+                                toAdd = new ParrafoWebComponent(id, text, align, color);
+                                break; 
+                            case "IMAGEN":
+                                toAdd = new ImagenWebComponent(id, origen, align, height, width);
+                                break; 
+                            case "VIDEO":
+                                toAdd = new VideoWebComponent(id, origen, width, height);
+                                break; 
+                            case "MENU":
+                                toAdd = null; 
+                                break; 
+                            default:
+                                toAdd = null; 
+                                break;  
+                        } 
+
+                        //Agregar el componente
+                        if(toAdd != null){
+                            webManager.modifyComponent(id_pag, toAdd);
+                        } 
+
+                :};

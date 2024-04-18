@@ -18,7 +18,7 @@ public class VideoWebComponent extends WebComponent {
         super.id = id;
         String src = "src=\""   + origen + "\"";
         String wdt = "width=\"" + width  + "\"";
-        String hgt = "height\"" + height + "\"";
+        String hgt = "height=\"" + height + "\"";
         
         super.htmlContent = "<video " + src + wdt + hgt + " controls> </video>";
     }

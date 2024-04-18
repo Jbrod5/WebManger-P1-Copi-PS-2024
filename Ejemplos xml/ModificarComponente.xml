@@ -1,0 +1,24 @@
+<accion nombre="MODIFICAR_COMPONENTE">
+	<parametros>
+		 <parametro nombre="ID">
+		 	[$Parrafito]
+		 </parametro>
+		 <parametro nombre="PAGINA">
+		 	[$PaginaDeFri]
+		 </parametro>
+		 <parametro nombre="CLASE">
+		 	[VIDEO]
+		 </parametro>
+	</parametros>
+	<atributos>
+		<atributo nombre="ORIGEN">
+			[/home/jbravo/Desktop/Reemplazo.mp4]
+		</atributo>
+        <atributo nombre="ALTURA">
+			[200]
+		</atributo>
+        <atributo nombre="ANCHO">
+			[200]
+		</atributo>
+	</atributos>
+</accion>

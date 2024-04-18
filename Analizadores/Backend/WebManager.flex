@@ -30,7 +30,7 @@ atr_val_izqd = {val_open}IZQUIERDA{val_close}
 atr_val_dere = {val_open}DERECHA{val_close}
 atr_val_just = {val_open}JUSTIFICAR{val_close}
 atr_val_colh = {val_open} "#" ([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3}) {val_close}
-atr_val_text = {val_open} [A-Za-z0-9\s\.\,\:\;]+ {val_close}
+atr_val_text = {val_open} [A-Za-z0-9\s\.\,\:\;\-\_]+ {val_close}
 //atr_val_orgn = ¿¿¿¿¿¿ url  ????? 
 //     atr_val_altr = [0-9][0-9]*
 //     atr_val_anch = [0-9][0-9]*
@@ -162,7 +162,7 @@ WhiteSpaceOp ={WhiteSpace}*
 identificador= [_\-$][a-zA-Z0-9_\-$]*
 prm_val_id  = {val_open} {identificador} {val_close}
 prm_val_fch = {val_open} ([0-9]{4})-([0-1][0-9]|2[0-3])-([0-9]{1,2}) {val_close}
-prm_val_tit = {val_open} [A-Za-z0-9\s\.\,\:\/\-]+ {val_close}
+prm_val_tit = {val_open} [A-Za-z0-9\s\.\,\:\/\-\_]+ {val_close}
 
 
 %{

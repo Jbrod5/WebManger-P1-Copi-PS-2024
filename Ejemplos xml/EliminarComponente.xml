@@ -1,0 +1,10 @@
+<accion nombre="BORRAR_COMPONENTE">
+	<parametros>
+		<parametro nombre="ID">
+			[$Titulo1]
+		</parametro>
+		<parametro nombre="PAGINA">
+			[$PaginaDeFri]
+		</parametro>
+	</parametros>
+</accion>
