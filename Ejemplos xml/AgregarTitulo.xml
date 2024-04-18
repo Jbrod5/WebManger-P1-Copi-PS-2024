@@ -1,0 +1,24 @@
+<accion nombre="AGREGAR_COMPONENTE">
+	<parametros>
+        <parametro nombre="ID">
+        	[$Titulo1]
+        </parametro>
+        <parametro nombre="PAGINA">
+        	[$PaginaDeFri]
+        </parametro>
+        <parametro nombre="CLASE">
+        	[TITULO]
+        </parametro>
+	</parametros>
+ 	<atributos>
+    	<atributo nombre="TEXTO">
+			[Este es el texto que aparece en el titulo]
+		</atributo>
+        <atributo nombre="COLOR">
+			[#5A5A5A]
+		</atributo>
+        <atributo nombre="ALINEACION">
+			[CENTER]
+		</atributo>
+	</atributos>
+</accion>

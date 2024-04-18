@@ -159,7 +159,7 @@ public class WebPage {
         for (int i = 0; i < components.size(); i++) {
              actual = components.get(i); 
             if(actual != null){
-                htmlComponents += actual.getHtml();
+                htmlComponents += actual.getHtml() + "\n";
             }
         }
         return htmlComponents;
@@ -202,11 +202,6 @@ public class WebPage {
                         "      text-align: center;\n" +
                         "    }\n" +
                         "    \n" +
-                        "    h1 {\n" +
-                        "      font-size: 48px;\n" +
-                        "      margin: 0;\n" +
-                        "    }\n" +
-                        "    \n" +
                         "    main {\n" +
                         "      max-width: 800px;\n" +
                         "      margin: 40px auto;\n" +
@@ -215,11 +210,6 @@ public class WebPage {
                         "      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);\n" +
                         "      border-radius: 10px;\n" +
                         "    }\n" +
-                        "    \n" +
-                        "    p {\n" +
-                        "      line-height: 1.6;\n" +
-                        "      color: #555;\n" +
-                        "    }  "+
                         "  </style>";
 
         String endFile = "</body>\n</html>";

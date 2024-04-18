@@ -25,10 +25,10 @@ val_close    =\]
 // Valaores generales
 
 //valores atributos
-atr_val_cent = {val_open} "CENTRAR" {val_close}
-atr_val_izqd = {val_open} "IZQUIERDA" {val_close}
-atr_val_dere = {val_open} "DERECHA" {val_close}
-atr_val_just = {val_open} "JUSTIFICAR" {val_close}
+atr_val_cent = {val_open}CENTRAR{val_close}
+atr_val_izqd = {val_open}IZQUIERDA{val_close}
+atr_val_dere = {val_open}DERECHA{val_close}
+atr_val_just = {val_open}JUSTIFICAR{val_close}
 atr_val_colh = {val_open} "#" ([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3}) {val_close}
 atr_val_text = {val_open} [A-Za-z0-9\s\.\,\:\;]+ {val_close}
 //atr_val_orgn = ¿¿¿¿¿¿ url  ????? 
@@ -162,7 +162,7 @@ WhiteSpaceOp ={WhiteSpace}*
 identificador= [_\-$][a-zA-Z0-9_\-$]*
 prm_val_id  = {val_open} {identificador} {val_close}
 prm_val_fch = {val_open} ([0-9]{4})-([0-1][0-9]|2[0-3])-([0-9]{1,2}) {val_close}
-prm_val_tit = {val_open} [A-Za-z0-9\s\.\,\:]+ {val_close}
+prm_val_tit = {val_open} [A-Za-z0-9\s\.\,\:\/\-]+ {val_close}
 
 
 %{
@@ -289,8 +289,8 @@ prm_val_tit = {val_open} [A-Za-z0-9\s\.\,\:]+ {val_close}
 {class_val_vid} { return symbol(sym.CLASS_TYPE_VID, removeBrackets(yytext())); }
 {class_val_men} { return symbol(sym.CLASS_TYPE_MEN, removeBrackets(yytext())); }
 
-{prm_val_tit}  { return symbol(sym.PRM_VAL_TIT,   removeBrackets(yytext())); }
 {prm_val_fch}  { return symbol(sym.PRM_VAL_FCH,   removeBrackets(yytext())); }
+{prm_val_tit}  { return symbol(sym.PRM_VAL_TIT,   removeBrackets(yytext())); }
 
 {atr_val_text}  { return symbol(sym.ATR_VAL_TEXT,  removeBrackets(yytext())); }
 

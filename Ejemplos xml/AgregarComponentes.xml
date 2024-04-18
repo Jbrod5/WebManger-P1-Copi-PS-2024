@@ -1,0 +1,111 @@
+<acciones>
+<accion nombre="AGREGAR_COMPONENTE">
+	<parametros>
+        <parametro nombre="ID">
+        	[$Titulo1]
+        </parametro>
+        <parametro nombre="PAGINA">
+        	[$PaginaDeFri]
+        </parametro>
+        <parametro nombre="CLASE">
+        	[TITULO]
+        </parametro>
+	</parametros>
+ 	<atributos>
+    	<atributo nombre="TEXTO">
+			[Este es el texto que aparece en el titulo]
+		</atributo>
+        <atributo nombre="COLOR">
+			[#5A5A5A]
+		</atributo>
+        <atributo nombre="ALINEACION">
+			[CENTER]
+		</atributo>
+	</atributos>
+</accion>
+
+
+
+<accion nombre="AGREGAR_COMPONENTE">
+	<parametros>
+        <parametro nombre="ID">
+        	[$Parrafito]
+        </parametro>
+        <parametro nombre="PAGINA">
+        	[$PaginaDeFri]
+        </parametro>
+        <parametro nombre="CLASE">
+        	[PARRAFO]
+        </parametro>
+	</parametros>
+ 	<atributos>
+    	<atributo nombre="TEXTO">
+			[Este es un parrafo de cosas interesantes eh jeje]
+		</atributo>
+        <atributo nombre="COLOR">
+			[#5A5A5A]
+		</atributo>
+        <atributo nombre="ALINEACION">
+			[CENTER]
+		</atributo>
+	</atributos>
+</accion>
+
+
+
+
+<accion nombre="AGREGAR_COMPONENTE">
+	<parametros>
+        <parametro nombre="ID">
+        	[$Imagencita]
+        </parametro>
+        <parametro nombre="PAGINA">
+        	[$PaginaDeFri]
+        </parametro>
+        <parametro nombre="CLASE">
+        	[IMAGEN]
+        </parametro>
+	</parametros>
+ 	<atributos>
+    	<atributo nombre="ORIGEN">
+			[https://64.media.tumblr.com/79c278df43f37fed6d3dce1e311cf436/029598e2fd4d096d-8f/s1280x1920/21c70577d01e60d8cd5127926fb9c2191f43f434.jpg]
+		</atributo>
+        <atributo nombre="ALINEACION">
+			[JUSTIFICAR]
+		</atributo>
+        <atributo nombre="ALTURA">
+			[200]
+		</atributo>
+        <atributo nombre="ANCHO">
+			[200]
+		</atributo>
+	</atributos>
+</accion>
+
+
+<accion nombre="AGREGAR_COMPONENTE">
+	<parametros>
+        <parametro nombre="ID">
+        	[$Imagencita]
+        </parametro>
+        <parametro nombre="PAGINA">
+        	[$PaginaDeFri]
+        </parametro>
+        <parametro nombre="CLASE">
+        	[IMAGEN]
+        </parametro>
+	</parametros>
+ 	<atributos>
+    	<atributo nombre="ORIGEN">
+			[/home/jbravo/Desktop/2024-02-20 19-02-33.mkv]
+		</atributo>
+        <atributo nombre="ALTURA">
+			[200]
+		</atributo>
+        <atributo nombre="ANCHO">
+			[200]
+		</atributo>
+	</atributos>
+</accion>
+
+</accione>
