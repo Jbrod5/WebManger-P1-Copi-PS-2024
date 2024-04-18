@@ -4,6 +4,7 @@
 
 package com.jbrod.webmanager_client;
 
+import com.jbrod.webmanager_client.app.InputServerSocket;
 import com.jbrod.webmanager_client.app.OutputServerSocket;
 import com.jbrod.webmanager_client.ui.Mainframe;
 import java.util.Scanner;
@@ -18,7 +19,8 @@ public class WebManager_Client {
         
         Scanner scanner = new Scanner(System.in);
         
-        int outPort = 0; 
+        int outPort = 0;
+        int inPort = 0; 
         String ip = ""; 
         String op = "";
         boolean pass = false;
@@ -36,6 +38,19 @@ public class WebManager_Client {
             }
         }
         
+        //Obtener el puerto de entrada
+        while(!pass){ 
+            try{
+                System.out.println("Ingrese el puerto de comunicacion de entrada.");
+                op = scanner.nextLine();
+                inPort = Integer.parseInt(op);
+                pass = true;
+            }catch(NumberFormatException nfe){
+                System.out.println("El valor ingresado no es un numero, intentelo de nuevo.");
+                pass = false; 
+            }
+        }
+        
         //Obtener la direccion IP: hostname -I
         do {
             System.out.print("Ingrese la dirección IP para la comunicacion: ");
@@ -43,14 +58,16 @@ public class WebManager_Client {
         } while (!isValidIpAddress(ip));
         
         
+        
+        
         //Crear los objetos de conexion
         OutputServerSocket outputServerSocket = new OutputServerSocket(ip, outPort);
-        
+        InputServerSocket inputServerSocket = new InputServerSocket(ip, inPort);
         
         
         
         //Instanciar la ventana
-        Mainframe mainframe = new Mainframe(outputServerSocket);
+        Mainframe mainframe = new Mainframe(outputServerSocket, inputServerSocket);
         mainframe.setVisible(true);
     }
     

@@ -1,5 +1,6 @@
 package com.jbrod.webmanager_client.ui;
 
+import com.jbrod.webmanager_client.app.InputServerSocket;
 import com.jbrod.webmanager_client.app.OutputServerSocket;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -24,11 +25,14 @@ public class XmlView extends javax.swing.JPanel {
     private JTabbedPane maestro; 
     private String tituloTab; 
     
+    private InputServerSocket inputServerSocket; 
+    
     /**
      * Crear un panel con un path especifico. Si existe el path, cargar el archivo.
      */
-    public XmlView(String path, JTabbedPane maestro, OutputServerSocket oss) {
+    public XmlView(String path, JTabbedPane maestro, OutputServerSocket oss, InputServerSocket iss) {
         outputServerSocket = oss;
+        this.inputServerSocket = iss;
         
         initComponents();
         this.path = path;
@@ -67,6 +71,9 @@ public class XmlView extends javax.swing.JPanel {
         return tituloTab;
     }
     
+    public void setServerResponse(String content){
+        txaRespuestaServidor.setText(content);
+    }
     
     
     
@@ -216,6 +223,7 @@ public class XmlView extends javax.swing.JPanel {
     private void btnProcesarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcesarActionPerformed
         // TODO add your handling code here:
         String content = txaXml.getText();
+        inputServerSocket.setXmlView(this);
         outputServerSocket.sendMessage(content);
     }//GEN-LAST:event_btnProcesarActionPerformed
 
