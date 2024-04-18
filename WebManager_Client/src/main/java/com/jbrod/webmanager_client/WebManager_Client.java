@@ -38,7 +38,14 @@ public class WebManager_Client {
             }
         }
         
+        //Obtener la direccion IP: hostname -I
+        do {
+            System.out.print("Ingrese la dirección IP para la comunicacion: ");
+            ip = scanner.nextLine();
+        } while (!isValidIpAddress(ip));
+        
         //Obtener el puerto de entrada
+        pass = false; 
         while(!pass){ 
             try{
                 System.out.println("Ingrese el puerto de comunicacion de entrada.");
@@ -51,24 +58,20 @@ public class WebManager_Client {
             }
         }
         
-        //Obtener la direccion IP: hostname -I
-        do {
-            System.out.print("Ingrese la dirección IP para la comunicacion: ");
-            ip = scanner.nextLine();
-        } while (!isValidIpAddress(ip));
-        
-        
         
         
         //Crear los objetos de conexion
         OutputServerSocket outputServerSocket = new OutputServerSocket(ip, outPort);
-        InputServerSocket inputServerSocket = new InputServerSocket(ip, inPort);
-        
-        
+        InputServerSocket inputServerSocket = new InputServerSocket(ip, inPort);        
         
         //Instanciar la ventana
         Mainframe mainframe = new Mainframe(outputServerSocket, inputServerSocket);
         mainframe.setVisible(true);
+        
+        //Ejecutar la escucha
+        Thread listener = new Thread(inputServerSocket);
+        listener.run();
+        
     }
     
     

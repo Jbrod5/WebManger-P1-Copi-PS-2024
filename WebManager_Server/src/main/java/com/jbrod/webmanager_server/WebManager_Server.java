@@ -12,7 +12,8 @@ public class WebManager_Server {
     public static void main(String[] args) {    
         Scanner scanner = new Scanner(System.in);
         
-        int inPort = 0; 
+        int inPort = 0;
+        int outPort = 0;
         String ip = ""; 
         String op = "";
         boolean pass = false;
@@ -31,6 +32,7 @@ public class WebManager_Server {
                 pass = false; 
             }
         }
+
         
         //Obtener la direccion IP: hostname -I
         do {
@@ -38,13 +40,30 @@ public class WebManager_Server {
             ip = scanner.nextLine();
         } while (!isValidIpAddress(ip));
         
+        //Obtener el puerto de comunicacion de salida
+        pass = false;
+        while(!pass){
+            
+            //Obtener el puerto 
+            try{
+                System.out.println("Ingrese el puerto de comunicacion de salida.");
+                op = scanner.nextLine();
+                outPort = Integer.parseInt(op);
+                pass = true;
+            }catch(NumberFormatException nfe){
+                System.out.println("El valor ingresado no es un numero, intentelo de nuevo.");
+                pass = false; 
+            }
+        }
+        
         System.out.println("Servidor en funcionamiento.");
             
             
             
             //Ejecutar la escucha 
             //El constructor ya ejecuta la escucha
-            Analyzer analyzer = new Analyzer();
+            OutputServerSocket oss  = new OutputServerSocket(ip, outPort);
+            Analyzer analyzer = new Analyzer(oss);
             InputServerSocket inputServerSocket = new InputServerSocket(ip, inPort, analyzer );
             
             //Ejecutar la salida

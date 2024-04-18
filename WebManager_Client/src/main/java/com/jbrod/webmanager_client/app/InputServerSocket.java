@@ -29,8 +29,8 @@ public class InputServerSocket implements Runnable{
             
         } catch (IOException ex) {
             //Manejar la excepcion
+            ex.printStackTrace();
         }
-       parseListener.run();
     }
     
     

@@ -302,6 +302,13 @@ public class WebParser extends java_cup.runtime.lr_parser {
 
 
 
+    //String de respuesta
+    private String response; 
+
+    public String getResponse(){
+        return response; 
+    }  
+
     //Manejador de sitios web.
     private WebsiteMgr websiteMgr = new WebsiteMgr();
     private WebManager webManager;
@@ -326,9 +333,13 @@ public class WebParser extends java_cup.runtime.lr_parser {
         System.out.println("Simbolo con error:" + symbl_name_from_id(cur_token.sym));
         System.out.println("Linea " + cur_token.left);
         System.out.println("Columna " + cur_token.right);
+        response += "Simbolo con error:" + symbl_name_from_id(cur_token.sym) + "\n";
+        response += "Linea: " + cur_token.left + "     Columna: " + cur_token.right + "\n";
         if (expected_token_ids().isEmpty()) {
-            System.out.println("ya no se esperaba ningun simbolo");
+            System.out.println("Ya no se esperaba ningun simbolo");
+            response += "Ya no se esperaba ningun simbolo.\n";
         }
+
     }
     /*public void unrecovered_syntax_error(Symbol cur_token) {
         System.out.println("Error irrecuperable sobrecargado");

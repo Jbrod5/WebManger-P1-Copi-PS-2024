@@ -1,6 +1,7 @@
 
 package com.jbrod.webmanager_server.analyzer;
 
+import com.jbrod.webmanager_server.OutputServerSocket;
 import com.jbrod.webmanager_server.webmanager.WebManager;
 import java.io.StringReader;
 
@@ -10,12 +11,18 @@ import java.io.StringReader;
  */
 public class Analyzer {
 
+    private OutputServerSocket oss;
+    
     private WebManager webManager; 
     private WebLexer lexer; 
     private WebParser parser; 
     
-    public Analyzer(){
+    private String response;
+    
+    
+    public Analyzer(OutputServerSocket oss){
         webManager = new WebManager();
+        this.oss = oss;
     }
     
     
@@ -24,6 +31,7 @@ public class Analyzer {
      * @param content : String con el contenido a analizar. 
      **/
     public void analyze(String content){
+        response = ""; //Reiniciar la respuesta
         
         StringReader reader = new StringReader(content);
         lexer = new WebLexer(reader);
@@ -31,11 +39,20 @@ public class Analyzer {
         
         //Analizar
         try{
-            parser.parse(); 
+            parser.parse();
+            response += "- - - - - - - - RESULTADO DEL ANALISIS LEXICO - - - - - - - -\n\n";
+            response += lexer.getResponse();
+            response += "- - - - - - - RESULTADO DEL ANALISIS SINTACTICO - - - - - - -\n\n";
+            response += parser.getResponse();
+            
         }catch(Exception e){
             System.out.println("Ocurrio un error al analizar la entrada: ");
             e.printStackTrace();
         }
+        
+        
+        //Enviar la respuesta al servidor
+        oss.sendMessage(response);
     }
     
     

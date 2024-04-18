@@ -167,18 +167,27 @@ prm_val_tit = {val_open} [A-Za-z0-9\s\.\,\:\/\-\_]+ {val_close}
 
 %{
   
+  private String response;
+
+  public String getResponse(){
+    return response; 
+  } 
+
+
   private Symbol symbol(int type) {
     return new Symbol(type, yyline+1, yycolumn+1);
   }
 
   private Symbol symbol(int type, Object value) {
     System.out.println("Token reconocido: " + yytext());
+    response += "Token reconocido: " + yytext() + "\n";
     return new Symbol(type, yyline+1, yycolumn+1, value);
   }
 
 
   private void error(String message) {
     System.out.println("Error en linea line "+(yyline+1)+", columna "+(yycolumn+1)+" : "+message);
+    response += "Error en linea line "+(yyline+1)+", columna "+(yycolumn+1)+" : "+message + "\n";
   }
 
   private String removeBrackets(String texto){
