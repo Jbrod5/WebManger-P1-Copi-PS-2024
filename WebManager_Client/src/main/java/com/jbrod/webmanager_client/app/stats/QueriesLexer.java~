@@ -782,7 +782,7 @@ public class QueriesLexer implements java_cup.runtime.Scanner {
           // fall through
           case 19: break;
           case 5:
-            { return symbol(sym.SEPARADOR, yytext());
+            { return symbol(sym.SEPARADOR, yytet());
             }
           // fall through
           case 20: break;
