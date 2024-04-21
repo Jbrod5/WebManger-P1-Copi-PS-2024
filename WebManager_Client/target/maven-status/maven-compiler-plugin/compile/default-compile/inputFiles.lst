@@ -1,5 +1,9 @@
 /home/jbravo/Codigo_USAC/Compiladores_1/WebManger-P1-Copi-PS-2024/WebManager_Client/src/main/java/com/jbrod/webmanager_client/ui/Mainframe.java
-/home/jbravo/Codigo_USAC/Compiladores_1/WebManger-P1-Copi-PS-2024/WebManager_Client/src/main/java/com/jbrod/webmanager_client/app/OutputServerSocket.java
-/home/jbravo/Codigo_USAC/Compiladores_1/WebManger-P1-Copi-PS-2024/WebManager_Client/src/main/java/com/jbrod/webmanager_client/app/InputServerSocket.java
+/home/jbravo/Codigo_USAC/Compiladores_1/WebManger-P1-Copi-PS-2024/WebManager_Client/src/main/java/com/jbrod/webmanager_client/app/stats/sym.java
+/home/jbravo/Codigo_USAC/Compiladores_1/WebManger-P1-Copi-PS-2024/WebManager_Client/src/main/java/com/jbrod/webmanager_client/app/server_com/InputServerSocket.java
+/home/jbravo/Codigo_USAC/Compiladores_1/WebManger-P1-Copi-PS-2024/WebManager_Client/src/main/java/com/jbrod/webmanager_client/app/stats/CountMatches.java
+/home/jbravo/Codigo_USAC/Compiladores_1/WebManger-P1-Copi-PS-2024/WebManager_Client/src/main/java/com/jbrod/webmanager_client/app/stats/QueriesLexer.java
 /home/jbravo/Codigo_USAC/Compiladores_1/WebManger-P1-Copi-PS-2024/WebManager_Client/src/main/java/com/jbrod/webmanager_client/ui/XmlView.java
 /home/jbravo/Codigo_USAC/Compiladores_1/WebManger-P1-Copi-PS-2024/WebManager_Client/src/main/java/com/jbrod/webmanager_client/WebManager_Client.java
+/home/jbravo/Codigo_USAC/Compiladores_1/WebManger-P1-Copi-PS-2024/WebManager_Client/src/main/java/com/jbrod/webmanager_client/app/stats/QueriesParser.java
+/home/jbravo/Codigo_USAC/Compiladores_1/WebManger-P1-Copi-PS-2024/WebManager_Client/src/main/java/com/jbrod/webmanager_client/app/server_com/OutputServerSocket.java

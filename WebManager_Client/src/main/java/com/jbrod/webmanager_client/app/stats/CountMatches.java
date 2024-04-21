@@ -91,7 +91,7 @@ public class CountMatches {
                 
                 break; 
             default:
-                result = type + " no es un elemento valido a buscar.\n";
+                result = type + " no es un elemento valido para buscar.\n";
         }
         
         return result; 

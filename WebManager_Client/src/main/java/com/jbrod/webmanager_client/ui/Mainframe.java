@@ -2,6 +2,11 @@ package com.jbrod.webmanager_client.ui;
 
 import com.jbrod.webmanager_client.app.server_com.InputServerSocket;
 import com.jbrod.webmanager_client.app.server_com.OutputServerSocket;
+import com.jbrod.webmanager_client.app.stats.QueriesLexer;
+import com.jbrod.webmanager_client.app.stats.QueriesParser;
+import java.io.StringReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -48,6 +53,11 @@ public class Mainframe extends javax.swing.JFrame {
         txtConsultar.setToolTipText("Area donde ingresar una consulta.");
 
         btnConsultar.setText("Consultar");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("File");
 
@@ -151,6 +161,24 @@ public class Mainframe extends javax.swing.JFrame {
             XmlView tab = new  XmlView("", tbpXml, outputServerSocket, inputServerSocket);
             tbpXml.addTab(tab.obtenerTitulo(), tab);
     }//GEN-LAST:event_mniNuevoActionPerformed
+
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        // TODO add your handling code here:
+        String result = "";
+        String consulta = txtConsultar.getText();
+        StringReader reader = new StringReader(consulta);
+        QueriesLexer lexer = new QueriesLexer(reader);
+        QueriesParser parser = new QueriesParser(lexer);
+        
+        try {
+            parser.parse();
+            result = parser.getResponse();
+        } catch (Exception ex) {
+            result = "Hubo un problema al hacer el parse.\n";
+        }
+        result+= parser.getResponse();
+        showMessage(result);
+    }//GEN-LAST:event_btnConsultarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -37,7 +37,7 @@ val_op = "<"
 val_cl = ">"
 
 inicio = "C:"  
-id = [a-zA-Z0-9$_. -]+
+id = [a-zA-Z0-9$_.-]+
 separador = "/" | "\\"
 path = inicio? separador? [id separador?]+ 
 

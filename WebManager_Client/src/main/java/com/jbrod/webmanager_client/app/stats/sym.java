@@ -28,6 +28,7 @@ public class sym {
   public static final int VISITAS_PAGINA = 4;
   public static final int error = 1;
   public static final int VISITAS_SITIO = 3;
+  public static final int PATH = 22;
   public static final int TITULO = 7;
   public static final int INICIO = 19;
   public static final String[] terminalNames = new String[] {
@@ -52,7 +53,8 @@ public class sym {
   "VAL_CL",
   "INICIO",
   "SEPARADOR",
-  "ID"
+  "ID",
+  "PATH"
   };
 }
 
