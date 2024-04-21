@@ -107,7 +107,7 @@
     </Container>
     <Component class="javax.swing.JTextField" name="txtConsultar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
+        <Property name="toolTipText" type="java.lang.String" value="Area donde ingresar una consulta."/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnConsultar">

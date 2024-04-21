@@ -1,8 +1,9 @@
 package com.jbrod.webmanager_client.ui;
 
-import com.jbrod.webmanager_client.app.InputServerSocket;
-import com.jbrod.webmanager_client.app.OutputServerSocket;
+import com.jbrod.webmanager_client.app.server_com.InputServerSocket;
+import com.jbrod.webmanager_client.app.server_com.OutputServerSocket;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -44,7 +45,7 @@ public class Mainframe extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        txtConsultar.setText("jTextField1");
+        txtConsultar.setToolTipText("Area donde ingresar una consulta.");
 
         btnConsultar.setText("Consultar");
 
@@ -137,6 +138,13 @@ public class Mainframe extends javax.swing.JFrame {
         
     }//GEN-LAST:event_mniAbrirActionPerformed
 
+    
+    public void showMessage(String text){
+        // Mostrar el texto en un cuadro de diálogo
+        JOptionPane.showMessageDialog(null, text);
+    }
+    
+    
     private void mniNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniNuevoActionPerformed
         //No tiene un archivo asignado aun:
             //Agregar la tab

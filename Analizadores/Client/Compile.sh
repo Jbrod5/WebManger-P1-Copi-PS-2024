@@ -1,0 +1,16 @@
+echo "Compilacion de JFlex - Client (Queries)"
+java -jar /home/jbravo/Apps/jflex/jflex-1.9.1/lib/jflex-full-1.9.1.jar -d ../../WebManager_Client/src/main/java/com/jbrod/webmanager_client/app/stats/ ClientQueries.flex
+
+echo " "
+echo " "
+echo " "
+echo " "
+echo " "
+echo " "
+echo " "
+echo " "
+echo " "
+echo " "
+echo " "
+echo " "
+echo "Compilacion de cup"

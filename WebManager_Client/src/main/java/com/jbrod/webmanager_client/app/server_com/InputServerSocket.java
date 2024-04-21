@@ -1,5 +1,5 @@
 
-package com.jbrod.webmanager_client.app;
+package com.jbrod.webmanager_client.app.server_com;
 
 import com.jbrod.webmanager_client.ui.XmlView;
 import java.io.DataInputStream;

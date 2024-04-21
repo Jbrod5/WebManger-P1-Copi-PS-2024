@@ -4,8 +4,8 @@
 
 package com.jbrod.webmanager_client;
 
-import com.jbrod.webmanager_client.app.InputServerSocket;
-import com.jbrod.webmanager_client.app.OutputServerSocket;
+import com.jbrod.webmanager_client.app.server_com.InputServerSocket;
+import com.jbrod.webmanager_client.app.server_com.OutputServerSocket;
 import com.jbrod.webmanager_client.ui.Mainframe;
 import java.util.Scanner;
 

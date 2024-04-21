@@ -1,0 +1,80 @@
+- - - - TOKENS - - - - -
+1. Comandos:
+consultar = "CONSULTAR" 
+
+vsts_sitio  = "VISITAS_SITIO"
+vsts_pagina = "VISITAS_PAGINA"
+vsts_pgpops = "PAGINAS_POPULARES"
+componente  = "COMPONENTE"
+
+
+
+-- Componentes: 
+tit = "TITULO" 
+par = "PARRAFO"
+img = "IMAGEN"
+vid = "VIDEO"
+men = "MENU"
+tds = "TODOS"
+comp_op = tit | par | img | vid | men | tds
+
+comillas = "\""
+coma = "\,"
+eoi = "\;"
+val_op = "<"
+val_cl = ">"
+
+inicio = "C:" | /* nada */ 
+id = [a-zA-Z0-9$_. -]+$
+separador = "/" | "\\"
+
+dir_file = id separador dir_file| id
+path = inicio separador  
+
+
+
+/* - - - - - - - - - - - - GRAMATICA - - - - - - - - - - - - */
+iniciar con consulta
+
+consulta = consultar op eoi| /* nada */
+cadena_id = val_op id val_cl coma cadenaid | val_op id val_cl
+
+op = visitas_sitio | visitas_pagina | paginas_populares | componentes 
+
+
+
+/-- CONSULTAR VISITAS SITIO --/ 
+CONSULTAR VISITAS_SITIO <"id de sitio">;
+CONSULTAR VISITAS_SITIO <"id de sitio">,<"id de sitio">,<"id de sitio">;
+
+
+visitas_sitio = vsts_sitio cadena_id 
+
+/-- CONSULTAR VISITAS PAGINA --/
+CONSULTAR VISITAS_PAGINA <"id de la pagina">;
+CONSULTAR VISITAS_PAGINA <"id de la pagina">, <"id de la pagina">, <"id de la pagina">;
+
+visitas_pagina = vsts_pagina cadena_id
+
+/-- CONSULTAR PAGINAS POPULARES --/
+CONSULTAR PAGINAS_POPULARES <"id del sitio web">;
+
+paginas_populares = vsts_pgpops val_op id val_cl 
+
+
+/-- CONSULTAR COMPONENTES --/
+CONSULTAR COMPONENTE <tipo de componente> <path de la pagina>;
+
+
+componentes = val_op  comp_op  val_cl     val_op  path  val_cl
+
+
+
+
+
+dame el codigo en java de una funcion que haga lo siguiente: 
+recibe un string y un path
+carga el contenido del archivo contenido en el path y busca todas las coincidencias que tenga el conteido del archivo con el string recibido
+cada coincidencia debe sumar 1 a un contador de coincidencias, y, al finalizar, debe retornar el contador de coincidencias.
+
+la funcion se debe llamar contar coincidencias 

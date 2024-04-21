@@ -1,7 +1,7 @@
 package com.jbrod.webmanager_client.ui;
 
-import com.jbrod.webmanager_client.app.InputServerSocket;
-import com.jbrod.webmanager_client.app.OutputServerSocket;
+import com.jbrod.webmanager_client.app.server_com.InputServerSocket;
+import com.jbrod.webmanager_client.app.server_com.OutputServerSocket;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
