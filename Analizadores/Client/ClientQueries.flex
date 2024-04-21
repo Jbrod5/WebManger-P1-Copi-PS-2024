@@ -39,6 +39,7 @@ val_cl = ">"
 inicio = "C:"  
 id = [a-zA-Z0-9$_. -]+
 separador = "/" | "\\"
+path = inicio? separador? [id separador?]+ 
 
 %{
   private Symbol symbol(int type) {
@@ -80,9 +81,10 @@ separador = "/" | "\\"
 {val_op}    { return symbol(sym.VAL_OP  , yytext()); }
 {val_cl}    { return symbol(sym.VAL_CL  , yytext()); }
 
+{path}      { return symbol(sym.PATH     , yytext()); }
 {inicio}    { return symbol(sym.INICIO   , yytext()); }
-{separador} { return symbol(sym.SEPARADOR, yytext());}
-{id}        { return symbol(sym.ID       , yytext());}
+{separador} { return symbol(sym.SEPARADOR, yytext()); }
+{id}        { return symbol(sym.ID       , yytext()); }
 
 
 

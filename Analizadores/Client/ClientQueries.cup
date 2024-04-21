@@ -45,7 +45,7 @@ terminal String CONSULTAR, VISITAS_SITIO, VISITAS_PAGINA, PAGINAS_POPULARES, COM
 /* Componentes */
 terminal String TITULO, PARRAFO, IMAGEN, VIDEO, MENU, TODOS, COMPONENTE_TYPE;
 /*Simbolos generales*/
-terminal String COMILLAS, COMMA, FININSTR, VAL_OP, VAL_CL, INICIO, SEPARADOR, ID;
+terminal String COMILLAS, COMMA, FININSTR, VAL_OP, VAL_CL, INICIO, SEPARADOR, ID, PATH;
 
 /* - - - - - - - - - - - - - - - - - - -  No terminales - - - - - - - - - - - - - - - - - - - */
 /* inicio / recursivo */
@@ -69,6 +69,10 @@ visitas_sitio     ::= VISITAS_SITIO cadena_id;
 visitas_pagina    ::= VISITAS_PAGINA cadena_id; 
 paginas_populares ::= PAGINAS_POPULARES   COMILLAS   ID    COMILLAS;
 
-dir         ::= ID SEPARADOR dir | ID;
-ruta        ::= INICIO dir | dir; 
-componentes ::= COMPONENTE COMILLAS  COMPONENTE_TYPE   COMILLAS   COMILLAS ruta COMILLAS;
+dir         ::= PATH | ID SEPARADOR dir | ID;
+ruta        ::= PATH:path {: RESULT = path; :} /*INICIO dir | dir*/ | ID:id {: RESULT = id; :}  ; 
+componentes ::= COMPONENTE COMILLAS  COMPONENTE_TYPE:type   COMILLAS     COMILLAS ruta:path COMILLAS 
+            {:
+                CountMatches countMatches = new CountMatches();
+                countMatches.contarCoincidencias(type, path);
+            :};
