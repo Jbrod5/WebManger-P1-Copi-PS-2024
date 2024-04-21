@@ -14,3 +14,17 @@ echo " "
 echo " "
 echo " "
 echo "Compilacion de cup"
+
+java -jar /home/jbravo/Apps/cup/cup-20160615/java-cup-11b.jar -parser QueriesParser ClientQueries.cup
+mv QueriesParser.java ../../WebManager_Client/src/main/java/com/jbrod/webmanager_client/app/stats/
+mv sym.java ../../WebManager_Client/src/main/java/com/jbrod/webmanager_client/app/stats/
+
+
+
+mvn install:install-file \
+   -Dfile=/home/jbravo/Apps/cup/cup-20160615/java-cup-11b.jar \
+   -DgroupId=com.cup \
+   -DartifactId=cup \
+   -Dversion=0.11 \
+   -Dpackaging=jar \
+   -DgeneratePom=true

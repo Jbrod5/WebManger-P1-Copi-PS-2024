@@ -1,0 +1,74 @@
+package com.jbrod.webmanager_client.app.stats;
+
+import java_cup.runtime.*;
+
+parser code {:
+
+
+    //String de respuesta
+    private String response = ""; 
+
+    public String getResponse(){
+        return response; 
+    }  
+
+
+    // Connect this parser to a scanner!
+    public QueriesParser(QueriesLexer lex) {
+	    super(lex);
+    }
+
+    public void syntax_error(Symbol cur_token) {
+        System.out.println("Simbolo con error:" + symbl_name_from_id(cur_token.sym));
+        System.out.println("Linea " + cur_token.left);
+        System.out.println("Columna " + cur_token.right);
+        response += "Simbolo con error:" + symbl_name_from_id(cur_token.sym) + "\n";
+        response += "Linea: " + cur_token.left + "     Columna: " + cur_token.right + "\n";
+        if (expected_token_ids().isEmpty()) {
+            System.out.println("Ya no se esperaba ningun simbolo");
+            response += "Ya no se esperaba ningun simbolo.\n";
+        }
+
+    }
+    /*public void unrecovered_syntax_error(Symbol cur_token) {
+        System.out.println("Error irrecuperable sobrecargado");
+    }*/
+
+:}
+
+
+
+
+/* - - - - - - - - - - - - - - - - - - - - Terminales - - - - - - - - - - - - - - - - - - - - */
+/* Uso general */
+terminal String CONSULTAR, VISITAS_SITIO, VISITAS_PAGINA, PAGINAS_POPULARES, COMPONENTE;
+/* Componentes */
+terminal String TITULO, PARRAFO, IMAGEN, VIDEO, MENU, TODOS, COMPONENTE_TYPE;
+/*Simbolos generales*/
+terminal String COMILLAS, COMMA, FININSTR, VAL_OP, VAL_CL, INICIO, SEPARADOR, ID;
+
+/* - - - - - - - - - - - - - - - - - - -  No terminales - - - - - - - - - - - - - - - - - - - */
+/* inicio / recursivo */
+non terminal String consulta, cadena_id; 
+
+/* consultas */
+non terminal String op, visitas_sitio, visitas_pagina, paginas_populares, componentes, componente_op, ruta, dir;
+
+
+
+/* - - - - - - - - - - - - - - - - - - -  Producciones - - - - - - - - - - - - - - - - - - -  */
+start with consulta; 
+
+consulta ::= CONSULTAR op FININSTR | /* nada */;
+
+
+cadena_id ::= COMILLAS   ID   COMILLAS   COMMA cadena_id | COMILLAS  ID   COMILLAS;
+op        ::= visitas_sitio  | visitas_pagina  | paginas_populares | componentes;
+
+visitas_sitio     ::= VISITAS_SITIO cadena_id;
+visitas_pagina    ::= VISITAS_PAGINA cadena_id; 
+paginas_populares ::= PAGINAS_POPULARES   COMILLAS   ID    COMILLAS;
+
+dir         ::= ID SEPARADOR dir | ID;
+ruta        ::= INICIO dir | dir; 
+componentes ::= COMPONENTE COMILLAS  COMPONENTE_TYPE   COMILLAS   COMILLAS ruta COMILLAS;

@@ -11,23 +11,22 @@ import java_cup.runtime.*;
 %column
 
 
-// Uso general 
-consultar   = "CONSULTAR" 
+// Uso general
+consultar   = "(?i)CONSULTAR"
 
-vsts_sitio  = "VISITAS_SITIO"
-vsts_pagina = "VISITAS_PAGINA"
-vsts_pgpops = "PAGINAS_POPULARES"
-componente  = "COMPONENTE"
+vsts_sitio  = "(?i)VISITAS_SITIO"
+vsts_pagina = "(?i)VISITAS_PAGINA"
+vsts_pgpops = "(?i)PAGINAS_POPULARES"
+componente  = "(?i)COMPONENTE"
 
+// Componentes
+tit = "(?i)TITULO"
+par = "(?i)PARRAFO"
+img = "(?i)IMAGEN"
+vid = "(?i)VIDEO"
+men = "(?i)MENU"
+tds = "(?i)TODOS"
 
-
-//Componentes: 
-tit = "TITULO" 
-par = "PARRAFO"
-img = "IMAGEN"
-vid = "VIDEO"
-men = "MENU"
-tds = "TODOS"
 comp_op = tit | par | img | vid | men | tds
 
 //Simbolos generales
@@ -48,14 +47,14 @@ separador = "/" | "\\"
 
   private Symbol symbol(int type, Object value) {
     System.out.println("Token reconocido: " + yytext());
-    response += "Token reconocido: " + yytext() + "\n";
+    //response += "Token reconocido: " + yytext() + "\n";
     return new Symbol(type, yyline+1, yycolumn+1, value);
   }
 
 
   private void error(String message) {
     System.out.println("Error en linea line "+(yyline+1)+", columna "+(yycolumn+1)+" : "+message);
-    response += "Error en linea line "+(yyline+1)+", columna "+(yycolumn+1)+" : "+message + "\n";
+    //response += "Error en linea line "+(yyline+1)+", columna "+(yycolumn+1)+" : "+message + "\n";
   }
 
 %}
@@ -82,7 +81,7 @@ separador = "/" | "\\"
 {val_cl}    { return symbol(sym.VAL_CL  , yytext()); }
 
 {inicio}    { return symbol(sym.INICIO   , yytext()); }
-{separador} { return symbol(sym.SEPARADOR, yytet());}
+{separador} { return symbol(sym.SEPARADOR, yytext());}
 {id}        { return symbol(sym.ID       , yytext());}
 
 
