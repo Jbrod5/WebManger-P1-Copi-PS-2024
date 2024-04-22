@@ -15,6 +15,8 @@ public class CountMatches {
 
     public  String  contarCoincidencias(String type, String path) {
         
+        type =type.toUpperCase();
+        System.out.println("Type: " + type);
         
         int todos    = 0;
         int titulo     = 0; 
@@ -35,22 +37,22 @@ public class CountMatches {
                 for (String palabra : palabras) {
                     
                     //coincidencia de titulo
-                    if (palabra.contains("<h1>")) {
+                    if (palabra.contains("<h1")) {
                         titulo ++;
                         
-                    }else if (palabra.contains("<p>")){
+                    }else if (palabra.contains("<p")){
                         //Coincidencia de parrafo
                         parrafo ++;
                         
                         //Coincidencia de imagen
                     }else if (palabra.contains("<img")){
-                        imagen ++;
+                        imagen ++;                    
                     
                     }else if (palabra.contains("<video")){
                         // Coincidencia video
-                        video++;
-                        
-                    }else if(palabra.contains("<nav>")){
+                        video++;           
+                    
+                    }else if(palabra.contains("<nav")){
                         //Coincidencia menu
                         menu ++;
                     }
@@ -65,22 +67,12 @@ public class CountMatches {
         int contador = 0; 
     
         switch(type){
-            case "TITULO":
-                result = "Se encontraron " + titulo + " titulos en la pagina.";
-                break;
-            case "PARRAFO":
-                result = "Se encontraron " + parrafo + " parrafos en la pagina.";
-                break; 
-            case "IMAGEN":
-                result = "Se encontraron " +  imagen + " imagenes en la pagina."; 
-                break; 
-            case "VIDEO":
-                result  =  "Se encontraron " + video + " videos en la pagina."; 
-                break; 
-            case "MENU":
-                result = "Se encontraron " + menu + " menus en la pagina.";
-                break; 
-            case "TODOS":
+            case "TITULO" -> result = "Se encontraron " + titulo + " titulos en la pagina.";
+            case "PARRAFO" -> result = "Se encontraron " + parrafo + " parrafos en la pagina.";
+            case "IMAGEN" -> result = "Se encontraron " +  imagen + " imagenes en la pagina.";
+            case "VIDEO" -> result  =  "Se encontraron " + video + " videos en la pagina.";
+            case "MENU" -> result = "Se encontraron " + menu + " menus en la pagina.";
+            case "TODOS" -> {
                 contador = titulo + parrafo + imagen + video + menu;
                 result = "Se encontraron " +  contador + " elementos en la pagina.\n"
                         + "Titulos: " + titulo + "\n"
@@ -88,10 +80,8 @@ public class CountMatches {
                         + "Imagenes: " + imagen + "\n"
                         + "Videos: " + video + "\n"
                         + "Menus: " +  menu + "\n";
-                
-                break; 
-            default:
-                result = type + " no es un elemento valido para buscar.\n";
+            }
+            default -> result = type + " no es un elemento valido para buscar.\n";
         }
         
         return result; 

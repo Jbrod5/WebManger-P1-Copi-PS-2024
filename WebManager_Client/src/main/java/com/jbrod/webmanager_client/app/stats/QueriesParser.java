@@ -36,7 +36,7 @@ public class QueriesParser extends java_cup.runtime.lr_parser {
     "\000\002\004\003\000\002\004\003\000\002\004\003\000" +
     "\002\005\004\000\002\006\004\000\002\007\006\000\002" +
     "\013\003\000\002\013\005\000\002\013\003\000\002\012" +
-    "\003\000\002\012\003\000\002\010\011" });
+    "\003\000\002\012\003\000\002\010\007" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -44,22 +44,21 @@ public class QueriesParser extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\040\000\006\002\uffff\004\005\001\002\000\004\002" +
-    "\042\001\002\000\012\005\006\006\012\007\016\010\014" +
-    "\001\002\000\004\020\034\001\002\000\004\022\ufffc\001" +
+    "\000\036\000\006\002\uffff\004\005\001\002\000\004\002" +
+    "\040\001\002\000\012\005\006\006\012\007\016\010\014" +
+    "\001\002\000\004\020\032\001\002\000\004\022\ufffc\001" +
     "\002\000\004\022\ufffa\001\002\000\004\022\ufff9\001\002" +
-    "\000\004\020\034\001\002\000\004\022\032\001\002\000" +
-    "\004\020\022\001\002\000\004\022\ufffb\001\002\000\004" +
+    "\000\004\020\032\001\002\000\004\022\030\001\002\000" +
+    "\004\017\022\001\002\000\004\022\ufffb\001\002\000\004" +
     "\020\017\001\002\000\004\027\020\001\002\000\004\020" +
-    "\021\001\002\000\004\022\ufff6\001\002\000\004\017\023" +
-    "\001\002\000\004\020\024\001\002\000\004\020\025\001" +
-    "\002\000\006\027\026\030\027\001\002\000\004\020\ufff1" +
-    "\001\002\000\004\020\ufff2\001\002\000\004\020\031\001" +
-    "\002\000\004\022\ufff0\001\002\000\004\002\000\001\002" +
-    "\000\004\022\ufff7\001\002\000\004\027\035\001\002\000" +
-    "\004\020\036\001\002\000\006\021\037\022\ufffd\001\002" +
-    "\000\004\020\034\001\002\000\004\022\ufffe\001\002\000" +
-    "\004\022\ufff8\001\002\000\004\002\001\001\002" });
+    "\021\001\002\000\004\022\ufff6\001\002\000\004\020\023" +
+    "\001\002\000\006\027\024\030\025\001\002\000\004\020" +
+    "\ufff1\001\002\000\004\020\ufff2\001\002\000\004\020\027" +
+    "\001\002\000\004\022\ufff0\001\002\000\004\002\000\001" +
+    "\002\000\004\022\ufff7\001\002\000\004\027\033\001\002" +
+    "\000\004\020\034\001\002\000\006\021\035\022\ufffd\001" +
+    "\002\000\004\020\032\001\002\000\004\022\ufffe\001\002" +
+    "\000\004\022\ufff8\001\002\000\004\002\001\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -67,18 +66,17 @@ public class QueriesParser extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\040\000\004\002\003\001\001\000\002\001\001\000" +
+    "\000\036\000\004\002\003\001\001\000\002\001\001\000" +
     "\014\004\012\005\006\006\014\007\007\010\010\001\001" +
-    "\000\004\003\040\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\004\003\032\001\001\000\002" +
+    "\000\004\003\036\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\004\003\030\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\004\012\025\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
-    "\004\012\027\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\004\003\037\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001" });
+    "\002\001\001\000\002\001\001\000\004\003\035\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -339,20 +337,20 @@ class CUP$QueriesParser$actions {
           return CUP$QueriesParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 17: // componentes ::= COMPONENTE COMILLAS COMPONENTE_TYPE COMILLAS COMILLAS ruta COMILLAS 
+          case 17: // componentes ::= COMPONENTE COMPONENTE_TYPE COMILLAS ruta COMILLAS 
             {
               String RESULT =null;
-		int typeleft = ((java_cup.runtime.Symbol)CUP$QueriesParser$stack.elementAt(CUP$QueriesParser$top-4)).left;
-		int typeright = ((java_cup.runtime.Symbol)CUP$QueriesParser$stack.elementAt(CUP$QueriesParser$top-4)).right;
-		String type = (String)((java_cup.runtime.Symbol) CUP$QueriesParser$stack.elementAt(CUP$QueriesParser$top-4)).value;
+		int typeleft = ((java_cup.runtime.Symbol)CUP$QueriesParser$stack.elementAt(CUP$QueriesParser$top-3)).left;
+		int typeright = ((java_cup.runtime.Symbol)CUP$QueriesParser$stack.elementAt(CUP$QueriesParser$top-3)).right;
+		String type = (String)((java_cup.runtime.Symbol) CUP$QueriesParser$stack.elementAt(CUP$QueriesParser$top-3)).value;
 		int pathleft = ((java_cup.runtime.Symbol)CUP$QueriesParser$stack.elementAt(CUP$QueriesParser$top-1)).left;
 		int pathright = ((java_cup.runtime.Symbol)CUP$QueriesParser$stack.elementAt(CUP$QueriesParser$top-1)).right;
 		String path = (String)((java_cup.runtime.Symbol) CUP$QueriesParser$stack.elementAt(CUP$QueriesParser$top-1)).value;
 		
                 CountMatches countMatches = new CountMatches();
-                countMatches.contarCoincidencias(type, path);
+                response = countMatches.contarCoincidencias(type, path);
             
-              CUP$QueriesParser$result = parser.getSymbolFactory().newSymbol("componentes",6, ((java_cup.runtime.Symbol)CUP$QueriesParser$stack.elementAt(CUP$QueriesParser$top-6)), ((java_cup.runtime.Symbol)CUP$QueriesParser$stack.peek()), RESULT);
+              CUP$QueriesParser$result = parser.getSymbolFactory().newSymbol("componentes",6, ((java_cup.runtime.Symbol)CUP$QueriesParser$stack.elementAt(CUP$QueriesParser$top-4)), ((java_cup.runtime.Symbol)CUP$QueriesParser$stack.peek()), RESULT);
             }
           return CUP$QueriesParser$result;
 
