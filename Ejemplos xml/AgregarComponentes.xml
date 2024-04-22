@@ -5,7 +5,7 @@
         	[$Titulo1]
         </parametro>
         <parametro nombre="PAGINA">
-        	[$PaginaDeFri]
+        	[$PaginaDePrueba]
         </parametro>
         <parametro nombre="CLASE">
         	[TITULO]
@@ -32,7 +32,7 @@
         	[$Parrafito]
         </parametro>
         <parametro nombre="PAGINA">
-        	[$PaginaDeFri]
+        	[$PaginaDePrueba]
         </parametro>
         <parametro nombre="CLASE">
         	[PARRAFO]
@@ -57,7 +57,7 @@
         	[$Parrafitodos]
         </parametro>
         <parametro nombre="PAGINA">
-        	[$PaginaDeFri]
+        	[$PaginaDePrueba]
         </parametro>
         <parametro nombre="CLASE">
         	[PARRAFO]
@@ -85,7 +85,7 @@
         	[$Imagencita]
         </parametro>
         <parametro nombre="PAGINA">
-        	[$PaginaDeFri]
+        	[$PaginaDePrueba]
         </parametro>
         <parametro nombre="CLASE">
         	[IMAGEN]
@@ -114,7 +114,7 @@
         	[$Imagencita]
         </parametro>
         <parametro nombre="PAGINA">
-        	[$PaginaDeFri]
+        	[$PaginaDePrueba]
         </parametro>
         <parametro nombre="CLASE">
         	[VIDEO]
@@ -141,7 +141,7 @@
         	[$ultimoparrafo]
         </parametro>
         <parametro nombre="PAGINA">
-        	[$PaginaDeFri]
+        	[$PaginaDePrueba]
         </parametro>
         <parametro nombre="CLASE">
         	[PARRAFO]

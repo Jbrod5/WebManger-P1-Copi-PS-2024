@@ -1,7 +1,7 @@
 <accion nombre="NUEVA_PAGINA">
 	<parametros>
     	    <parametro nombre="ID">
-        	      [$PaginaDeFri]
+        	      [$PaginaDePrueba]
         	</parametro>
 			<parametro nombre="TITULO">
         	      [Esta pagina es de fri]

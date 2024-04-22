@@ -4,7 +4,7 @@
 			[$Titulo1]
 		</parametro>
 		<parametro nombre="PAGINA">
-			[$PaginaDeFri]
+			[$PaginaDePrueba]
 		</parametro>
 	</parametros>
 </accion>
