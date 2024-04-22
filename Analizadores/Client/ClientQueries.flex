@@ -12,34 +12,34 @@ import java_cup.runtime.*;
 
 
 // Uso general
-consultar   = "(?i)CONSULTAR"
+consultar   =  [cC][oO][nN][sS][uU][lL][tT][aA][rR] 
 
-vsts_sitio  = "(?i)VISITAS_SITIO"
-vsts_pagina = "(?i)VISITAS_PAGINA"
-vsts_pgpops = "(?i)PAGINAS_POPULARES"
-componente  = "(?i)COMPONENTE"
+vsts_sitio  = [Vv][Ii][Ss][Ii][Tt][Aa][Ss][_][Ss][Ii][Tt][Ii][Oo]
+vsts_pagina = [vV][iI][sS][iI][tT][aA][sS][_][pP][aA][gG][iI][nN][aA]
+vsts_pgpops = [pP][aA][gG][iI][nN][aA][sS][_][pP][oO][pP][uU][lL][aA][rR][eE][sS]
+componente  = [cC][oO][mM][pP][oO][nN][eE][nN][tT][eE]
 
 // Componentes
-tit = "(?i)TITULO"
-par = "(?i)PARRAFO"
-img = "(?i)IMAGEN"
-vid = "(?i)VIDEO"
-men = "(?i)MENU"
-tds = "(?i)TODOS"
+tit = [tT][iI][tT][uU][lL][oO]
+par = [pP][aA][rR][rR][aA][fF][oO]
+img = [iI][mM][aA][gG][eE][nN]
+vid = [vV][iI][dD][eE][oO]
+men = [mM][eE][nN][uU]
+tds = [tT][oO][dD][oO][sS]
 
-comp_op = tit | par | img | vid | men | tds
+comp_op = {tit} | {par} | {img} | {vid} | {men} | {tds}
 
 //Simbolos generales
-comillas = "\""
-coma = "\,"
-eoi = "\;"
-val_op = "<"
-val_cl = ">"
+comillas =[\"] | [\“] | [\”]
+coma =\,
+eoi =\;
+val_op =\<
+val_cl =\>
 
 inicio = "C:"  
 id = [a-zA-Z0-9$_.-]+
 separador = "/" | "\\"
-path = inicio? separador? [id separador?]+ 
+path = {inicio} {separador} ({id} {separador})+  {id} | {separador} ({id} {separador})+  {id}
 
 %{
   private Symbol symbol(int type) {

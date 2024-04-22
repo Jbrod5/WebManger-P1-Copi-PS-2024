@@ -71,8 +71,8 @@ paginas_populares ::= PAGINAS_POPULARES   COMILLAS   ID    COMILLAS;
 
 dir         ::= PATH | ID SEPARADOR dir | ID;
 ruta        ::= PATH:path {: RESULT = path; :} /*INICIO dir | dir*/ | ID:id {: RESULT = id; :}  ; 
-componentes ::= COMPONENTE COMILLAS  COMPONENTE_TYPE:type   COMILLAS     COMILLAS ruta:path COMILLAS 
+componentes ::= COMPONENTE  COMPONENTE_TYPE:type     COMILLAS ruta:path COMILLAS 
             {:
                 CountMatches countMatches = new CountMatches();
-                countMatches.contarCoincidencias(type, path);
+                response = countMatches.contarCoincidencias(type, path);
             :};
